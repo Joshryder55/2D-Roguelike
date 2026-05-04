@@ -1,6 +1,12 @@
 # 2D-Roguelike
 A 2D bullet-hell roguelike game set in a medieval fantasy world. 
 
+Stable is the 'Dev' Branch where we will post patches. Main will be the final product.
+
+
+
+**__Setting up to be able to edit__**
+
 Downloading Godot:
 ***Get the .net Version***
 Run Godot Stable, not the one with console
