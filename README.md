@@ -1,5 +1,5 @@
 # 2D-Roguelike
-A 2D bullet-hell roguelike game set in a medieval fantasy world. 
+A 2D bullet-heaven roguelike game set in a medieval fantasy world. 
 
 Stable is the 'Dev' Branch where we will post patches. Main will be the final product.
 
