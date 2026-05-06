@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://7d3i2ioro8q7"]
+
+[ext_resource type="Script" uid="uid://cr43lm1wbajtk" path="res://Scripts/Projectile.cs" id="1_lal66"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cioo"]
+
+[node name="Projectile" type="Area2D" unique_id=2470067]
+collision_mask = 2
+script = ExtResource("1_lal66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1694221848]
+shape = SubResource("CircleShape2D_8cioo")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1309739921]
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(0, -10, 10, 10, -10, 10)
+uv = PackedVector2Array(-220.5, -29.5, -192.5, 34, -247.5, 34)

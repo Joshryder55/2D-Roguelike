@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cgbuxstw7koox"]
+
+[ext_resource type="Script" uid="uid://chkx3jm28hqeu" path="res://Scripts/Enemy.cs" id="1_whhnv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftsrl"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whhnv"]
+size = Vector2(40, 40)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
+collision_layer = 2
+script = ExtResource("1_whhnv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=167337621]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150819702]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_ftsrl")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1627058261]
+position = Vector2(21, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1227407909]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_whhnv")
