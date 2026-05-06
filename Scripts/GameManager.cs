@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerHealth : Node
+public partial class GameManager : Node
 {
 	public int health = 10;
 	

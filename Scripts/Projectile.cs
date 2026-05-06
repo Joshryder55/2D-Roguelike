@@ -4,7 +4,7 @@ using System;
 public partial class Projectile : Area2D {
 	public Vector2 Direction;
 	float speed = 300;
-	float maxDistance = 500;
+	float maxDistance = 2000.0f;
 	Vector2 startPosition;
 
 	public override void _Ready() {
@@ -23,7 +23,13 @@ public partial class Projectile : Area2D {
 	private void OnBodyEntered(Node2D body) {
 		
 		if (body is CharacterBody2D) {
-			body.QueueFree();
+			//Instantiating object of enemyHealth
+			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
+			
+			if (enemyHealth != null){
+				enemyHealth.TakeDamage(10);
+			}
+			
 			QueueFree();
 		}
 	}

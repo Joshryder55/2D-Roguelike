@@ -15,6 +15,10 @@ run/main_scene="uid://4dcurgwnx7lk"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*uid://7a06d88swv3d"
+
 [dotnet]
 
 project/assembly_name="2D-RogueLike"
