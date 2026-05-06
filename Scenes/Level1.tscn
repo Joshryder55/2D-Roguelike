@@ -6,22 +6,44 @@
 [ext_resource type="Script" uid="uid://hxvkygiphpwr" path="res://Scripts/PlayerCombat.cs" id="3_t3or0"]
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/BasicEnemy.tscn" id="4_jghel"]
 [ext_resource type="PackedScene" uid="uid://7d3i2ioro8q7" path="res://Scenes/Projectile.tscn" id="4_ysn8j"]
+[ext_resource type="Texture2D" uid="uid://q71s32hgytr6" path="res://Assets/IceWizardStill.png" id="5_kylad"]
+[ext_resource type="Texture2D" uid="uid://bux3yukedknd3" path="res://Assets/IceWizardBackwards.png" id="6_bdlbp"]
+[ext_resource type="Texture2D" uid="uid://bq8ofo51s585s" path="res://Assets/IceWizardForward.png" id="7_2h8qs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_505pi"]
 size = Vector2(40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rpty4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kylad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bdlbp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2h8qs")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
 [node name="TempFloor (Replace With Sprite2D)" type="ColorRect" parent="." unique_id=957995744]
 z_index = -1
-offset_right = 584.0
-offset_bottom = 518.0
+offset_right = 1500.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1083487667]
-position = Vector2(5, 7)
+position = Vector2(715, 762)
 script = ExtResource("1_2llne")
 
 [node name="Color Rect" type="ColorRect" parent="Player" unique_id=1755330121]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0.5607391, 0.8797729, 1)
@@ -38,6 +60,12 @@ script = ExtResource("3_t3or0")
 ProjectileScene = ExtResource("4_ysn8j")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=218638739]
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1712696323]
+sprite_frames = SubResource("SpriteFrames_rpty4")
+animation = &"Walking"
+frame_progress = 0.85270536
 
 [node name="EnemyManager" type="Node" parent="." unique_id=1219055535 node_paths=PackedStringArray("Player")]
 script = ExtResource("3_jghel")

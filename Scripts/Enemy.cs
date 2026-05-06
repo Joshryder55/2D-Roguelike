@@ -18,7 +18,7 @@ public override void _Ready() {
 	damageArea.BodyExited += OnBodyExited;
 
 	damageTimer = new Timer();
-	damageTimer.WaitTime = 1.0f;
+	damageTimer.WaitTime = 0.5f;
 	damageTimer.Timeout += DealDamage;
 	AddChild(damageTimer);
 }

@@ -4,6 +4,11 @@ using System;
 public partial class PlayerMovement : CharacterBody2D {
 	
 	float playerSpeed = 100;
+	AnimatedSprite2D sprite;
+	
+	public override void _Ready() {
+	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	}
 	
 
 	public override void _PhysicsProcess(double delta) {
@@ -19,6 +24,14 @@ public partial class PlayerMovement : CharacterBody2D {
 		inputVector = inputVector.Normalized();
 		Velocity = inputVector * playerSpeed;
 		MoveAndSlide();
-	}
+		
+		if (inputVector != Vector2.Zero){
+			sprite.Play("Walking");
+			}
+			else{
+				sprite.Stop();
+			
+		}
+	}	
 
 }
