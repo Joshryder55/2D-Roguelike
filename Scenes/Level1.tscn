@@ -60,7 +60,7 @@ script = ExtResource("3_t3or0")
 ProjectileScene = ExtResource("4_ysn8j")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=218638739]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1712696323]
 sprite_frames = SubResource("SpriteFrames_rpty4")

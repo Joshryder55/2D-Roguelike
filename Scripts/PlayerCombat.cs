@@ -4,7 +4,7 @@ using System;
 public partial class PlayerCombat : Node {
 	[Export] public PackedScene ProjectileScene;
 	float fireRate = 1.0f;
-	float range = 300.0f;
+	float range = 500.0f;
 	Timer fireTimer;
 	CharacterBody2D player;
 
@@ -23,9 +23,10 @@ public partial class PlayerCombat : Node {
 		if (nearestEnemy == null) return;
 		
 		Projectile projectile = ProjectileScene.Instantiate<Projectile>();
+		projectile.Direction = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
 		GetTree().CurrentScene.AddChild(projectile);
 		projectile.GlobalPosition = player.GlobalPosition;
-		projectile.Direction = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
+
 	}
 
 	private CharacterBody2D FindNearestEnemy() {

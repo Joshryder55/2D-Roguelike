@@ -3,13 +3,22 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
+	
+AnimatedSprite2D sprite;
+
 public CharacterBody2D Player;	
+
 GameManager gameManager;
+
 Area2D damageArea;
 Timer damageTimer;
+
 float speed = 50;
 
+
 public override void _Ready() {
+	
+	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	
 	gameManager = GetNode<GameManager>("/root/GameManager");
 
@@ -44,5 +53,12 @@ private void DealDamage() {
 	Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
 	Velocity = direction * speed;
 	MoveAndSlide();
+	
+	if (Velocity.Length() > 0){
+		sprite.Play("Walking");
+	}
+	else{
+		sprite.Play("Still");
+	}
 }
 }
