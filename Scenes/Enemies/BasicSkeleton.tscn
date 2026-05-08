@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c0qsi7fbvbxxj"]
+
+[ext_resource type="Texture2D" uid="uid://dj0djpfj4a7pc" path="res://Assets/SkeletonStill.png" id="1_701o0"]
+[ext_resource type="Texture2D" uid="uid://d1u61limktkro" path="res://Assets/SkeletonWalk1.png" id="2_1u4tr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qhg1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_701o0")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1u4tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_701o0")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 2.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyira"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[node name="BasicSkeleton" type="CharacterBody2D" unique_id=1309720042]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=19348704]
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=2088845828]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=28280192]
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=1080335272]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=584679694]
+position = Vector2(28, 128)
+sprite_frames = SubResource("SpriteFrames_4qhg1")
+animation = &"Walking"
+frame_progress = 0.6586747
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2058031701]
+offset_left = -2.9999998
+offset_top = -134.0
+offset_right = 282.0
+offset_bottom = -107.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/fill = SubResource("StyleBoxFlat_xyira")
+show_percentage = false

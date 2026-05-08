@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cyvkax6swo3xf"]
+
+[ext_resource type="Script" uid="uid://88qxgpeksnoc" path="res://Scripts/GameOver.cs" id="1_m5628"]
+
+[sub_resource type="SystemFont" id="SystemFont_qg30o"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=523807280]
+script = ExtResource("1_m5628")
+
+[node name="Control" type="Control" parent="." unique_id=101411617]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 138.0
+offset_bottom = 127.0
+
+[node name="Game Over Text" type="Label" parent="Control" unique_id=881239637]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 171.0
+offset_right = 926.0
+offset_bottom = 342.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_qg30o")
+theme_override_font_sizes/font_size = 125
+text = "YOU DIED!!!"
+
+[node name="RestartButton" type="Button" parent="Control" unique_id=301925970]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 410.0
+offset_right = 481.0
+offset_bottom = 481.0
+theme_override_font_sizes/font_size = 45
+text = "Restart"
+
+[node name="TitleScreenButton" type="Button" parent="Control" unique_id=634420869]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 410.0
+offset_right = 858.0
+offset_bottom = 481.0
+theme_override_font_sizes/font_size = 45
+text = "Title Screen"

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://7d3i2ioro8q7"]
+
+[ext_resource type="Script" uid="uid://dgg7aub6vbr0f" path="res://Scripts/IceBolt.cs" id="1_ee0vi"]
+[ext_resource type="Texture2D" uid="uid://da2qy8321y3ck" path="res://Assets/FrostBolt1V2.png" id="2_2t36t"]
+[ext_resource type="Texture2D" uid="uid://7sycyibvxwqs" path="res://Assets/FrostBolt2V2.png" id="3_8jgij"]
+[ext_resource type="Texture2D" uid="uid://cceu1uiwqxbh2" path="res://Assets/FrostBolt3V2.png" id="4_alpuq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cioo"]
+radius = 7.071068
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tued"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2t36t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8jgij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_alpuq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Projectile" type="Area2D" unique_id=2470067]
+collision_mask = 2
+script = ExtResource("1_ee0vi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1694221848]
+shape = SubResource("CircleShape2D_8cioo")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1309739921]
+visible = false
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(0, -10, 10, 10, -10, 10)
+uv = PackedVector2Array(-220.5, -29.5, -192.5, 34, -247.5, 34)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1824819852]
+position = Vector2(-1.0000005, 12)
+scale = Vector2(0.09375, 0.11842104)
+sprite_frames = SubResource("SpriteFrames_4tued")
+frame_progress = 0.40612134
