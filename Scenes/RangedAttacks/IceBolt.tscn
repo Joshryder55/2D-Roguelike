@@ -42,4 +42,4 @@ uv = PackedVector2Array(-220.5, -29.5, -192.5, 34, -247.5, 34)
 position = Vector2(-1.0000005, 12)
 scale = Vector2(0.09375, 0.11842104)
 sprite_frames = SubResource("SpriteFrames_4tued")
-frame_progress = 0.09166784
+frame_progress = 0.40612134
