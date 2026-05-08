@@ -3,13 +3,17 @@ using System;
 
 public partial class EnemyManager : Node {
 	[Export] public CharacterBody2D Player;
-	[Export] public PackedScene EnemyScene;
+	[Export] public PackedScene[] EnemyScenes;
+	
+	GameManager gameManager;
 
 	
 	public override void _Ready() {
 		
+		gameManager = GetNode<GameManager>("/root/GameManager");
+		
 		Timer spawnTimer = new Timer();
-		spawnTimer.WaitTime = 3.0f;
+		spawnTimer.WaitTime = 0.5f;
 		spawnTimer.Timeout += SpawnEnemy;
 		AddChild(spawnTimer);
 		spawnTimer.Start();
@@ -52,9 +56,13 @@ public partial class EnemyManager : Node {
 	}
 	
 	private void SpawnEnemy() {
-	Enemy enemy = EnemyScene.Instantiate<Enemy>();
-	enemy.Player = Player;
-	enemy.GlobalPosition = GetRandomSpawnPosition();
-	AddChild(enemy);
-}
+		if (gameManager.isDead) return;
+		
+		Random random = new Random();
+		int index = random.Next(EnemyScenes.Length);
+		Enemy enemy = EnemyScenes[index].Instantiate<Enemy>();
+		enemy.Player = Player;
+		enemy.GlobalPosition = GetRandomSpawnPosition();
+		AddChild(enemy);
+	 }
 }

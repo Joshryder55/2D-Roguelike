@@ -13,7 +13,7 @@ GameManager gameManager;
 Area2D damageArea;
 Timer damageTimer;
 
-float speed = 50;
+public virtual float speed { get; set; } = 50;
 
 
 public override void _Ready() {
