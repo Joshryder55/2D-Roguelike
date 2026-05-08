@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://chkx3jm28hqeu" path="res://Scripts/Enemy.cs" id="1_whhnv"]
 [ext_resource type="Script" uid="uid://cb37lmqi75m3t" path="res://Scripts/EnemyHealth.cs" id="2_6x443"]
-[ext_resource type="Texture2D" uid="uid://gpnab77asmkx" path="res://Assets/ZombieBack.png" id="3_hp7c0"]
-[ext_resource type="Texture2D" uid="uid://c6veh45s4nba2" path="res://Assets/ZombieForward.png" id="4_g722j"]
+[ext_resource type="Texture2D" uid="uid://2w81u2i22t67" path="res://Assets/ZombieStill.png" id="3_tbv33"]
+[ext_resource type="Texture2D" uid="uid://7ov7eacygj6d" path="res://Assets/ZombieWalk1.png" id="4_kvowr"]
+[ext_resource type="Texture2D" uid="uid://dey8k7jdp7q3g" path="res://Assets/ZombieWalk2.png" id="5_55e75"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyHealthbar.cs" id="6_kvowr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftsrl"]
 size = Vector2(40, 170)
@@ -13,24 +15,36 @@ size = Vector2(40, 122)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h4tt6"]
 animations = [{
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tbv33")
+}],
+"loop": false,
 "name": &"Still",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_hp7c0")
+"texture": ExtResource("3_tbv33")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_g722j")
+"texture": ExtResource("4_kvowr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tbv33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55e75")
 }],
 "loop": true,
 "name": &"Walking",
 "speed": 3.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvowr"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[node name="BasicZombie" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_whhnv")
@@ -60,5 +74,14 @@ script = ExtResource("2_6x443")
 position = Vector2(32.999992, 10.999996)
 scale = Vector2(0.78515625, 0.800721)
 sprite_frames = SubResource("SpriteFrames_h4tt6")
-animation = &"Walking"
-frame_progress = 0.92441607
+animation = &"Still"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1440884350]
+custom_minimum_size = Vector2(0, 5)
+offset_top = -96.0
+offset_right = 284.99997
+offset_bottom = -69.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_kvowr")
+show_percentage = false
+script = ExtResource("6_kvowr")

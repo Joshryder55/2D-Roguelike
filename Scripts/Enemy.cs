@@ -47,18 +47,38 @@ private void DealDamage() {
 }
 
 
-	public override void _PhysicsProcess(double delta) {
+public override void _PhysicsProcess(double delta) {
 	if (Player == null) return;
 	
+	if (gameManager.isDead) {
+		Velocity = Vector2.Zero;
+		sprite.Play("Still");
+		return;
+	}
+
 	Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
 	Velocity = direction * speed;
 	MoveAndSlide();
+
+	if(!gameManager.isDead){
+	if(Player.GlobalPosition.X < GlobalPosition.X){
+		sprite.FlipH = true;
+	}
+	else {
+		sprite.FlipH = false;
+	}
+	}
 	
+
 	if (Velocity.Length() > 0){
 		sprite.Play("Walking");
 	}
 	else{
 		sprite.Play("Still");
 	}
+	
+	
+	
+
 }
 }

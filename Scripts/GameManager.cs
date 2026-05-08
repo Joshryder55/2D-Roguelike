@@ -3,7 +3,17 @@ using System;
 
 public partial class GameManager : Node
 {
+	
+	
+	public int maxHealth = 10;
 	public int health = 10;
+	public bool isDead = false;
+	
+	public void Reset() {
+	isDead = false;
+	health = maxHealth;
+	
+	}
 	
 	public void TakeDamage(int amount){
 		health -= amount;
@@ -15,7 +25,9 @@ public partial class GameManager : Node
 	}
 	
 	public void Die(){
+		isDead = true;
 		GD.Print("You Died!");
-		//Add Scene Change later
+		PackedScene gameOverScene = GD.Load<PackedScene>("res://Scenes/GameOver.tscn");
+		GetTree().CurrentScene.AddChild(gameOverScene.Instantiate());
 	}
 }

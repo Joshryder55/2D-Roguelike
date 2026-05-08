@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://7h5q2l83v4ay"]
+
+[ext_resource type="Script" uid="uid://bk5bpjjeqsm48" path="res://Scripts/PlayerMovement.cs" id="1_kmvcf"]
+[ext_resource type="Script" uid="uid://7a06d88swv3d" path="res://Scripts/GameManager.cs" id="1_pe4jl"]
+[ext_resource type="Script" uid="uid://hxvkygiphpwr" path="res://Scripts/PlayerCombat.cs" id="2_kmvcf"]
+[ext_resource type="PackedScene" uid="uid://7d3i2ioro8q7" path="res://Scenes/RangedAttacks/IceBolt.tscn" id="3_jkcmi"]
+[ext_resource type="Texture2D" uid="uid://q71s32hgytr6" path="res://Assets/IceWizardStill.png" id="4_5kv4j"]
+[ext_resource type="Texture2D" uid="uid://bosrroofab07m" path="res://Assets/IceWizardDead.png" id="5_5r8jw"]
+[ext_resource type="Texture2D" uid="uid://bux3yukedknd3" path="res://Assets/IceWizardBackwards.png" id="5_hpusy"]
+[ext_resource type="Texture2D" uid="uid://bq8ofo51s585s" path="res://Assets/IceWizardForward.png" id="6_5r8jw"]
+[ext_resource type="Texture2D" uid="uid://djuxiov7c07a7" path="res://Assets/IceWizardDeadFall1.png" id="7_qn0ej"]
+[ext_resource type="Texture2D" uid="uid://bi7dc7dwn0c15" path="res://Assets/IceWizardDeadFall2.png" id="8_vydgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0ej"]
+size = Vector2(65, 99)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vydgt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5r8jw")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5kv4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qn0ej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vydgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5r8jw")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5kv4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hpusy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5r8jw")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[node name="IceWizard" type="CharacterBody2D" unique_id=1738045256]
+script = ExtResource("1_kmvcf")
+
+[node name="Color Rect" type="ColorRect" parent="." unique_id=929802940]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0.5607391, 0.8797729, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028222939]
+position = Vector2(1.5, 40.5)
+shape = SubResource("RectangleShape2D_qn0ej")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1118122319]
+script = ExtResource("1_pe4jl")
+
+[node name="Targeting" type="Node" parent="." unique_id=1870974715]
+script = ExtResource("2_kmvcf")
+ProjectileScene = ExtResource("3_jkcmi")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=166666599]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=419524186]
+sprite_frames = SubResource("SpriteFrames_vydgt")
+animation = &"Death"

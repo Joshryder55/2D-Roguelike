@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 public partial class PlayerCombat : Node {
+	GameManager gameManager;
 	[Export] public PackedScene ProjectileScene;
 	float fireRate = 1.0f;
 	float range = 500.0f;
@@ -9,6 +10,9 @@ public partial class PlayerCombat : Node {
 	CharacterBody2D player;
 
 	public override void _Ready() {
+		gameManager = GetNode<GameManager>("/root/GameManager");
+		gameManager.Reset();
+		
 		player = GetParent<CharacterBody2D>();
 		
 		fireTimer = new Timer();
@@ -19,6 +23,9 @@ public partial class PlayerCombat : Node {
 	}
 
 	private void TryShoot() {
+		
+		if(gameManager.isDead) return;
+		
 		CharacterBody2D nearestEnemy = FindNearestEnemy();
 		if (nearestEnemy == null) return;
 		
