@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyvkax6swo3xf"]
 
-[ext_resource type="Script" uid="uid://88qxgpeksnoc" path="res://Scripts/GameOver.cs" id="1_m5628"]
+[ext_resource type="Script" uid="uid://88qxgpeksnoc" path="res://Scripts/SceneScripts/GameOver.cs" id="1_m5628"]
 
 [sub_resource type="SystemFont" id="SystemFont_qg30o"]
 

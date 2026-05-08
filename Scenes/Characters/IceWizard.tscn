@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://7h5q2l83v4ay"]
 
-[ext_resource type="Script" uid="uid://bk5bpjjeqsm48" path="res://Scripts/PlayerMovement.cs" id="1_kmvcf"]
-[ext_resource type="Script" uid="uid://7a06d88swv3d" path="res://Scripts/GameManager.cs" id="1_pe4jl"]
-[ext_resource type="Script" uid="uid://hxvkygiphpwr" path="res://Scripts/PlayerCombat.cs" id="2_kmvcf"]
+[ext_resource type="Script" uid="uid://bk5bpjjeqsm48" path="res://Scripts/PlayerScripts/PlayerMovement.cs" id="1_kmvcf"]
+[ext_resource type="Script" uid="uid://7a06d88swv3d" path="res://Scripts/PlayerScripts/GameManager.cs" id="1_pe4jl"]
+[ext_resource type="Script" uid="uid://hxvkygiphpwr" path="res://Scripts/PlayerScripts/PlayerCombat.cs" id="2_kmvcf"]
 [ext_resource type="PackedScene" uid="uid://7d3i2ioro8q7" path="res://Scenes/RangedAttacks/IceBolt.tscn" id="3_jkcmi"]
 [ext_resource type="Texture2D" uid="uid://q71s32hgytr6" path="res://Assets/IceWizardStill.png" id="4_5kv4j"]
 [ext_resource type="Texture2D" uid="uid://bosrroofab07m" path="res://Assets/IceWizardDead.png" id="5_5r8jw"]

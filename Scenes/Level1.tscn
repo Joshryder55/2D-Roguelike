@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://4dcurgwnx7lk"]
 
 [ext_resource type="PackedScene" uid="uid://7h5q2l83v4ay" path="res://Scenes/Characters/IceWizard.tscn" id="1_kylad"]
-[ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyManager.cs" id="3_jghel"]
+[ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyScripts/EnemyManager.cs" id="3_jghel"]
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/Enemies/BasicZombie.tscn" id="4_jghel"]
-[ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/HealthBar.cs" id="4_slnnj"]
+[ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="4_slnnj"]
 [ext_resource type="PackedScene" uid="uid://c0qsi7fbvbxxj" path="res://Scenes/Enemies/BasicSkeleton.tscn" id="4_t3or0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jghel"]

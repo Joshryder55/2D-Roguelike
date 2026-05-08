@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7d3i2ioro8q7"]
 
-[ext_resource type="Script" uid="uid://dgg7aub6vbr0f" path="res://Scripts/IceBolt.cs" id="1_ee0vi"]
+[ext_resource type="Script" uid="uid://dgg7aub6vbr0f" path="res://Scripts/PlayerAttackScripts/IceBolt.cs" id="1_ee0vi"]
 [ext_resource type="Texture2D" uid="uid://da2qy8321y3ck" path="res://Assets/FrostBolt1V2.png" id="2_2t36t"]
 [ext_resource type="Texture2D" uid="uid://7sycyibvxwqs" path="res://Assets/FrostBolt2V2.png" id="3_8jgij"]
 [ext_resource type="Texture2D" uid="uid://cceu1uiwqxbh2" path="res://Assets/FrostBolt3V2.png" id="4_alpuq"]

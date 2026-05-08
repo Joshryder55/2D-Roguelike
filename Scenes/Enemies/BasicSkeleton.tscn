@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c0qsi7fbvbxxj"]
 
 [ext_resource type="Texture2D" uid="uid://dj0djpfj4a7pc" path="res://Assets/SkeletonStill.png" id="1_701o0"]
-[ext_resource type="Script" uid="uid://b112xtod7bvdu" path="res://Scripts/Skeleton.cs" id="1_xyira"]
+[ext_resource type="Script" uid="uid://b112xtod7bvdu" path="res://Scripts/EnemyTypeScripts/Skeleton/BasicSkeleton.cs" id="1_xyira"]
 [ext_resource type="Texture2D" uid="uid://d1u61limktkro" path="res://Assets/SkeletonWalk1.png" id="2_1u4tr"]
-[ext_resource type="Script" uid="uid://dcqomyatyk7xb" path="res://Scripts/SkeletonHealth.cs" id="2_gpwug"]
-[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyHealthbar.cs" id="5_a7s8n"]
+[ext_resource type="Script" uid="uid://dcqomyatyk7xb" path="res://Scripts/EnemyTypeScripts/Skeleton/BasicSkeletonHealth.cs" id="2_gpwug"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="5_a7s8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63bbo"]
 size = Vector2(35, 203)

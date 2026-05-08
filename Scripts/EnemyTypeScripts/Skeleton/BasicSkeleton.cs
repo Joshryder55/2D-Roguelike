@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Skeleton : Enemy
+public partial class BasicSkeleton : Enemy
 {
 	
 	public override float speed { get; set; } = 150; 
