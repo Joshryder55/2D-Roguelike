@@ -28,7 +28,7 @@ public partial class Projectile : Area2D {
 	}
 
 	
-	protected void OnBodyEntered(Node2D body) {
+	protected virtual void OnBodyEntered(Node2D body) {
 		
 		if (body is CharacterBody2D) {
 			//Instantiating object of enemyHealth
@@ -41,5 +41,8 @@ public partial class Projectile : Area2D {
 			QueueFree();
 		}
 	}
+	
+	
+	
 	
 }
