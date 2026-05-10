@@ -28,14 +28,21 @@ public partial class IceBolt : Projectile
 				
 				Enemy enemy = body as Enemy;
 					if (enemy != null) {
+						
 						float originalSpeed = enemy.speed;
+						
 						enemy.speed = 0;
+						enemy.currentStatus = Enemy.StatusEffect.Frozen;
+						enemy.sprite.Play("Frozen");
 						
 						Timer freezeTimer = new Timer();
 						freezeTimer.WaitTime = 2.0f;
 						freezeTimer.OneShot = true;
+						
 							freezeTimer.Timeout += () => {
 								enemy.speed = originalSpeed;
+								enemy.sprite.Play("Walking");
+								enemy.currentStatus = Enemy.StatusEffect.None;
 								freezeTimer.QueueFree();
 							};
 						enemy.AddChild(freezeTimer);

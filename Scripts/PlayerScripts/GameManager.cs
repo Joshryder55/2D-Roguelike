@@ -15,8 +15,12 @@ public partial class GameManager : Node
 	
 	//These are the booleans showing if the player has the abilities or passives unlocked
 	//Set to true for testing purposes WHEN COINS ARE IMPLEMENTED NEEDS TO BE SET TO FALSE
+	
+	//Passives
 	public bool hasMultiShot = true;
 	public bool hasFreezeOnHit = true;
+	
+	//Ultimates
 	public bool hasFrostNova = true;
 	public bool hasIceSpike = true;
 	

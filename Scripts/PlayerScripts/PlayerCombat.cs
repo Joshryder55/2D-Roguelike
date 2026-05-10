@@ -8,6 +8,7 @@ public partial class PlayerCombat : Node {
 	float range = 500.0f;
 	Timer fireTimer;
 	CharacterBody2D player;
+	Random random = new Random();
 
 	public override void _Ready() {
 		gameManager = GetNode<GameManager>("/root/GameManager");
@@ -29,12 +30,24 @@ public partial class PlayerCombat : Node {
 		CharacterBody2D nearestEnemy = FindNearestEnemy();
 		if (nearestEnemy == null) return;
 		
-		Projectile projectile = ProjectileScene.Instantiate<Projectile>();
-		projectile.Direction = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
-		GetTree().CurrentScene.AddChild(projectile);
-		projectile.GlobalPosition = player.GlobalPosition;
-
+		Vector2 mainDirection = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
+		
+		spawnProjectile(mainDirection);
+		
+		//Check if multishot procs
+		if(gameManager.hasMultiShot && random.NextDouble() < 0.2){
+			spawnProjectile(mainDirection.Rotated(0.26f));
+			spawnProjectile(mainDirection.Rotated(-0.26f));
+		}
 	}
+	
+	private void spawnProjectile(Vector2 Direction) {
+		Projectile projectile = ProjectileScene.Instantiate<Projectile>();
+		projectile.Direction = Direction;
+		GetTree().CurrentScene.AddChild(projectile);
+		projectile.GlobalPosition = player.GlobalPosition;	 
+	}
+	
 
 	private CharacterBody2D FindNearestEnemy() {
 		CharacterBody2D nearest = null;

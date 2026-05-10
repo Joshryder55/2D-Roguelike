@@ -4,7 +4,7 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	
-AnimatedSprite2D sprite;
+public AnimatedSprite2D sprite;
 
 public CharacterBody2D Player;	
 
@@ -12,6 +12,9 @@ GameManager gameManager;
 
 Area2D damageArea;
 Timer damageTimer;
+
+public enum StatusEffect {None, Frozen, Burning, Poisoned}
+public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
 
@@ -26,6 +29,8 @@ public override void _Ready() {
 	damageArea.BodyEntered += OnBodyEntered;
 	damageArea.BodyExited += OnBodyExited;
 
+	sprite.Play("Walking");
+	
 	damageTimer = new Timer();
 	damageTimer.WaitTime = 0.5f;
 	damageTimer.Timeout += DealDamage;
@@ -69,14 +74,15 @@ public override void _PhysicsProcess(double delta) {
 	}
 	}
 	
-
-	if (Velocity.Length() > 0){
-		sprite.Play("Walking");
-	}
-	else{
-		sprite.Play("Still");
-	}
 	
+	if(currentStatus == StatusEffect.None){
+		if (Velocity.Length() > 0){
+			sprite.Play("Walking");
+		}
+		else{
+			sprite.Play("Still");
+		}
+	}
 	
 	
 

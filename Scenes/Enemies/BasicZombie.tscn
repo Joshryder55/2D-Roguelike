@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://e3f6abayoyyd" path="res://Scripts/EnemyTypeScripts/Zombie/BasicZombie.cs" id="1_kvowr"]
 [ext_resource type="Script" uid="uid://c3riu4iq82g52" path="res://Scripts/EnemyTypeScripts/Zombie/BasicZombieHealth.cs" id="2_55e75"]
+[ext_resource type="Texture2D" uid="uid://vvnpl0hqnech" path="res://Assets/ZombieFrozen.png" id="3_55e75"]
 [ext_resource type="Texture2D" uid="uid://2w81u2i22t67" path="res://Assets/ZombieStill.png" id="3_tbv33"]
 [ext_resource type="Texture2D" uid="uid://7ov7eacygj6d" path="res://Assets/ZombieWalk1.png" id="4_kvowr"]
 [ext_resource type="Texture2D" uid="uid://dey8k7jdp7q3g" path="res://Assets/ZombieWalk2.png" id="5_55e75"]
@@ -15,6 +16,14 @@ size = Vector2(40, 122)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h4tt6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_55e75")
+}],
+"loop": true,
+"name": &"Frozen",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_tbv33")
@@ -74,7 +83,7 @@ script = ExtResource("2_55e75")
 position = Vector2(32.999992, 10.999996)
 scale = Vector2(0.78515625, 0.800721)
 sprite_frames = SubResource("SpriteFrames_h4tt6")
-animation = &"Still"
+animation = &"Frozen"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1440884350]
 custom_minimum_size = Vector2(0, 5)
