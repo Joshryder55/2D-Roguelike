@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://c6rc5r0il4rg5"]
+
+[ext_resource type="Script" uid="uid://bs2y1y5d2bxcy" path="res://Scripts/CharacterSelect.cs" id="1_t4t2r"]
+
+[node name="CharacterSelect" type="Control" unique_id=1256750187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4t2r")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=178414939]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=912851229]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=1306557869]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=1338804749]
+layout_mode = 2
+text = "Selection"
+
+[node name="CharacterOptionButton" type="OptionButton" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=646463492]
+layout_mode = 2
+
+[node name="LevelOptionButton" type="OptionButton" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=685898762]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=1829792445]
+layout_mode = 2
+text = "Confirm"
+
+[node name="BackButton" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer" unique_id=645743281]
+layout_mode = 2
+text = "Back"
+
+[node name="PreviewVBox" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=2023845498]
+layout_mode = 2
+
+[node name="CharacterPreviewLabel" type="Label" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=796149156]
+layout_mode = 2
+text = "Character Preview"
+
+[node name="CharacterPreviewTexture" type="TextureRect" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=1777968086]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+stretch_mode = 3
+
+[node name="LevelPreviewLabel" type="Label" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=421076753]
+layout_mode = 2
+text = "Level Preview"
+
+[node name="LevelPreviewTexture" type="TextureRect" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=824593989]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+stretch_mode = 3

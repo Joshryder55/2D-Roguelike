@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://du5nla5dqlj03"]
+
+[ext_resource type="Script" uid="uid://b44cfu7dmc2t2" path="res://Scripts/MainMenu.cs" id="1_v3fht"]
+
+[node name="MainMenu" type="Control" unique_id=1548359149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3fht")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1572028071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1564953892]
+custom_minimum_size = Vector2(240, 55)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1825937568]
+layout_mode = 2
+text = "MicroBonk"
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=81396163]
+layout_mode = 2
+text = "Start"
+
+[node name="UnlocksButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1670990134]
+layout_mode = 2
+text = "Unlocks"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=967791817]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1661735598]
+layout_mode = 2
+text = "Quit"
