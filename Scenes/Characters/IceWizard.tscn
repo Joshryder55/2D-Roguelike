@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bq8ofo51s585s" path="res://Assets/IceWizardForward.png" id="6_5r8jw"]
 [ext_resource type="Texture2D" uid="uid://djuxiov7c07a7" path="res://Assets/IceWizardDeadFall1.png" id="7_qn0ej"]
 [ext_resource type="Texture2D" uid="uid://bi7dc7dwn0c15" path="res://Assets/IceWizardDeadFall2.png" id="8_vydgt"]
+[ext_resource type="Script" uid="uid://dkdosudwuom6q" path="res://Scripts/CharacterScripts/IceWizardStats.cs" id="11_5r8jw"]
+[ext_resource type="Script" uid="uid://byeehpo3x4k0s" path="res://Scripts/PlayerAttackScripts/IceWizardAbilities.cs" id="12_qn0ej"]
+[ext_resource type="PackedScene" uid="uid://d4duklt341cbu" path="res://Scenes/RangedAttacks/FrostNova.tscn" id="13_vydgt"]
+[ext_resource type="PackedScene" uid="uid://cgjllomgkhcc0" path="res://Scenes/RangedAttacks/IceSpike.tscn" id="14_k6jcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0ej"]
 size = Vector2(65, 99)
@@ -56,7 +60,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="IceWizard" type="CharacterBody2D" unique_id=1738045256]
+[node name="IceWizard" type="CharacterBody2D" unique_id=1738045256 groups=["player"]]
 script = ExtResource("1_kmvcf")
 
 [node name="Color Rect" type="ColorRect" parent="." unique_id=929802940]
@@ -82,3 +86,11 @@ zoom = Vector2(1.5, 1.5)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=419524186]
 sprite_frames = SubResource("SpriteFrames_vydgt")
 animation = &"Death"
+
+[node name="Stats" type="Node" parent="." unique_id=1363831964]
+script = ExtResource("11_5r8jw")
+
+[node name="Ability" type="Node" parent="." unique_id=605744600]
+script = ExtResource("12_qn0ej")
+FrostNovaScene = ExtResource("13_vydgt")
+IceSpikeScene = ExtResource("14_k6jcj")

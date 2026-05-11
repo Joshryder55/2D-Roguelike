@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d4duklt341cbu"]
+
+[ext_resource type="Script" uid="uid://bp5hqnortkt3q" path="res://Scripts/PlayerAttackScripts/FrostNova.cs" id="1_4c5aw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4enq"]
+
+[node name="FrostNova" type="Area2D" unique_id=1074539009]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_4c5aw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1503363811]
+shape = SubResource("CircleShape2D_o4enq")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1007796107]
+polygon = PackedVector2Array(-10, -2, -9, -5, -7, -7, -4, -9, 0, -10, 2, -9, 6, -8, 7, -6, 9, -4, 9, 0, 9, 4, 7, 6, 5, 9, 1, 10, -3, 9, -7, 7, -9, 4, -10, 1)

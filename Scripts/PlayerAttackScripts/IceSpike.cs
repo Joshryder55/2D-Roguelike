@@ -1,32 +1,30 @@
 using Godot;
 using System;
 
-public partial class IceBolt : Projectile
+public partial class IceSpike : Projectile
 {
 	
-	public override float speed { get; set; } = 300.0f;
-	public override int damage { get; set; } = 10;
+	IceWizardStats iceStats;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
-		
+		iceStats = characterStats as IceWizardStats;
+		if (iceStats != null) {
+			damage = iceStats.iceSpikeDamage;
+			speed = 200f; // slower than ice bolt
+		}
 	}
 
-	
-	protected override void OnBodyEntered(Node2D body) {
-		base.OnBodyEntered(body);  // runs Projectile's damage logic first
-		
-		IceWizardStats iceStats = characterStats as IceWizardStats;
-		if (iceStats == null) return;
-		
-		if (!iceStats.hasFreezeOnHit) return;
-		
-			// roll random chance
-			Random random = new Random();
+protected override void OnBodyEntered(Node2D body) {
+		if (body is CharacterBody2D) {
+			//Instantiating object of enemyHealth
+			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
 			
-			if (random.NextDouble() < iceStats.freezeChance) {  // 15% chance
+			if (enemyHealth != null){
+				enemyHealth.TakeDamage(damage);
+			}
 				
 				Enemy enemy = body as Enemy;
 					if (enemy != null) {
@@ -38,7 +36,7 @@ public partial class IceBolt : Projectile
 						enemy.sprite.Play("Frozen");
 						
 						Timer freezeTimer = new Timer();
-						freezeTimer.WaitTime = iceStats.freezeDuration;
+						freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
 						freezeTimer.OneShot = true;
 						
 							freezeTimer.Timeout += () => {
@@ -49,8 +47,11 @@ public partial class IceBolt : Projectile
 							};
 						enemy.AddChild(freezeTimer);
 						freezeTimer.Start();
-					}	
-				}
+						
+						}
 			}
-	
+}
+
+
+
 }
