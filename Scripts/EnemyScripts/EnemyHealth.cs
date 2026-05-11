@@ -9,14 +9,18 @@ public partial class EnemyHealth : Node
 	public virtual void TakeDamage(int amount){
 		health -= amount;
 		GetParent().GetNode<ProgressBar>("ProgressBar").Visible = true;
-		GD.Print("Enemy Health: " + health);
 		if (health <= 0){
 			Die();
 		}
 	}
 	
 	public virtual void Die() {
-		GD.Print("Enemy Killed");
+		
+		
+		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
+		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
+		stats.ultimateCharge++;
+		
 		GetParent().QueueFree();
 	}
 	

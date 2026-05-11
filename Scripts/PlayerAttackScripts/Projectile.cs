@@ -2,6 +2,8 @@ using Godot;
 using System;
 
 public partial class Projectile : Area2D {
+	public CharacterStats characterStats;
+	public CharacterBody2D player;
 	AnimatedSprite2D sprite;
 	public Vector2 Direction;
 	float maxDistance = 2000.0f;
@@ -20,7 +22,7 @@ public partial class Projectile : Area2D {
 	public override void _PhysicsProcess(double delta) {
 		GlobalPosition += Direction * speed * (float)delta;
 		
-		if (GlobalPosition.DistanceTo(startPosition) > maxDistance)
+		if (player != null && GlobalPosition.DistanceTo(player.GlobalPosition) > maxDistance)
 			QueueFree();
 			
 		sprite.Play("default");

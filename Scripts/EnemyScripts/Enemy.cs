@@ -8,6 +8,8 @@ public AnimatedSprite2D sprite;
 
 public CharacterBody2D Player;	
 
+CharacterStats characterStats;
+
 GameManager gameManager;
 
 Area2D damageArea;
@@ -24,6 +26,8 @@ public override void _Ready() {
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	
 	gameManager = GetNode<GameManager>("/root/GameManager");
+	
+	characterStats = GetTree().GetFirstNodeInGroup("player").GetNode<CharacterStats>("Stats");
 
 	damageArea = GetNode<Area2D>("HitDetection");
 	damageArea.BodyEntered += OnBodyEntered;
@@ -48,7 +52,7 @@ private void OnBodyExited(Node2D body) {
 }
 
 private void DealDamage() {
-	gameManager.TakeDamage(1);
+	characterStats.TakeDamage(1);
 }
 
 

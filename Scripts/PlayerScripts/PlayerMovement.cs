@@ -5,12 +5,13 @@ public partial class PlayerMovement : CharacterBody2D {
 	
 	GameManager gameManager;
 	
-	float playerSpeed = 100;
+	CharacterStats characterStats;
 	AnimatedSprite2D sprite;
 	
 	public override void _Ready() {
 	gameManager = GetNode<GameManager>("/root/GameManager");
 	gameManager.Reset();
+	characterStats = GetNode<CharacterStats>("Stats");
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	sprite.AnimationFinished += OnAnimationFinished;
 	}
@@ -34,7 +35,7 @@ public partial class PlayerMovement : CharacterBody2D {
 		if (Input.IsActionPressed("ui_up"))
 			inputVector.Y -= 1;
 		inputVector = inputVector.Normalized();
-		Velocity = inputVector * playerSpeed;
+		Velocity = inputVector * characterStats.playerSpeed;
 		MoveAndSlide();
 		
 		if (inputVector != Vector2.Zero){
