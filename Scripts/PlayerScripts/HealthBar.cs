@@ -3,20 +3,21 @@ using System;
 
 public partial class HealthBar : ProgressBar
 {
-	
-	GameManager gameManager;
+	CharacterStats characterStats;
 	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		gameManager = GetNode<GameManager>("/root/GameManager");
-		MaxValue = gameManager.maxHealth;
+		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
+		characterStats = player.GetNode<CharacterStats>("Stats");
+		
+		MaxValue = characterStats.maxHealth;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Value = gameManager.health;
+		Value = characterStats.health;
 	}
 }

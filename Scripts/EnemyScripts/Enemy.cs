@@ -4,14 +4,19 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	
-AnimatedSprite2D sprite;
+public AnimatedSprite2D sprite;
 
 public CharacterBody2D Player;	
+
+CharacterStats characterStats;
 
 GameManager gameManager;
 
 Area2D damageArea;
 Timer damageTimer;
+
+public enum StatusEffect {None, Frozen, Burning, Poisoned}
+public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
 
@@ -21,11 +26,15 @@ public override void _Ready() {
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	
 	gameManager = GetNode<GameManager>("/root/GameManager");
+	
+	characterStats = GetTree().GetFirstNodeInGroup("player").GetNode<CharacterStats>("Stats");
 
 	damageArea = GetNode<Area2D>("HitDetection");
 	damageArea.BodyEntered += OnBodyEntered;
 	damageArea.BodyExited += OnBodyExited;
 
+	sprite.Play("Walking");
+	
 	damageTimer = new Timer();
 	damageTimer.WaitTime = 0.5f;
 	damageTimer.Timeout += DealDamage;
@@ -43,7 +52,7 @@ private void OnBodyExited(Node2D body) {
 }
 
 private void DealDamage() {
-	gameManager.TakeDamage(1);
+	characterStats.TakeDamage(1);
 }
 
 
@@ -69,14 +78,15 @@ public override void _PhysicsProcess(double delta) {
 	}
 	}
 	
-
-	if (Velocity.Length() > 0){
-		sprite.Play("Walking");
-	}
-	else{
-		sprite.Play("Still");
-	}
 	
+	if(currentStatus == StatusEffect.None){
+		if (Velocity.Length() > 0){
+			sprite.Play("Walking");
+		}
+		else{
+			sprite.Play("Still");
+		}
+	}
 	
 	
 

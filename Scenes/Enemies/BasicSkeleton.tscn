@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b112xtod7bvdu" path="res://Scripts/EnemyTypeScripts/Skeleton/BasicSkeleton.cs" id="1_xyira"]
 [ext_resource type="Texture2D" uid="uid://d1u61limktkro" path="res://Assets/SkeletonWalk1.png" id="2_1u4tr"]
 [ext_resource type="Script" uid="uid://dcqomyatyk7xb" path="res://Scripts/EnemyTypeScripts/Skeleton/BasicSkeletonHealth.cs" id="2_gpwug"]
+[ext_resource type="Texture2D" uid="uid://byu6ogkfbfofg" path="res://Assets/SkeletonFrozen.png" id="3_gpwug"]
 [ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="5_a7s8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63bbo"]
@@ -14,6 +15,14 @@ size = Vector2(36, 202)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4qhg1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gpwug")
+}],
+"loop": true,
+"name": &"Frozen",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_701o0")
@@ -59,8 +68,7 @@ script = ExtResource("2_gpwug")
 position = Vector2(11, 96.000015)
 scale = Vector2(0.7421875, 0.7421875)
 sprite_frames = SubResource("SpriteFrames_4qhg1")
-animation = &"Walking"
-frame_progress = 0.6586747
+animation = &"Frozen"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=2058031701]
 offset_left = -2.9999998
