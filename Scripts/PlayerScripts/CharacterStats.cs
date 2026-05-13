@@ -35,6 +35,7 @@ public partial class CharacterStats : Node
 	public virtual void Die(){
 		gameManager.isDead = true;
 		//GD.Print("You Died!");
+		GD.Print("Coins Collected: " + gameManager.coins);
 		PackedScene gameOverScene = GD.Load<PackedScene>("res://Scenes/GameOver.tscn");
 		GetTree().CurrentScene.AddChild(gameOverScene.Instantiate());
 	}

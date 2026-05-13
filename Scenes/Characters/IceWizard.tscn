@@ -81,6 +81,7 @@ script = ExtResource("2_kmvcf")
 ProjectileScene = ExtResource("3_jkcmi")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=166666599]
+zoom = Vector2(0.5, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=419524186]
 position = Vector2(-62, 1)

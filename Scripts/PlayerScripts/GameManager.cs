@@ -25,6 +25,7 @@ public partial class GameManager : Node
 	}
 	
 	
+	
 	////Ability Costs
 	//public void UnlockAbility(string ability, int cost){
 		//if(coins < cost) return;
