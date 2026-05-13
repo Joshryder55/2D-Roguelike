@@ -8,7 +8,7 @@ public partial class IceWizardStats : CharacterStats
 	public override int maxHealth { get; set;} = 10;
 	public override int health { get; set; } = 10;
 	
-	public override float fireRate { get; set; } = 1.0f;
+	public override float fireRate { get; set; } = .2f;
 	public override float range { get; set; } = 500.0f;
 	//public override float projectileSpeed { get; set; } = 300.0f;
 	//public override int projectileDamage { get; set; } = 10;
@@ -16,12 +16,12 @@ public partial class IceWizardStats : CharacterStats
 	public override float playerSpeed { get; set; } = 100;
 	
 	public enum UltimateAbility { None, FrostNova, IceSpike }
-	public UltimateAbility activeUltimate = UltimateAbility.None;
+	public UltimateAbility activeUltimate = UltimateAbility.IceSpike;
 	
 	//Passives and Ultimates
-	public bool hasMultiShot = false;
-	public int multishotCount = 2; // 2 shots to start, can be upgraded, 5 max
-	public float multiShotChance = 0.2f; //20% chance, can be upgraded
+	public bool hasMultiShot = true;
+	public int multishotCount = 5; // 2 shots to start, can be upgraded, 5 max
+	public float multiShotChance = 0.5f; //20% chance, can be upgraded
 	
 	public bool hasFreezeOnHit = false;
 	public float freezeChance = 0.15f; //15% chance, can be upgraded
@@ -32,7 +32,7 @@ public partial class IceWizardStats : CharacterStats
 	public int frostNovaDamage = 15;
 	public float frostNovaFreezeDuration = 5.0f;
 
-	public bool hasIceSpike = false;
+	public bool hasIceSpike = true;
 	public float iceSpikeSize = 0.5f;
 	public int iceSpikeDamage = 15;
 	public float iceSpikeFreezeDuration = 3.0f;
@@ -43,6 +43,7 @@ public partial class IceWizardStats : CharacterStats
 		base._Ready();
 	}
 	
+
 	public override int GetUltimateChargeRequired() {
 		return activeUltimate switch {
 			UltimateAbility.FrostNova => 40,

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://7a06d88swv3d"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="2D-RogueLike"

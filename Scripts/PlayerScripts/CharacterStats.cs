@@ -15,7 +15,7 @@ public partial class CharacterStats : Node
 	
 	public virtual float playerSpeed { get; set; } = 100;
 	
-	public virtual int ultimateCharge { get; set; } = 50;
+	public virtual int ultimateCharge { get; set; } = 0;
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 	
 	

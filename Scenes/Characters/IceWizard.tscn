@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cgjllomgkhcc0" path="res://Scenes/RangedAttacks/IceSpike.tscn" id="14_k6jcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0ej"]
-size = Vector2(65, 99)
+size = Vector2(97.5, 99)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vydgt"]
 animations = [{
@@ -70,7 +70,7 @@ offset_bottom = 40.0
 color = Color(0, 0.5607391, 0.8797729, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028222939]
-position = Vector2(1.5, 40.5)
+position = Vector2(-42.75, 41)
 shape = SubResource("RectangleShape2D_qn0ej")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1118122319]
@@ -81,9 +81,9 @@ script = ExtResource("2_kmvcf")
 ProjectileScene = ExtResource("3_jkcmi")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=166666599]
-zoom = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=419524186]
+position = Vector2(-62, 1)
 sprite_frames = SubResource("SpriteFrames_vydgt")
 animation = &"Death"
 

@@ -5,9 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/Enemies/BasicZombie.tscn" id="4_jghel"]
 [ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="4_slnnj"]
 [ext_resource type="PackedScene" uid="uid://c0qsi7fbvbxxj" path="res://Scenes/Enemies/BasicSkeleton.tscn" id="4_t3or0"]
+[ext_resource type="Texture2D" uid="uid://41jk7437trg" path="res://Assets/OrbEmpty.png" id="5_ysn8j"]
+[ext_resource type="Texture2D" uid="uid://cot74iajikwx7" path="res://Assets/HealthOrbFull.png" id="6_6ll4n"]
+[ext_resource type="Texture2D" uid="uid://d23dtt86pb37p" path="res://Assets/Level1.png" id="6_t3or0"]
+[ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
+[ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jghel"]
-bg_color = Color(0.7019608, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysn8j"]
+atlas = ExtResource("6_t3or0")
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
@@ -21,10 +26,52 @@ EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1932404102]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=13412499]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 266.0
-offset_bottom = 37.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_jghel")
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1300532796]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=1527526464]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 421.99997
+offset_top = -105.0
+offset_right = 2470.0
+offset_bottom = 1943.0
+grow_vertical = 0
+scale = Vector2(0.05, 0.05)
+max_value = 10.0
+fill_mode = 3
+texture_under = ExtResource("5_ysn8j")
+texture_progress = ExtResource("6_6ll4n")
 script = ExtResource("4_slnnj")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=859056610]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -560.0
+offset_top = -107.0
+offset_right = 1488.0
+offset_bottom = 1941.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.05, 0.05)
+fill_mode = 3
+texture_under = ExtResource("5_ysn8j")
+texture_progress = ExtResource("8_bdlbp")
+script = ExtResource("9_2h8qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
+z_index = -1
+position = Vector2(404.00012, 233.99994)
+scale = Vector2(1.5791016, 1.5791016)
+texture = SubResource("AtlasTexture_ysn8j")
