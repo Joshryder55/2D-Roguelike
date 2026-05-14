@@ -19,9 +19,9 @@ public partial class IceWizardStats : CharacterStats
 	public UltimateAbility activeUltimate = UltimateAbility.None;
 	
 	//Passive and modifiers
-	public bool hasMultiShot = false;
-	public int multishotCount = 2; // 2 shots to start, can be upgraded, 5 max
-	public float multiShotChance = .20f; //20% chance, can be upgraded
+	public bool hasMultiShot = true;
+	public int multishotCount = 4; // 2 shots to start, can be upgraded, 5 max
+	public float multiShotChance = .99f; //20% chance, can be upgraded
 	
 	//Passive and modifiers
 	public bool hasFreezeOnHit = false;

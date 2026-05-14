@@ -10,9 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://d23dtt86pb37p" path="res://Assets/Level1.png" id="6_t3or0"]
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
+[ext_resource type="Texture2D" uid="uid://boq3e58tr44ia" path="res://Assets/Level1Background.png" id="11_2h8qs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ysn8j"]
 atlas = ExtResource("6_t3or0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h8qs"]
+size = Vector2(105, 2964)
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
@@ -75,3 +79,22 @@ z_index = -1
 position = Vector2(404.00012, 233.99994)
 scale = Vector2(1.5791016, 1.5791016)
 texture = SubResource("AtlasTexture_ysn8j")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=553865614]
+top_level = true
+position = Vector2(404.3125, 234)
+scale = Vector2(1.5789453, 1.5798064)
+texture = ExtResource("11_2h8qs")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1092737354]
+position = Vector2(2011, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=369425691]
+position = Vector2(-3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=647415868]
+position = Vector2(4, -12)
+shape = SubResource("RectangleShape2D_2h8qs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" unique_id=2062343194]
+position = Vector2(-3080, -1416)
