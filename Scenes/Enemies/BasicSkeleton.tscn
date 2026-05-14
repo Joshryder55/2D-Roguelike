@@ -80,3 +80,7 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/fill = SubResource("StyleBoxFlat_xyira")
 show_percentage = false
 script = ExtResource("5_a7s8n")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=832964884]
+path_desired_distance = 10.0
+avoidance_enabled = true

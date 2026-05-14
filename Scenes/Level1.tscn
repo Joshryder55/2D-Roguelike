@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
 [ext_resource type="Texture2D" uid="uid://boq3e58tr44ia" path="res://Assets/Level1Background.png" id="11_2h8qs"]
+[ext_resource type="Texture2D" uid="uid://dh7btygrngrwj" path="res://Assets/BurnedHouse.png" id="13_ubfni"]
+[ext_resource type="Texture2D" uid="uid://x7nd328123hw" path="res://Assets/Mauloseum.png" id="14_ug0sv"]
+[ext_resource type="Texture2D" uid="uid://wtbrexdlq04b" path="res://Assets/IntactBuildings.png" id="15_0wsr5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -36,6 +39,49 @@ size = Vector2(47, 284)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ug0sv"]
 size = Vector2(46, 890)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgorv"]
+size = Vector2(501, 295)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1ws5"]
+atlas = ExtResource("13_ubfni")
+region = Rect2(58.12397, 263.08188, 385.276, 248.91812)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yji5v"]
+size = Vector2(389, 389)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulvkb"]
+size = Vector2(375, 185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh0sh"]
+atlas = ExtResource("13_ubfni")
+region = Rect2(103.911255, 24.156128, 284.86707, 194.16315)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03od6"]
+size = Vector2(525, 241)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_384de"]
+atlas = ExtResource("15_0wsr5")
+region = Rect2(239.24002, 0, 272.75998, 164.67123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhaf5"]
+size = Vector2(370, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0dvq"]
+atlas = ExtResource("15_0wsr5")
+region = Rect2(85.76636, 190.62106, 338.49997, 248.31143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nrjw"]
+size = Vector2(392, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqkvc"]
+atlas = ExtResource("15_0wsr5")
+region = Rect2(0, 0, 243.1163, 136.52971)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ubfni"]
+vertices = PackedVector2Array(1240.2578, 557.02344, 1212.0625, 491.96875, 1468.1328, 485, 1954.2578, 485, 1952, 584.8906, 1464.0625, 590.1094, 1911.1094, -1079, 1513.8906, -1079, 1220.0703, -1088, -1984.9531, -2156.9688, 2785.9688, -2146.0234, 2776.0234, 2608.961, 1952, 764.02344, 1465.8672, 312.0703, 1210.9375, 307.9297, 982, 62.046875, 1428.0391, -174, 1971.9219, -174, 1949.75, 308.9375, 1974.0781, -433.07813, 1908.8906, -871, 1462.9297, 762.97656, 1810.0313, 891.0469, 1418, 888.9531, 1234.7422, 768, 1087, -297.89063, 1426.9609, -428.92188, 982, -40.03125, 691.9297, -1088, -1965.0391, 2591.0313, 694.0703, -772, 695, -513, 695, -302.10938, 569.1328, -38.96875, 1087, -513, 1217.9297, -772, 1516.1094, -871, 1808.9688, 1281.0313, 1418, 1279.9688, 1256.0781, 892.0781, 867, 888.9219, 591.21094, 768, 586.78906, 555.97656, 607.1172, 494.03125, 567.8672, 59.953125, 1252.9219, 1279.0469, 867, 1276.9531, 604.8828, 312.0703)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(3, 10, 11, 12, 4), PackedInt32Array(13, 14, 15, 16, 17, 18), PackedInt32Array(6, 10, 19, 20), PackedInt32Array(10, 3, 18, 17), PackedInt32Array(21, 12, 22, 23, 24), PackedInt32Array(25, 26, 16, 15, 27), PackedInt32Array(9, 8, 28), PackedInt32Array(29, 9, 28, 30, 31, 32, 33), PackedInt32Array(32, 25, 27, 33), PackedInt32Array(26, 25, 34, 35, 36, 20), PackedInt32Array(22, 12, 11, 37), PackedInt32Array(37, 11, 29, 38), PackedInt32Array(20, 19, 26), PackedInt32Array(24, 0, 5, 21), PackedInt32Array(39, 24, 23, 38), PackedInt32Array(24, 39, 40, 41), PackedInt32Array(1, 0, 42, 43), PackedInt32Array(35, 8, 7, 36), PackedInt32Array(30, 35, 34, 31), PackedInt32Array(29, 33, 44), PackedInt32Array(2, 1, 14, 13), PackedInt32Array(45, 39, 38), PackedInt32Array(45, 38, 29, 46), PackedInt32Array(41, 40, 46, 29), PackedInt32Array(41, 29, 44, 42), PackedInt32Array(43, 42, 44, 47), PackedInt32Array(47, 44, 15, 14), PackedInt32Array(10, 17, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1995, -2167, 2796, -2156, 2786, 2619, -1975, 2601), PackedVector2Array(705, -503, 705, -503, 705, -312, 1077, -308, 1077, -503), PackedVector2Array(579, -29, 578, 50, 972, 52, 972, -30), PackedVector2Array(1437, -419, 1438, -184, 1962, -184, 1964, -423), PackedVector2Array(1526, -881, 1899, -881, 1901, -1069, 1524, -1069), PackedVector2Array(704, -782, 1208, -782, 1210, -1078, 702, -1078), PackedVector2Array(617, 484, 1202, 482, 1201, 318, 615, 322), PackedVector2Array(1473, 753, 1942, 754, 1942, 595, 1474, 600), PackedVector2Array(1478, 475, 1944, 475, 1940, 319, 1476, 322), PackedVector2Array(877, 1267, 1243, 1269, 1246, 902, 877, 899), PackedVector2Array(1799, 1271, 1800, 901, 1428, 899, 1428, 1270), PackedVector2Array(601, 758, 1225, 758, 1230, 567, 597, 566)])
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
@@ -162,13 +208,6 @@ position = Vector2(-2388, -25)
 position = Vector2(-5.5, 1.5)
 shape = SubResource("RectangleShape2D_rpty4")
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="Node2D" unique_id=561298398]
-position = Vector2(-829, -25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D6" unique_id=2000431399]
-position = Vector2(7.5, 1.5)
-shape = SubResource("RectangleShape2D_rpty4")
-
 [node name="StaticBody2D7" type="StaticBody2D" parent="Node2D" unique_id=444981455]
 position = Vector2(-3095, 316)
 
@@ -182,20 +221,6 @@ position = Vector2(-3095, -22)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D8" unique_id=335588568]
 position = Vector2(4.25, -1.5)
 shape = SubResource("RectangleShape2D_6jj8j")
-
-[node name="StaticBody2D9" type="StaticBody2D" parent="Node2D" unique_id=2010482254]
-position = Vector2(-140, -22)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D9" unique_id=568233785]
-position = Vector2(16.5, -1.5)
-shape = SubResource("RectangleShape2D_6jj8j")
-
-[node name="StaticBody2D10" type="StaticBody2D" parent="Node2D" unique_id=2042884488]
-position = Vector2(-1415, -400)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D10" unique_id=1535488051]
-position = Vector2(-1, -34.5)
-shape = SubResource("RectangleShape2D_06um6")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="Node2D" unique_id=1148790745]
 position = Vector2(-1797, -400)
@@ -211,16 +236,119 @@ position = Vector2(-1799, -1044)
 position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_ubfni")
 
-[node name="StaticBody2D13" type="StaticBody2D" parent="Node2D" unique_id=1828563537]
-position = Vector2(-1417, -1044)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D13" unique_id=1000085110]
-position = Vector2(0.5, 2)
-shape = SubResource("RectangleShape2D_ubfni")
-
 [node name="StaticBody2D14" type="StaticBody2D" parent="Node2D" unique_id=1108358984]
 position = Vector2(-1797, 899)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D14" unique_id=299899214]
 position = Vector2(0, 41)
 shape = SubResource("RectangleShape2D_ug0sv")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Node2D" unique_id=1886175839]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/StaticBody2D6" unique_id=2016131578]
+polygon = PackedVector2Array(-3220, 1467, -3173, 1471, -3121, 1515, -3032, 1545, -2892, 1566, -2775, 1567, -2653, 1555, -2544, 1522, -2371, 1477, -2261, 1462, -2120, 1444, -1927, 1428, -1818, 1432, -1818, 1385, -1755, 1384, -1754.865, 1447.1317, -1754, 1851, -1456, 1851, -1455, 1453, -1456, 1496, -875, 1499, -196, 1498, -11.383606, 1497.108, 10, 1460, 10, 1849, -1306, 1850, -1609, 1858, -1899, 1858, -3230, 1852)
+
+[node name="BurnedHouse1" type="StaticBody2D" parent="." unique_id=1710032757]
+position = Vector2(814, -1058)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurnedHouse1" unique_id=1572958442]
+position = Vector2(140.5, 129.5)
+shape = SubResource("RectangleShape2D_jgorv")
+
+[node name="Sprite2D" type="Sprite2D" parent="BurnedHouse1" unique_id=339986994]
+position = Vector2(123.75, 100)
+scale = Vector2(1.6428572, 1.8064516)
+texture = SubResource("AtlasTexture_q1ws5")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="BurnedHouse1" unique_id=179587008]
+position = Vector2(129, 145)
+radius = 105.63
+
+[node name="Mauloseum1" type="StaticBody2D" parent="." unique_id=57793335]
+position = Vector2(1133, 1111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mauloseum1" unique_id=1577634617]
+position = Vector2(-73.5, -25.5)
+shape = SubResource("RectangleShape2D_yji5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mauloseum1" unique_id=1692877619]
+position = Vector2(-1, -3)
+scale = Vector2(1.6428572, 1.8064516)
+texture = ExtResource("14_ug0sv")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Mauloseum1" unique_id=1523555488]
+position = Vector2(-1, 5)
+
+[node name="Mauloseum2" type="StaticBody2D" parent="." unique_id=1806452495]
+position = Vector2(1687, 1111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mauloseum2" unique_id=2111274304]
+position = Vector2(-73.5, -25.5)
+shape = SubResource("RectangleShape2D_yji5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mauloseum2" unique_id=1380369430]
+position = Vector2(-1, -3)
+scale = Vector2(1.6428572, 1.8064516)
+texture = ExtResource("14_ug0sv")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Mauloseum2" unique_id=233816183]
+position = Vector2(-1, 5)
+
+[node name="BurnedHouse2" type="StaticBody2D" parent="." unique_id=1547561224]
+position = Vector2(1688, -999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurnedHouse2" unique_id=518101746]
+position = Vector2(23.5, 24.5)
+shape = SubResource("RectangleShape2D_ulvkb")
+
+[node name="Sprite2D" type="Sprite2D" parent="BurnedHouse2" unique_id=293372175]
+position = Vector2(10.134094, 15.0000305)
+scale = Vector2(1.731959, 1.731959)
+texture = SubResource("AtlasTexture_fh0sh")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="BurnedHouse2" unique_id=1198820221]
+
+[node name="House" type="StaticBody2D" parent="." unique_id=846764443]
+position = Vector2(1734, -223)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House" unique_id=761095306]
+position = Vector2(-34.5, -82.5)
+shape = SubResource("RectangleShape2D_03od6")
+
+[node name="Sprite2D" type="Sprite2D" parent="House" unique_id=198656257]
+position = Vector2(-29.000015, -108)
+scale = Vector2(2.4146342, 2.4146342)
+texture = SubResource("AtlasTexture_384de")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="House" unique_id=1541027031]
+
+[node name="PotionTent" type="StaticBody2D" parent="." unique_id=779846909]
+position = Vector2(896, -439)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PotionTent" unique_id=1130568794]
+position = Vector2(-6, 36.5)
+shape = SubResource("RectangleShape2D_bhaf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="PotionTent" unique_id=1492716200]
+position = Vector2(-3.0000153, 1)
+scale = Vector2(1.2217742, 1.2217742)
+texture = SubResource("AtlasTexture_o0dvq")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="PotionTent" unique_id=1351294569]
+
+[node name="FruitStand" type="StaticBody2D" parent="." unique_id=242552190]
+position = Vector2(663, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitStand" unique_id=192223901]
+position = Vector2(112, 26)
+shape = SubResource("RectangleShape2D_1nrjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="FruitStand" unique_id=1278506508]
+position = Vector2(108.25001, -24.115204)
+scale = Vector2(1.8909467, 1.5130117)
+texture = SubResource("AtlasTexture_bqkvc")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="FruitStand" unique_id=754311578]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=857323240]
+navigation_polygon = SubResource("NavigationPolygon_ubfni")
