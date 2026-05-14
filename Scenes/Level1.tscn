@@ -4,10 +4,14 @@
 [ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyScripts/EnemyManager.cs" id="3_jghel"]
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/Enemies/BasicZombie.tscn" id="4_jghel"]
 [ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="4_slnnj"]
+[ext_resource type="Script" uid="uid://bxpbar5k6l7m8" path="res://Scripts/PlayerScripts/XPBar.cs" id="5_xpbar"]
 [ext_resource type="PackedScene" uid="uid://c0qsi7fbvbxxj" path="res://Scenes/Enemies/BasicSkeleton.tscn" id="4_t3or0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jghel"]
 bg_color = Color(0.7019608, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
+bg_color = Color(0.18, 0.8, 0.18, 1)
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
@@ -28,3 +32,25 @@ offset_right = 266.0
 offset_bottom = 37.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_jghel")
 script = ExtResource("4_slnnj")
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer" unique_id=2847193845]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -55.0
+offset_right = 200.0
+offset_bottom = -32.0
+text = "Level 1"
+
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=1573902846]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -30.0
+offset_right = 0.0
+offset_bottom = 0.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpbar")
+show_percentage = false
+script = ExtResource("5_xpbar")
