@@ -16,8 +16,7 @@ public partial class EnemyHealth : Node
 	}
 	
 	public virtual void Die() {
-		
-		
+
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
 		stats.ultimateCharge++;
@@ -30,6 +29,13 @@ public partial class EnemyHealth : Node
 			GetTree().CurrentScene.CallDeferred("add_child", coin);
 		}
 		
+
+		// Spawn XP orb at the mob's position on death
+		PackedScene orbScene = GD.Load<PackedScene>("res://Scenes/XPOrb.tscn");
+		XPOrb orb = orbScene.Instantiate<XPOrb>();
+		orb.GlobalPosition = GetParent<Node2D>().GlobalPosition;
+		GetTree().CurrentScene.AddChild(orb);
+
 		GetParent().QueueFree();
 	}
 	
