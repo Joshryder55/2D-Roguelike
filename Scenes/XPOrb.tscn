@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bxporb1a2b3c"]
+
+[ext_resource type="Script" uid="uid://cxporb4d5e6f" path="res://Scripts/XPOrb.cs" id="1_scr01"]
+[ext_resource type="Texture2D" uid="uid://dxporb7g8h9j" path="res://Assets/ExpOrb.png" id="2_tex01"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_col01"]
+radius = 10.0
+
+[node name="XPOrb" type="Area2D" unique_id=3141592]
+collision_layer = 8
+collision_mask = 1
+script = ExtResource("1_scr01")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2718281]
+texture = ExtResource("2_tex01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618033]
+shape = SubResource("CircleShape2D_col01")
