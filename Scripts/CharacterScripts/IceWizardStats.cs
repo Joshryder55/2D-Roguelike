@@ -16,7 +16,7 @@ public partial class IceWizardStats : CharacterStats
 	
 	//Used to select current ultimate when clicked in the skill tree
 	public enum UltimateAbility { None, FrostNova, IceSpike }
-	public UltimateAbility activeUltimate = UltimateAbility.None;
+	public UltimateAbility activeUltimate = UltimateAbility.FrostNova;
 	
 	//Passive and modifiers
 	public bool hasMultiShot = true;
@@ -29,7 +29,7 @@ public partial class IceWizardStats : CharacterStats
 	public float freezeDuration = 2.0f; //2 second freeze, can be upgraded
 	
 	//Ultimate and modifiers
-	public bool hasFrostNova = false;
+	public bool hasFrostNova = true;
 	public float frostNovaRadius = 300.0f;
 	public int frostNovaDamage = 15;
 	public float frostNovaFreezeDuration = 5.0f;
