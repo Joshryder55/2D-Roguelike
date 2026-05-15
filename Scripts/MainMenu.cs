@@ -28,12 +28,12 @@ public partial class MainMenu : Control
 
 	private void OnUnlocksPressed()
 	{
-		GD.Print("Unlocks menu will be added later.");
+		GetTree().ChangeSceneToFile("res://Scenes/Menus/UnlocksMenu.tscn");
 	}
 
 	private void OnOptionsPressed()
 	{
-		GD.Print("Options menu will be added later.");
+		GetTree().ChangeSceneToFile("res://Scenes/Menus/OptionsMenu.tscn");
 	}
 
 	private void OnQuitPressed()

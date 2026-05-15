@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://dgifv03spo4f"]
+
+[ext_resource type="Script" uid="uid://b76laqtpk7tjp" path="res://Scripts/SceneScripts/UnlocksMenu.cs" id="1_jtvuu"]
+[ext_resource type="Script" uid="uid://be6gpxucluiwk" path="res://Scripts/SceneScripts/SkillTreeLines.cs" id="2_65xq8"]
+
+[node name="UnlocksMenu" type="Control" unique_id=1124840176]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtvuu")
+
+[node name="TreeArea" type="Control" parent="." unique_id=1219092567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConnectionLines" type="Control" parent="TreeArea" unique_id=1368461705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_65xq8")
+
+[node name="CoreButton" type="Button" parent="TreeArea" unique_id=177254401]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 273.0
+offset_right = 652.0
+offset_bottom = 304.0
+text = "Ice Wizard"
+
+[node name="BrittleButton" type="Button" parent="TreeArea" unique_id=1306270075]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 157.0
+offset_right = 485.0
+offset_bottom = 188.0
+text = "Brittle"
+
+[node name="IceShieldButton" type="Button" parent="TreeArea" unique_id=1177994657]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 207.0
+offset_right = 944.0
+offset_bottom = 238.0
+text = "Ice Shield"
+
+[node name="PermafrostButton" type="Button" parent="TreeArea" unique_id=1741272663]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 145.0
+offset_right = 662.0
+offset_bottom = 176.0
+text = "Permafrost"
+
+[node name="BlizzardButton" type="Button" parent="TreeArea" unique_id=109538948]
+layout_mode = 0
+offset_left = 717.0
+offset_top = 152.0
+offset_right = 786.0
+offset_bottom = 183.0
+text = "Blizzard"
+
+[node name="FlashFreezeButton" type="Button" parent="TreeArea" unique_id=2125283668]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 202.0
+offset_right = 358.0
+offset_bottom = 233.0
+text = "Flash Freeze"
+
+[node name="MoveSpeedButton" type="Button" parent="TreeArea" unique_id=1920635041]
+layout_mode = 0
+offset_left = 694.0
+offset_top = 401.0
+offset_right = 796.0
+offset_bottom = 432.0
+text = "Move Speed"
+
+[node name="AttackSpeedButton" type="Button" parent="TreeArea" unique_id=491327926]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 410.0
+offset_right = 488.0
+offset_bottom = 441.0
+text = "Attack Speed"
+
+[node name="MultishotButton" type="Button" parent="TreeArea" unique_id=1520644756]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 338.0
+offset_right = 340.0
+offset_bottom = 369.0
+text = "Multishots"
+
+[node name="HealthButton" type="Button" parent="TreeArea" unique_id=991483064]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 405.0
+offset_right = 634.0
+offset_bottom = 436.0
+text = "Health"
+
+[node name="DamageButton" type="Button" parent="TreeArea" unique_id=1071859552]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 339.0
+offset_right = 926.0
+offset_bottom = 370.0
+text = "Damage"
+
+[node name="BackButton" type="Button" parent="." unique_id=228286773]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 584.0
+offset_right = 72.0
+offset_bottom = 615.0
+text = "Back"
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1645565016]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 39.0
+offset_right = 520.0
+offset_bottom = 66.0
+text = "Unlocks"
+
+[node name="DescriptionLabel" type="Label" parent="." unique_id=174715012]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 499.0
+offset_right = 937.0
+offset_bottom = 522.0
+text = "Select a skill to view details."
