@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="5_a7s8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63bbo"]
-size = Vector2(35, 203)
+size = Vector2(35, 109)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rf3w"]
-size = Vector2(36, 202)
+size = Vector2(36, 111)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4qhg1"]
 animations = [{
@@ -48,25 +48,26 @@ bg_color = Color(0.7019608, 0, 0, 1)
 
 [node name="BasicSkeleton" type="CharacterBody2D" unique_id=1309720042 groups=["enemies"]]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_xyira")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=19348704]
-position = Vector2(7.5, 17.5)
+position = Vector2(7.5, 64.5)
 shape = SubResource("RectangleShape2D_63bbo")
 
 [node name="HitDetection" type="Area2D" parent="." unique_id=2088845828]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=28280192]
-position = Vector2(8, 20)
+position = Vector2(8, 65.5)
 shape = SubResource("RectangleShape2D_2rf3w")
 
 [node name="EnemyHealth" type="Node" parent="." unique_id=1080335272]
 script = ExtResource("2_gpwug")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=584679694]
-position = Vector2(11, 96.000015)
-scale = Vector2(0.7421875, 0.7421875)
+position = Vector2(9, 111.5)
+scale = Vector2(0.43359375, 0.40820313)
 sprite_frames = SubResource("SpriteFrames_4qhg1")
 animation = &"Frozen"
 
@@ -80,3 +81,8 @@ theme_override_font_sizes/font_size = 13
 theme_override_styles/fill = SubResource("StyleBoxFlat_xyira")
 show_percentage = false
 script = ExtResource("5_a7s8n")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=832964884]
+target_desired_distance = 20.0
+avoidance_enabled = true
+radius = 15.0

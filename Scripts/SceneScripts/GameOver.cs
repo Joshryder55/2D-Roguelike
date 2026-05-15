@@ -20,5 +20,6 @@ public partial class GameOver : CanvasLayer
 	
 	private void OnTitleScreenPressed(){
 		//Hook up the same way as above when the title screen is created 
+		GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
 	}
 }

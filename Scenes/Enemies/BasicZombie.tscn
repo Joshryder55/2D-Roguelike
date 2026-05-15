@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="6_kvowr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftsrl"]
-size = Vector2(40, 170)
+size = Vector2(40, 116)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whhnv"]
 size = Vector2(40, 122)
@@ -55,7 +55,7 @@ bg_color = Color(0.7019608, 0, 0, 1)
 
 [node name="BasicZombie" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_kvowr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=167337621]
@@ -65,7 +65,7 @@ offset_bottom = 40.0
 color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150819702]
-position = Vector2(20, 0)
+position = Vector2(20, 27)
 shape = SubResource("RectangleShape2D_ftsrl")
 
 [node name="HitDetection" type="Area2D" parent="." unique_id=1627058261]
@@ -80,17 +80,24 @@ shape = SubResource("RectangleShape2D_whhnv")
 script = ExtResource("2_55e75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840070391]
-position = Vector2(32.999992, 10.999996)
-scale = Vector2(0.78515625, 0.800721)
+position = Vector2(20, 28.999992)
+scale = Vector2(0.48046878, 0.48999345)
 sprite_frames = SubResource("SpriteFrames_h4tt6")
 animation = &"Frozen"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1440884350]
 custom_minimum_size = Vector2(0, 5)
-offset_top = -96.0
-offset_right = 284.99997
-offset_bottom = -69.0
+offset_left = -7.9999995
+offset_top = -39.000004
+offset_right = 276.99997
+offset_bottom = -12.000004
 scale = Vector2(0.2, 0.2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_kvowr")
 show_percentage = false
 script = ExtResource("6_kvowr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=876943205]
+target_desired_distance = 20.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 15.0

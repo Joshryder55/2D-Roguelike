@@ -7,11 +7,13 @@ public partial class FrostNova : Area2D
 	CircleShape2D circle;
 	public IceWizardStats iceStats;
 	public float growSpeed = 200.0f;
+	AnimatedSprite2D sprite;
 	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("default");
 		CollisionShape2D collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 		circle = new CircleShape2D();
 		circle.Radius = 10f;
@@ -30,8 +32,8 @@ public partial class FrostNova : Area2D
 		circle.Radius += growSpeed * (float)delta;
 		
 		// scale visual to match collision
-		float scale = circle.Radius / 10f; // 10 is your starting radius
-		GetNode<Polygon2D>("Polygon2D").Scale = new Vector2(scale, scale);
+		float scale = circle.Radius / 300; // 10 is your starting radius
+		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Scale = new Vector2(scale, scale);
 	}
 	
 	private void OnBodyEntered(Node2D body) {
