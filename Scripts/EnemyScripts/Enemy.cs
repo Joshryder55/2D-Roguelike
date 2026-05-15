@@ -69,6 +69,7 @@ public override void _PhysicsProcess(double delta) {
 
 	navAgent.TargetPosition = Player.GlobalPosition;
 
+
 	Vector2 direction = Vector2.Zero;
 	if (!navAgent.IsNavigationFinished()) {
 		direction = (navAgent.GetNextPathPosition() - GlobalPosition).Normalized();

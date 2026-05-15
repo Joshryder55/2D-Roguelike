@@ -48,7 +48,6 @@ bg_color = Color(0.7019608, 0, 0, 1)
 
 [node name="BasicSkeleton" type="CharacterBody2D" unique_id=1309720042 groups=["enemies"]]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_xyira")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=19348704]
@@ -56,6 +55,7 @@ position = Vector2(7.5, 64.5)
 shape = SubResource("RectangleShape2D_63bbo")
 
 [node name="HitDetection" type="Area2D" parent="." unique_id=2088845828]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=28280192]
 position = Vector2(8, 65.5)
@@ -82,5 +82,6 @@ show_percentage = false
 script = ExtResource("5_a7s8n")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=832964884]
-path_desired_distance = 10.0
+target_desired_distance = 20.0
 avoidance_enabled = true
+radius = 15.0
