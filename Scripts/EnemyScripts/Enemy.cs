@@ -21,6 +21,7 @@ public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
+public float baseSpeed;
 
 
 public override void _Ready() {
@@ -41,6 +42,8 @@ public override void _Ready() {
 	damageTimer.WaitTime = 0.5f;
 	damageTimer.Timeout += DealDamage;
 	AddChild(damageTimer);
+	
+	baseSpeed = speed;
 }
 
 private void OnBodyEntered(Node2D body) {

@@ -15,7 +15,7 @@ public partial class CharacterStats : Node
 	
 	public virtual float playerSpeed { get; set; } = 100;
 	
-	public virtual int ultimateCharge { get; set; } = 50;
+	public virtual int ultimateCharge { get; set; } = 0;
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 
 	// Stat multipliers for future leveling up. Will need to be updated for what we actually want - set to 1 for now, until ready to implement the scaling

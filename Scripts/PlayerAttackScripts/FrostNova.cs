@@ -32,7 +32,7 @@ public partial class FrostNova : Area2D
 		circle.Radius += growSpeed * (float)delta;
 		
 		// scale visual to match collision
-		float scale = circle.Radius / iceStats.frostNovaRadius; // 10 is your starting radius
+		float scale = circle.Radius / 300; // 10 is your starting radius
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Scale = new Vector2(scale, scale);
 	}
 	

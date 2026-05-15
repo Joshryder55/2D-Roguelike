@@ -7,7 +7,7 @@ public partial class GameManager : Node
 	//Checking to see if the player has died
 	public bool isDead = false;
 
-	public int coins = 0;
+	public int coins = 1000;
 
 	// XP and leveling
 	public int xp = 0;
