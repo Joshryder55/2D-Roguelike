@@ -1,8 +1,59 @@
 [gd_scene format=3 uid="uid://d4duklt341cbu"]
 
 [ext_resource type="Script" uid="uid://bp5hqnortkt3q" path="res://Scripts/PlayerAttackScripts/FrostNova.cs" id="1_4c5aw"]
+[ext_resource type="Texture2D" uid="uid://ku2caomp6ros" path="res://Assets/FrostNova1.png" id="2_vqqm5"]
+[ext_resource type="Texture2D" uid="uid://h4kd3ak4ihkv" path="res://Assets/FrostNova2.png" id="3_jwefw"]
+[ext_resource type="Texture2D" uid="uid://crvcv3j0xmble" path="res://Assets/FrostNova3.png" id="4_ophjd"]
+[ext_resource type="Texture2D" uid="uid://dhyp24nwdqbl8" path="res://Assets/FrostNova4.png" id="5_ht4x5"]
+[ext_resource type="Texture2D" uid="uid://bd1qwdic6uxbv" path="res://Assets/FrostNova5.png" id="6_6lhpp"]
+[ext_resource type="Texture2D" uid="uid://cubpsdt11637g" path="res://Assets/FrostNova6.png" id="7_562hq"]
+[ext_resource type="Texture2D" uid="uid://crc7sr2ybcfv5" path="res://Assets/FrostNova7.png" id="8_oy4cm"]
+[ext_resource type="Texture2D" uid="uid://bbb4bo5jkog26" path="res://Assets/FrostNova8.png" id="9_kxgub"]
+[ext_resource type="Texture2D" uid="uid://cjg4aq1veleed" path="res://Assets/FrostNova9.png" id="10_wkyvp"]
+[ext_resource type="Texture2D" uid="uid://pkinqv74u70y" path="res://Assets/FrostNova10.png" id="11_4lccq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4enq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgh8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vqqm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jwefw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ophjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ht4x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6lhpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_562hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_562hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oy4cm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kxgub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wkyvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4lccq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="FrostNova" type="Area2D" unique_id=1074539009]
 collision_layer = 4
@@ -12,5 +63,7 @@ script = ExtResource("1_4c5aw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1503363811]
 shape = SubResource("CircleShape2D_o4enq")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1007796107]
-polygon = PackedVector2Array(-10, -2, -9, -5, -7, -7, -4, -9, 0, -10, 2, -9, 6, -8, 7, -6, 9, -4, 9, 0, 9, 4, 7, 6, 5, 9, 1, 10, -3, 9, -7, 7, -9, 4, -10, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=103458907]
+scale = Vector2(0.052490234, 0.052490234)
+sprite_frames = SubResource("SpriteFrames_pgh8v")
+frame_progress = 0.22965536
