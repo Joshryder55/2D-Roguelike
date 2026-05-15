@@ -12,6 +12,8 @@ CharacterStats characterStats;
 
 GameManager gameManager;
 
+NavigationAgent2D navAgent;
+
 Area2D damageArea;
 Timer damageTimer;
 
@@ -24,7 +26,7 @@ public virtual float speed { get; set; } = 50;
 public override void _Ready() {
 	
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-	
+	navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 	gameManager = GetNode<GameManager>("/root/GameManager");
 	
 	characterStats = GetTree().GetFirstNodeInGroup("player").GetNode<CharacterStats>("Stats");
@@ -65,30 +67,32 @@ public override void _PhysicsProcess(double delta) {
 		return;
 	}
 
-	Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
+	navAgent.TargetPosition = Player.GlobalPosition;
+
+	Vector2 direction = Vector2.Zero;
+	if (!navAgent.IsNavigationFinished()) {
+		direction = (navAgent.GetNextPathPosition() - GlobalPosition).Normalized();
+	}
+
 	Velocity = direction * speed;
 	MoveAndSlide();
 
-	if(!gameManager.isDead){
-	if(Player.GlobalPosition.X < GlobalPosition.X){
-		sprite.FlipH = true;
-	}
-	else {
-		sprite.FlipH = false;
-	}
-	}
-	
-	
-	if(currentStatus == StatusEffect.None){
-		if (Velocity.Length() > 0){
-			sprite.Play("Walking");
+	if (!gameManager.isDead) {
+		if (Player.GlobalPosition.X < GlobalPosition.X) {
+			sprite.FlipH = true;
+		} else {
+			sprite.FlipH = false;
 		}
-		else{
+	}
+
+	if (currentStatus == StatusEffect.None) {
+		if (Velocity.Length() > 0) {
+			sprite.Play("Walking");
+		} else {
 			sprite.Play("Still");
 		}
 	}
-	
-	
-
 }
+
+
 }
