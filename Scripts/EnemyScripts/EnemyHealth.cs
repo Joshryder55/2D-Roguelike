@@ -34,7 +34,7 @@ public partial class EnemyHealth : Node
 		PackedScene orbScene = GD.Load<PackedScene>("res://Scenes/XPOrb.tscn");
 		XPOrb orb = orbScene.Instantiate<XPOrb>();
 		orb.GlobalPosition = GetParent<Node2D>().GlobalPosition;
-		GetTree().CurrentScene.AddChild(orb);
+		GetTree().CurrentScene.CallDeferred("add_child", orb);
 
 		GetParent().QueueFree();
 	}

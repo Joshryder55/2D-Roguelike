@@ -65,7 +65,7 @@ atlas = ExtResource("15_0wsr5")
 region = Rect2(239.24002, 0, 272.75998, 164.67123)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhaf5"]
-size = Vector2(370, 183)
+size = Vector2(370, 188)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0dvq"]
 atlas = ExtResource("15_0wsr5")
@@ -250,6 +250,7 @@ polygon = PackedVector2Array(-3220, 1467, -3173, 1471, -3121, 1515, -3032, 1545,
 
 [node name="BurnedHouse1" type="StaticBody2D" parent="." unique_id=1710032757]
 position = Vector2(814, -1058)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BurnedHouse1" unique_id=1572958442]
 position = Vector2(140.5, 129.5)
@@ -266,6 +267,7 @@ radius = 105.63
 
 [node name="Mauloseum1" type="StaticBody2D" parent="." unique_id=57793335]
 position = Vector2(1133, 1111)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mauloseum1" unique_id=1577634617]
 position = Vector2(-73.5, -25.5)
@@ -281,6 +283,7 @@ position = Vector2(-1, 5)
 
 [node name="Mauloseum2" type="StaticBody2D" parent="." unique_id=1806452495]
 position = Vector2(1687, 1111)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mauloseum2" unique_id=2111274304]
 position = Vector2(-73.5, -25.5)
@@ -296,6 +299,7 @@ position = Vector2(-1, 5)
 
 [node name="BurnedHouse2" type="StaticBody2D" parent="." unique_id=1547561224]
 position = Vector2(1688, -999)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BurnedHouse2" unique_id=518101746]
 position = Vector2(23.5, 24.5)
@@ -310,6 +314,7 @@ texture = SubResource("AtlasTexture_fh0sh")
 
 [node name="House" type="StaticBody2D" parent="." unique_id=846764443]
 position = Vector2(1734, -223)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House" unique_id=761095306]
 position = Vector2(-34.5, -82.5)
@@ -324,9 +329,10 @@ texture = SubResource("AtlasTexture_384de")
 
 [node name="PotionTent" type="StaticBody2D" parent="." unique_id=779846909]
 position = Vector2(896, -439)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PotionTent" unique_id=1130568794]
-position = Vector2(-6, 36.5)
+position = Vector2(-6, 34)
 shape = SubResource("RectangleShape2D_bhaf5")
 
 [node name="Sprite2D" type="Sprite2D" parent="PotionTent" unique_id=1492716200]
@@ -338,6 +344,7 @@ texture = SubResource("AtlasTexture_o0dvq")
 
 [node name="FruitStand" type="StaticBody2D" parent="." unique_id=242552190]
 position = Vector2(663, -15)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FruitStand" unique_id=192223901]
 position = Vector2(112, 26)

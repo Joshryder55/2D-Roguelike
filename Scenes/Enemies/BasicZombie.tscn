@@ -55,7 +55,6 @@ bg_color = Color(0.7019608, 0, 0, 1)
 
 [node name="BasicZombie" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_kvowr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=167337621]
@@ -97,5 +96,7 @@ show_percentage = false
 script = ExtResource("6_kvowr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=876943205]
-path_desired_distance = 10.0
+target_desired_distance = 20.0
+path_postprocessing = 1
 avoidance_enabled = true
+radius = 15.0
