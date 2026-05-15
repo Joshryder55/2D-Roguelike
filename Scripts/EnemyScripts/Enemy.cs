@@ -21,6 +21,7 @@ public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
+public float baseSpeed;
 
 
 public override void _Ready() {
@@ -41,6 +42,8 @@ public override void _Ready() {
 	damageTimer.WaitTime = 0.5f;
 	damageTimer.Timeout += DealDamage;
 	AddChild(damageTimer);
+	
+	baseSpeed = speed;
 }
 
 private void OnBodyEntered(Node2D body) {
@@ -67,23 +70,14 @@ public override void _PhysicsProcess(double delta) {
 		return;
 	}
 
-	navAgent.TargetPosition = Player.GlobalPosition;
-
-
-	Vector2 direction = Vector2.Zero;
-	if (!navAgent.IsNavigationFinished()) {
-		direction = (navAgent.GetNextPathPosition() - GlobalPosition).Normalized();
-	}
-
+	Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
 	Velocity = direction * speed;
 	MoveAndSlide();
 
-	if (!gameManager.isDead) {
-		if (Player.GlobalPosition.X < GlobalPosition.X) {
-			sprite.FlipH = true;
-		} else {
-			sprite.FlipH = false;
-		}
+	if (Player.GlobalPosition.X < GlobalPosition.X) {
+		sprite.FlipH = true;
+	} else {
+		sprite.FlipH = false;
 	}
 
 	if (currentStatus == StatusEffect.None) {
@@ -94,6 +88,46 @@ public override void _PhysicsProcess(double delta) {
 		}
 	}
 }
+
+
+//My shitty attempt at better pathfinding, literally cannot figure it tf out
+//public override void _PhysicsProcess(double delta) {
+	//if (Player == null) return;
+	//
+	//if (gameManager.isDead) {
+		//Velocity = Vector2.Zero;
+		//sprite.Play("Still");
+		//return;
+	//}
+//
+	//navAgent.TargetPosition = Player.GlobalPosition;
+//
+//
+	//Vector2 direction = Vector2.Zero;
+	//if (!navAgent.IsNavigationFinished()) {
+		//direction = (navAgent.GetNextPathPosition() - GlobalPosition).Normalized();
+	//}
+	//
+//
+	//Velocity = direction * speed;
+	//MoveAndSlide();
+//
+	//if (!gameManager.isDead) {
+		//if (Player.GlobalPosition.X < GlobalPosition.X) {
+			//sprite.FlipH = true;
+		//} else {
+			//sprite.FlipH = false;
+		//}
+	//}
+//
+	//if (currentStatus == StatusEffect.None) {
+		//if (Velocity.Length() > 0) {
+			//sprite.Play("Walking");
+		//} else {
+			//sprite.Play("Still");
+		//}
+	//}
+//}
 
 
 }

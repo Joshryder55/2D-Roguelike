@@ -37,84 +37,171 @@ offset_right = 652.0
 offset_bottom = 304.0
 text = "Ice Wizard"
 
-[node name="BrittleButton" type="Button" parent="TreeArea" unique_id=1306270075]
-layout_mode = 0
-offset_left = 418.0
-offset_top = 157.0
-offset_right = 485.0
-offset_bottom = 188.0
-text = "Brittle"
+[node name="Ultimate" type="Node" parent="TreeArea" unique_id=1067476360]
 
-[node name="IceShieldButton" type="Button" parent="TreeArea" unique_id=1177994657]
-layout_mode = 0
-offset_left = 862.0
-offset_top = 207.0
-offset_right = 944.0
-offset_bottom = 238.0
-text = "Ice Shield"
-
-[node name="PermafrostButton" type="Button" parent="TreeArea" unique_id=1741272663]
-layout_mode = 0
-offset_left = 566.0
-offset_top = 145.0
-offset_right = 662.0
-offset_bottom = 176.0
-text = "Permafrost"
-
-[node name="BlizzardButton" type="Button" parent="TreeArea" unique_id=109538948]
-layout_mode = 0
-offset_left = 717.0
-offset_top = 152.0
-offset_right = 786.0
-offset_bottom = 183.0
+[node name="BlizzardButton" type="Button" parent="TreeArea/Ultimate" unique_id=109538948]
+offset_left = 257.0
+offset_top = 223.0
+offset_right = 326.0
+offset_bottom = 254.0
 text = "Blizzard"
 
-[node name="FlashFreezeButton" type="Button" parent="TreeArea" unique_id=2125283668]
-layout_mode = 0
-offset_left = 254.0
-offset_top = 202.0
-offset_right = 358.0
-offset_bottom = 233.0
+[node name="FlashFreezeButton" type="Button" parent="TreeArea/Ultimate" unique_id=2125283668]
+offset_left = 912.0
+offset_top = 222.0
+offset_right = 1016.0
+offset_bottom = 253.0
 text = "Flash Freeze"
 
-[node name="MoveSpeedButton" type="Button" parent="TreeArea" unique_id=1920635041]
-layout_mode = 0
-offset_left = 694.0
-offset_top = 401.0
-offset_right = 796.0
-offset_bottom = 432.0
-text = "Move Speed"
+[node name="FrostNovaButton" type="Button" parent="TreeArea/Ultimate" unique_id=283902790]
+offset_left = 404.0
+offset_top = 183.0
+offset_right = 496.0
+offset_bottom = 214.0
+text = "Frost Nova"
 
-[node name="AttackSpeedButton" type="Button" parent="TreeArea" unique_id=491327926]
-layout_mode = 0
-offset_left = 379.0
-offset_top = 410.0
-offset_right = 488.0
-offset_bottom = 441.0
-text = "Attack Speed"
+[node name="IceSpikeButton" type="Button" parent="TreeArea/Ultimate" unique_id=572289428]
+offset_left = 712.0
+offset_top = 178.0
+offset_right = 788.0
+offset_bottom = 209.0
+text = "Ice Spike"
 
-[node name="MultishotButton" type="Button" parent="TreeArea" unique_id=1520644756]
-layout_mode = 0
-offset_left = 249.0
-offset_top = 338.0
-offset_right = 340.0
-offset_bottom = 369.0
+[node name="IceSpikeSize" type="Button" parent="TreeArea/Ultimate" unique_id=1353641470]
+offset_left = 656.0
+offset_top = 120.0
+offset_right = 695.0
+offset_bottom = 151.0
+text = "Size"
+
+[node name="IceSpikeDamage" type="Button" parent="TreeArea/Ultimate" unique_id=685065055]
+offset_left = 789.0
+offset_top = 118.0
+offset_right = 861.0
+offset_bottom = 149.0
+text = "Damage"
+
+[node name="IceSpikeFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=517979263]
+offset_left = 686.0
+offset_top = 61.0
+offset_right = 818.0
+offset_bottom = 92.0
+text = "Freeze Duration"
+
+[node name="FrostNovaSize" type="Button" parent="TreeArea/Ultimate" unique_id=484823460]
+offset_left = 324.0
+offset_top = 127.0
+offset_right = 363.0
+offset_bottom = 158.0
+text = "Size"
+
+[node name="FrostNovaDamage" type="Button" parent="TreeArea/Ultimate" unique_id=1519203486]
+offset_left = 485.0
+offset_top = 128.0
+offset_right = 557.0
+offset_bottom = 159.0
+text = "Damage"
+
+[node name="FrostNovaFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=735382125]
+offset_left = 373.0
+offset_top = 64.0
+offset_right = 505.0
+offset_bottom = 95.0
+text = "Freeze Duration"
+
+[node name="Passive" type="Node" parent="TreeArea" unique_id=2002988305]
+
+[node name="BrittleButton" type="Button" parent="TreeArea/Passive" unique_id=1306270075]
+offset_left = 863.0
+offset_top = 336.0
+offset_right = 930.0
+offset_bottom = 367.0
+text = "Brittle"
+
+[node name="IceShieldButton" type="Button" parent="TreeArea/Passive" unique_id=1177994657]
+offset_left = 740.0
+offset_top = 396.0
+offset_right = 822.0
+offset_bottom = 427.0
+text = "Ice Shield"
+
+[node name="PermafrostButton" type="Button" parent="TreeArea/Passive" unique_id=1741272663]
+offset_left = 279.0
+offset_top = 371.0
+offset_right = 375.0
+offset_bottom = 402.0
+text = "Permafrost"
+
+[node name="MultishotButton" type="Button" parent="TreeArea/Passive" unique_id=1520644756]
+offset_left = 604.0
+offset_top = 419.0
+offset_right = 695.0
+offset_bottom = 450.0
 text = "Multishots"
 
-[node name="HealthButton" type="Button" parent="TreeArea" unique_id=991483064]
-layout_mode = 0
-offset_left = 574.0
-offset_top = 405.0
-offset_right = 634.0
-offset_bottom = 436.0
+[node name="ChancetoFreezeButton" type="Button" parent="TreeArea/Passive" unique_id=1019712223]
+offset_left = 403.0
+offset_top = 420.0
+offset_right = 562.0
+offset_bottom = 451.0
+text = "% Chance to Freeze"
+
+[node name="MultishotChance" type="Button" parent="TreeArea/Passive" unique_id=1236102255]
+offset_left = 587.0
+offset_top = 569.0
+offset_right = 652.0
+offset_bottom = 600.0
+text = "Chance"
+
+[node name="MultishotCount" type="Button" parent="TreeArea/Passive" unique_id=1485281677]
+offset_left = 659.0
+offset_top = 497.0
+offset_right = 714.0
+offset_bottom = 528.0
+text = "Count"
+
+[node name="ChancetoFreezeChance" type="Button" parent="TreeArea/Passive" unique_id=1302012708]
+offset_left = 403.0
+offset_top = 563.0
+offset_right = 468.0
+offset_bottom = 594.0
+text = "Chance"
+
+[node name="ChancetoFreezeDuration" type="Button" parent="TreeArea/Passive" unique_id=1265358699]
+offset_left = 474.0
+offset_top = 488.0
+offset_right = 551.0
+offset_bottom = 519.0
+text = "Duration"
+
+[node name="CoreStats" type="Node" parent="TreeArea" unique_id=1090030383]
+
+[node name="MoveSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=1920635041]
+offset_left = 22.0
+offset_top = 276.0
+offset_right = 124.0
+offset_bottom = 307.0
+text = "Move Speed"
+
+[node name="AttackSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=491327926]
+offset_left = 23.0
+offset_top = 319.0
+offset_right = 132.0
+offset_bottom = 350.0
+text = "Attack Speed"
+
+[node name="HealthButton" type="Button" parent="TreeArea/CoreStats" unique_id=991483064]
+offset_left = 24.0
+offset_top = 182.0
+offset_right = 84.0
+offset_bottom = 213.0
 text = "Health"
 
-[node name="DamageButton" type="Button" parent="TreeArea" unique_id=1071859552]
-layout_mode = 0
-offset_left = 854.0
-offset_top = 339.0
-offset_right = 926.0
-offset_bottom = 370.0
+[node name="DamageButton" type="Button" parent="TreeArea/CoreStats" unique_id=1071859552]
+offset_left = 22.0
+offset_top = 229.0
+offset_right = 94.0
+offset_bottom = 260.0
 text = "Damage"
 
 [node name="BackButton" type="Button" parent="." unique_id=228286773]
