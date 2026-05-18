@@ -6,8 +6,8 @@ public partial class Projectile : Area2D {
 	public CharacterBody2D player;
 	AnimatedSprite2D sprite;
 	public Vector2 Direction;
-	float maxDistance = 2000.0f;
-	Vector2 startPosition;
+	protected float maxDistance = 2000.0f;
+	protected Vector2 startPosition;
 	
 	public virtual float speed { get; set; } = 300.0f;
 	public virtual int damage { get; set; } = 20;

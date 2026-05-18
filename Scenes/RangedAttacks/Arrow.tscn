@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://w3e12o4b3rxm"]
+
+[ext_resource type="Script" uid="uid://ftvy4kdexor1" path="res://Scripts/EnemyTypeScripts/SkeletonArcher/Arrow.cs" id="1_fnbbi"]
+[ext_resource type="Texture2D" uid="uid://b5gne67vbo216" path="res://Assets/Arrow.png" id="2_qq3lb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbsc2"]
+size = Vector2(36, 6)
+
+[node name="Arrow" type="Area2D" unique_id=1243794072]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_fnbbi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058018575]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_xbsc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1304382914]
+position = Vector2(-3, 1)
+scale = Vector2(0.13085938, 0.13085938)
+texture = ExtResource("2_qq3lb")
