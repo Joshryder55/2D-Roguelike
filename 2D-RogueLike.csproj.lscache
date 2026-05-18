@@ -56,7 +56,10 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
  .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
  2D-RogueLike.AssemblyInfo.cs
 Scripts/
- CharacterScripts/IceWizardStats.cs
+ BulletBlocker.cs
+ CharacterScripts/
+  IceWizardStats.cs
+  PlayerSaveData.cs
  CharacterSelect.cs
  CoinPickup.cs
  EnemyScripts/
@@ -91,13 +94,14 @@ Scripts/
   PauseMenu.cs
   SkillTreeLines.cs
   UnlocksMenu.cs
+ SlowZone.cs
  XPOrb.cs
 
 [metadataReferences]
 <NUGET>/
  godotsharp/4.6.2/lib/net8.0/GodotSharp.dll
  godotsharpeditor/4.6.2/lib/net8.0/GodotSharpEditor.dll
- microsoft.netcore.app.ref/8.0.26/ref/net8.0/
+ microsoft.netcore.app.ref/8.0.25/ref/net8.0/
   Microsoft.CSharp.dll
   Microsoft.VisualBasic.Core.dll
   Microsoft.VisualBasic.dll
@@ -263,12 +267,12 @@ Scripts/
   WindowsBase.dll
 
 [analyzerReferences]
-<DOTNET>/sdk/10.0.202/Sdks/Microsoft.NET.Sdk/analyzers/
+<DOTNET>/sdk/10.0.201/Sdks/Microsoft.NET.Sdk/analyzers/
  Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll
  Microsoft.CodeAnalysis.NetAnalyzers.dll
 <NUGET>/
  godot.sourcegenerators/4.6.2/analyzers/dotnet/cs/Godot.SourceGenerators.dll
- microsoft.netcore.app.ref/8.0.26/analyzers/dotnet/cs/
+ microsoft.netcore.app.ref/8.0.25/analyzers/dotnet/cs/
   Microsoft.Interop.ComInterfaceGenerator.dll
   Microsoft.Interop.JavaScript.JSImportGenerator.dll
   Microsoft.Interop.LibraryImportGenerator.dll
@@ -278,4 +282,4 @@ Scripts/
 
 [analyzerConfigFiles]
 .godot/mono/temp/obj/Debug/2D-RogueLike.GeneratedMSBuildEditorConfig.editorconfig
-<DOTNET>/sdk/10.0.202/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig
+<DOTNET>/sdk/10.0.201/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig

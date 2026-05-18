@@ -37,39 +37,16 @@ public partial class GameManager : Node
 	}
 
 	public void Reset() {
-	isDead = false;
-	xp = 0;
-	level = 1;
-	xpToNextLevel = 100;
-	CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
-	if (player != null) {
-		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
-		stats.health = stats.maxHealth;
-	}
+		isDead = false;
+		xp = 0;
+		level = 1;
+		xpToNextLevel = 100;
+		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
+		if (player != null) {
+			CharacterStats stats = player.GetNode<CharacterStats>("Stats");
+			stats.health = stats.maxHealth;
+		}
 
 	}
-	
-	
-	
-	////Ability Costs
-	//public void UnlockAbility(string ability, int cost){
-		//if(coins < cost) return;
-		//coins -= cost;
-		//
-		//switch(ability) {
-			//case "multishot": hasMultiShot = true; break;
-			//case "freezeOnHit": hasFreezeOnHit = true; break;
-			//case "frostNova": hasFrostNova = true; break;
-			//case "iceSpike": hasIceSpike = true; break;
-		//}
-	//}
-	//
-	//public void Respec() {
-		//// refund all coins spent - wire up costs later
-		//hasMultiShot = false;
-		//hasFreezeOnHit = false;
-		//hasFrostNova = false;
-		//hasIceSpike = false;
-	//}
 	
 }
