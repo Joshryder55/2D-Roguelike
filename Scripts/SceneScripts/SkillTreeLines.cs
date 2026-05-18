@@ -57,7 +57,7 @@ public partial class SkillTreeLines : Control
 		multishotChance = GetNodeOrNull<Button>("../Passive/MultishotChance");
 		multishotCount = GetNodeOrNull<Button>("../Passive/MultishotCount");
 		
-		chanceToFreezeButton = GetNodeOrNull<Button>("../Passive/ChanceToFreezeButton");
+		chanceToFreezeButton = GetNodeOrNull<Button>("../Passive/ChancetoFreezeButton");
 		chanceToFreezeChance = GetNodeOrNull<Button>("../Passive/ChancetoFreezeChance");
 		chanceToFreezeDuration = GetNodeOrNull<Button>("../Passive/ChancetoFreezeDuration");
 		
