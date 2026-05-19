@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://0o4wh3dt1wi7"]
+
+[ext_resource type="Script" uid="uid://bahq7f7giu8rj" path="res://Scripts/EnemyTypeScripts/SkeletonArcher/BasicSkeletonArcher.cs" id="1_8bs3y"]
+[ext_resource type="Script" uid="uid://c37yl2pfk360a" path="res://Scripts/EnemyTypeScripts/SkeletonArcher/BasicSkeletonArcherHealth.cs" id="2_duuy4"]
+[ext_resource type="PackedScene" uid="uid://w3e12o4b3rxm" path="res://Scenes/RangedAttacks/Arrow.tscn" id="2_kvtu6"]
+[ext_resource type="Texture2D" uid="uid://btrlp8mnj7op1" path="res://Assets/SkeletonArcherStill.png" id="3_2ieuc"]
+[ext_resource type="Texture2D" uid="uid://dibi42frpampi" path="res://Assets/SkeletonArcherDraw1.png" id="4_j1ae0"]
+[ext_resource type="Texture2D" uid="uid://6kdg16vi4gon" path="res://Assets/SkeletonArcherDraw2.png" id="5_x74rr"]
+[ext_resource type="Texture2D" uid="uid://c0qlynf61gnuh" path="res://Assets/SkeletonArcherDraw3.png" id="6_2el46"]
+[ext_resource type="Texture2D" uid="uid://dptr7snec4pv" path="res://Assets/SkeletonArcherFrozen.png" id="7_xtekn"]
+[ext_resource type="Texture2D" uid="uid://4hcwmoglhvlh" path="res://Assets/SkeletonArcherWalk.png" id="8_byedd"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="9_su81r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbu5c"]
+size = Vector2(31, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2re2"]
+size = Vector2(32, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7aog5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2ieuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j1ae0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x74rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2el46")
+}],
+"loop": false,
+"name": &"Draw",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xtekn")
+}],
+"loop": true,
+"name": &"Frozen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2ieuc")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2ieuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_byedd")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 2.0
+}]
+
+[node name="SkeletonArcher" type="CharacterBody2D" unique_id=1205561568 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_8bs3y")
+ArrowScene = ExtResource("2_kvtu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1796449918]
+position = Vector2(5.5, 3.5)
+shape = SubResource("RectangleShape2D_xbu5c")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=148724891]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=106177618]
+position = Vector2(5, 3)
+shape = SubResource("RectangleShape2D_d2re2")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=1717458615]
+script = ExtResource("2_duuy4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1294596334]
+position = Vector2(6.999999, 33)
+scale = Vector2(0.42395023, 0.42395023)
+sprite_frames = SubResource("SpriteFrames_7aog5")
+animation = &"Draw"
+frame = 3
+frame_progress = 1.0
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1898368329]
+offset_left = -3.0
+offset_top = -129.0
+offset_right = 1.0
+offset_bottom = -102.0
+script = ExtResource("9_su81r")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2088838011]
