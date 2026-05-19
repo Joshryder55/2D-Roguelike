@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cmny6x80gncx7" path="res://Scripts/PlayerScripts/XPBar.cs" id="5_xpbar"]
 [ext_resource type="Texture2D" uid="uid://41jk7437trg" path="res://Assets/OrbEmpty.png" id="5_ysn8j"]
 [ext_resource type="Texture2D" uid="uid://cot74iajikwx7" path="res://Assets/HealthOrbFull.png" id="6_6ll4n"]
+[ext_resource type="PackedScene" uid="uid://c444dihibtefi" path="res://Scenes/Enemies/BasicGoblin.tscn" id="6_q1ws5"]
 [ext_resource type="Texture2D" uid="uid://d23dtt86pb37p" path="res://Assets/Level1.png" id="6_t3or0"]
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
@@ -152,7 +153,7 @@ position = Vector2(387, 216)
 [node name="EnemyManager" type="Node" parent="." unique_id=1219055535 node_paths=PackedStringArray("Player")]
 script = ExtResource("3_jghel")
 Player = NodePath("../IceWizard")
-EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0"), ExtResource("5_jgorv")])
+EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0"), ExtResource("5_jgorv"), ExtResource("6_q1ws5")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1932404102]
 
