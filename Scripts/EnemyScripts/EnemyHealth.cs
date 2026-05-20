@@ -3,9 +3,15 @@ using System;
 
 public partial class EnemyHealth : Node
 {
+	
+	GameManager gameManager;
 	public virtual int health { get; set; }= 20;
 	public virtual int maxHealth { get; set; }= 20;
 	public virtual float coinDropChance { get; set; } = 0.1f; // 10% chance
+	
+	public override void _Ready(){
+		gameManager = GetNode<GameManager>("/root/GameManager");
+	}
 	
 	public virtual void TakeDamage(int amount){
 		health -= amount;
@@ -16,10 +22,13 @@ public partial class EnemyHealth : Node
 	}
 	
 	public virtual void Die() {
-
+		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive);
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
+		
+		if(gameManager.ultimateIsActive == false){
 		stats.ultimateCharge++;
+		}
 		
 		// Coin drop chance
 		if (GD.Randf() < coinDropChance) {

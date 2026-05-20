@@ -16,6 +16,15 @@ public partial class IceSpike : Projectile
 			speed = 200f; // slower than ice bolt
 		}
 	}
+	
+	public override void _PhysicsProcess(double delta) {
+		GlobalPosition += Direction * speed * (float)delta;
+		
+		if (player != null && GlobalPosition.DistanceTo(player.GlobalPosition) > maxDistance) {
+			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
+			QueueFree();
+		}
+	}
 
 protected override void OnBodyEntered(Node2D body) {
 		if (body is CharacterBody2D) {
