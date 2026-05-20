@@ -22,8 +22,13 @@ public partial class IceWizardAbilities : Node
 	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed("Ultimate")) {
+			
+			
 			if (iceStats.activeUltimate != IceWizardStats.UltimateAbility.None && 
 				iceStats.ultimateCharge >= iceStats.GetUltimateChargeRequired()) {
+				
+				GD.Print("Setting ultimateIsActive to true");
+				gameManager.ultimateIsActive = true;
 				
 				switch(iceStats.activeUltimate) {
 					case IceWizardStats.UltimateAbility.FrostNova:
@@ -39,6 +44,8 @@ public partial class IceWizardAbilities : Node
 				iceStats.ultimateCharge = 0; // reset charge after use
 			}
 		}
+		
+		
 	}
 	
 	public void FireFrostNova() {

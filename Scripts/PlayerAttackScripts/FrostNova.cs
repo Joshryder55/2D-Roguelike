@@ -27,6 +27,7 @@ public partial class FrostNova : Area2D
 	{	
 		if(circle.Radius >= iceStats.frostNovaRadius) {
 			QueueFree();
+			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
 			return;
 		}
 		circle.Radius += growSpeed * (float)delta;
