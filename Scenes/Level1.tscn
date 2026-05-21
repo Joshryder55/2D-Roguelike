@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://x7nd328123hw" path="res://Assets/Mauloseum.png" id="14_ug0sv"]
 [ext_resource type="Texture2D" uid="uid://wtbrexdlq04b" path="res://Assets/IntactBuildings.png" id="15_0wsr5"]
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="15_ug0sv"]
+[ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="17_pause"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -221,9 +222,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xpbar")
 show_percentage = false
 script = ExtResource("5_xpbar")
 
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1647382910 instance=ExtResource("17_pause")]
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
 z_index = -1
-position = Vector2(404.00012, 233.99994)
+position = Vector2(362, 173)
 scale = Vector2(1.5791016, 1.5791016)
 texture = SubResource("AtlasTexture_ysn8j")
 

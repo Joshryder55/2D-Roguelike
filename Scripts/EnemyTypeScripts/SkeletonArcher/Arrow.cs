@@ -5,7 +5,7 @@ public partial class Arrow : Projectile {
 	public Vector2 direction;
 
 	public override float speed { get; set; } = 200.0f;
-	public override int damage { get; set; } = 5;
+	public override int damage { get; set; } = 8;
 
 	public override void _Ready() {
 		Direction = direction;

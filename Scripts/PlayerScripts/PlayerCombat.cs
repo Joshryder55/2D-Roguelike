@@ -27,6 +27,11 @@ public partial class PlayerCombat : Node {
 		fireTimer.Start();
 	}
 
+	public override void _Process(double delta) {
+		if (fireTimer.WaitTime != characterStats.fireRate)
+			fireTimer.WaitTime = characterStats.fireRate;
+	}
+
 	private void TryShoot() {
 		
 		if(gameManager.isDead) return;

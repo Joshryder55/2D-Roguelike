@@ -34,6 +34,10 @@ text = "Resume"
 layout_mode = 2
 text = "Main Menu"
 
+[node name="UnlocksButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=777888999]
+layout_mode = 2
+text = "Unlocks"
+
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1256744309]
 layout_mode = 2
 text = "Quit"

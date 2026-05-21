@@ -59,7 +59,7 @@ private void OnBodyExited(Node2D body) {
 }
 
 private void DealDamage() {
-	characterStats.TakeDamage(1);
+	characterStats.TakeDamage(3);
 }
 
 
