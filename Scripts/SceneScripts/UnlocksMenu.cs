@@ -1,8 +1,11 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class UnlocksMenu : Control
 {
+	public bool openedFromGame = false;
+	public event Action OnClose;
 	// ─── Node References ───────────────────────────────────────────────
 	private GameManager gameManager;
 	private PlayerSaveData saveData;
@@ -51,7 +54,7 @@ public partial class UnlocksMenu : Control
 	private Button respecYesButton;
 	private Button respecNoButton;
 	private bool isRespecConfirming = false;
-	private const int RespecCost = 50;
+	private const int RespecCost = 10;
 
 	// ─── Skill Data ────────────────────────────────────────────────────
 	private Dictionary<string, int> skillLevels = new Dictionary<string, int>();
@@ -123,43 +126,56 @@ public partial class UnlocksMenu : Control
 		RestoreUnlockedSubButtons();
 
 		descriptionLabel.Text = "Select a skill to view details.";
+
+		// DEBUG - give 1000 coins - remove/disable before release ***
+		var debugButton = new Button();
+		debugButton.Text = "+1000 coin DEBUG";
+		debugButton.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.BottomRight);
+		debugButton.OffsetLeft = -160;
+		debugButton.OffsetTop = -40;
+		debugButton.OffsetRight = 0;
+		debugButton.OffsetBottom = 0;
+		debugButton.Pressed += () => { gameManager.coins += 1000; UpdateAllButtonText(); };
+		AddChild(debugButton);
 	}
 
 	// ─── Skill Setup ───────────────────────────────────────────────────
 	private void SetupSkills()
 	{
 		// Ultimates
-		AddSkill("Blizzard", 1, 100);
-		AddSkill("Flash Freeze", 1, 100);
+		// high-tier
+		AddSkill("Blizzard", 1, 16);
+		AddSkill("Flash Freeze", 1, 16);
 
-		AddSkill("Frost Nova", 1, 25);
-		AddSkill("Frost Nova Damage", 5, 50);
-		AddSkill("Frost Nova Radius", 5, 50);
-		AddSkill("Frost Nova Freeze Duration", 5, 50);
+		// low-tier
+		AddSkill("Frost Nova", 1, 5);
+		AddSkill("Frost Nova Damage", 5, 8);
+		AddSkill("Frost Nova Radius", 5, 6);
+		AddSkill("Frost Nova Freeze Duration", 5, 6);
 
-		AddSkill("Ice Spike", 1, 25);
-		AddSkill("Ice Spike Damage", 5, 50);
-		AddSkill("Ice Spike Freeze Duration", 5, 50);
-		AddSkill("Ice Spike Size", 5, 50);
+		AddSkill("Ice Spike", 1, 3);
+		AddSkill("Ice Spike Damage", 5, 8);
+		AddSkill("Ice Spike Freeze Duration", 5, 6);
+		AddSkill("Ice Spike Size", 5, 6);
 
 		// Passives
-		AddSkill("Permafrost", 1, 75);
-		AddSkill("Brittle", 1, 75);
-		AddSkill("Ice Shield", 1, 75);
+		AddSkill("Permafrost", 1, 10);
+		AddSkill("Brittle", 1, 10);
+		AddSkill("Ice Shield", 1, 10);
 
-		AddSkill("Multishot", 1, 100);
-		AddSkill("Multishot Count", 5, 50);
-		AddSkill("Multishot Chance", 5, 50);
+		AddSkill("Multishot", 1, 5);
+		AddSkill("Multishot Count", 5, 5);
+		AddSkill("Multishot Chance", 5, 5);
 
-		AddSkill("Chance to Freeze", 1, 25);
-		AddSkill("Freeze Chance", 5, 50);
-		AddSkill("Freeze Duration", 5, 50);
+		AddSkill("Chance to Freeze", 1, 5);
+		AddSkill("Freeze Chance", 5, 5);
+		AddSkill("Freeze Duration", 5, 5);
 
-		// Core Stats — high cap to act as coin sink
-		AddSkill("Move Speed", 50, 50);
-		AddSkill("Attack Speed", 50, 50);
-		AddSkill("Health", 50, 50);
-		AddSkill("Damage", 50, 50);
+		// Core Stats
+		AddSkill("Move Speed", 50, 3);
+		AddSkill("Attack Speed", 50, 3);
+		AddSkill("Health", 50, 3);
+		AddSkill("Damage", 50, 3);
 	}
 
 	private void AddSkill(string skillName, int maxLevel, int coinCost)
@@ -578,6 +594,15 @@ public partial class UnlocksMenu : Control
 		skillLevels["Damage"] = saveData.damageBonus / 5;
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		if (openedFromGame && @event.IsActionPressed("pause_game"))
+		{
+			OnBackPressed();
+			GetViewport().SetInputAsHandled();
+		}
+	}
+
 	// ─── Button Handlers ───────────────────────────────────────────────
 	private void OnCorePressed()
 	{
@@ -588,7 +613,12 @@ public partial class UnlocksMenu : Control
 
 	private void OnBackPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
+		if (openedFromGame) {
+			OnClose?.Invoke();
+			QueueFree();
+		} else {
+			GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
+		}
 	}
 	
 	
