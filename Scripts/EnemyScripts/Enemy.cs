@@ -17,6 +17,8 @@ NavigationAgent2D navAgent;
 Area2D damageArea;
 Timer damageTimer;
 
+public bool killedByUltimate = false;
+
 public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
 

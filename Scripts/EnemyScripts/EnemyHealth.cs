@@ -22,12 +22,13 @@ public partial class EnemyHealth : Node
 	}
 	
 	public virtual void Die() {
-		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive);
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
-		
-		if(gameManager.ultimateIsActive == false){
-		stats.ultimateCharge++;
+		Enemy enemy = GetParent() as Enemy;
+		bool fromUltimate = enemy != null && enemy.killedByUltimate;
+
+		if (!fromUltimate) {
+			stats.ultimateCharge++;
 		}
 		
 		// Coin drop chance

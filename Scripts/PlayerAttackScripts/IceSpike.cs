@@ -21,45 +21,43 @@ public partial class IceSpike : Projectile
 		GlobalPosition += Direction * speed * (float)delta;
 		
 		if (player != null && GlobalPosition.DistanceTo(player.GlobalPosition) > maxDistance) {
-			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
 			QueueFree();
 		}
 	}
 
-protected override void OnBodyEntered(Node2D body) {
+	protected override void OnBodyEntered(Node2D body) {
 		if (body is CharacterBody2D) {
-			//Instantiating object of enemyHealth
 			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
 			
-			if (enemyHealth != null){
+			Enemy enemy = body as Enemy;
+			if (enemy != null) {
+				enemy.killedByUltimate = true; // set BEFORE TakeDamage
+			}
+			
+			if (enemyHealth != null) {
 				enemyHealth.TakeDamage(damage);
 			}
 				
-				Enemy enemy = body as Enemy;
-					if (enemy != null) {
-						
-						float originalSpeed = enemy.speed;
-						
-						enemy.speed = 0;
-						enemy.currentStatus = Enemy.StatusEffect.Frozen;
-						enemy.sprite.Play("Frozen");
-						
-						Timer freezeTimer = new Timer();
-						freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
-						freezeTimer.OneShot = true;
-						
-							freezeTimer.Timeout += () => {
-								enemy.speed = originalSpeed;
-								enemy.sprite.Play("Walking");
-								enemy.currentStatus = Enemy.StatusEffect.None;
-								freezeTimer.QueueFree();
-							};
-						enemy.AddChild(freezeTimer);
-						freezeTimer.Start();
-						
-						}
+			if (enemy != null) {
+				float originalSpeed = enemy.speed;
+				enemy.speed = 0;
+				enemy.currentStatus = Enemy.StatusEffect.Frozen;
+				enemy.sprite.Play("Frozen");
+				
+				Timer freezeTimer = new Timer();
+				freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
+				freezeTimer.OneShot = true;
+				freezeTimer.Timeout += () => {
+					enemy.speed = originalSpeed;
+					enemy.sprite.Play("Walking");
+					enemy.currentStatus = Enemy.StatusEffect.None;
+					freezeTimer.QueueFree();
+				};
+				enemy.AddChild(freezeTimer);
+				freezeTimer.Start();
 			}
-}
+		}
+	}
 
 
 

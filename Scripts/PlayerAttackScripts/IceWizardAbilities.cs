@@ -27,8 +27,6 @@ public partial class IceWizardAbilities : Node
 			if (iceStats.activeUltimate != IceWizardStats.UltimateAbility.None && 
 				iceStats.ultimateCharge >= iceStats.GetUltimateChargeRequired()) {
 				
-				GD.Print("Setting ultimateIsActive to true");
-				gameManager.ultimateIsActive = true;
 				
 				switch(iceStats.activeUltimate) {
 					case IceWizardStats.UltimateAbility.FrostNova:
