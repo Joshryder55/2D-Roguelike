@@ -281,9 +281,11 @@ public partial class UnlocksMenu : Control
 			// Ultimates
 			case "Blizzard":
 				saveData.hasBlizzard = true;
+				saveData.activeUltimate = IceWizardStats.UltimateAbility.Blizzard;
 				break;
 			case "Flash Freeze":
 				saveData.hasFlashFreeze = true;
+				saveData.activeUltimate = IceWizardStats.UltimateAbility.FlashFreeze;
 				break;
 
 			case "Frost Nova":

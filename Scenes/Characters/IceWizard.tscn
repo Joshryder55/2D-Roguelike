@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://byeehpo3x4k0s" path="res://Scripts/PlayerAttackScripts/IceWizardAbilities.cs" id="12_qn0ej"]
 [ext_resource type="PackedScene" uid="uid://d4duklt341cbu" path="res://Scenes/RangedAttacks/FrostNova.tscn" id="13_vydgt"]
 [ext_resource type="PackedScene" uid="uid://cgjllomgkhcc0" path="res://Scenes/RangedAttacks/IceSpike.tscn" id="14_k6jcj"]
+[ext_resource type="PackedScene" uid="uid://b0jcarluh8kxx" path="res://Scenes/RangedAttacks/Blizzard.tscn" id="15_lgn5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0ej"]
 size = Vector2(51, 58.5)
@@ -96,3 +97,4 @@ script = ExtResource("11_5r8jw")
 script = ExtResource("12_qn0ej")
 FrostNovaScene = ExtResource("13_vydgt")
 IceSpikeScene = ExtResource("14_k6jcj")
+BlizzardScene = ExtResource("15_lgn5w")
