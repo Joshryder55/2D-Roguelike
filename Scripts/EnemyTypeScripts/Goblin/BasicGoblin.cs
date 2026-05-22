@@ -3,6 +3,7 @@ using System;
 
 public partial class BasicGoblin : Enemy {
 	public override float speed { get; set; } = 100f;
+	public override int contactDamage { get; set; } = 4;
 
 	[Export] public bool isLeader = true;
 
