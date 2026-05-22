@@ -15,7 +15,7 @@ public partial class IceWizardStats : CharacterStats
 	public override float playerSpeed { get; set; } = 100;
 	
 	//Used to select current ultimate when clicked in the skill tree
-	public enum UltimateAbility { None, FrostNova, IceSpike }
+	public enum UltimateAbility { None, FrostNova, IceSpike, Blizzard, FlashFreeze }
 	public UltimateAbility activeUltimate = UltimateAbility.None;
 	
 	//Passive and modifiers
@@ -44,6 +44,7 @@ public partial class IceWizardStats : CharacterStats
 	
 	//Ultimate and Modifiers
 	public bool hasFlashFreeze = false;
+	public float flashFreezeDuration = 3.0f;
 	
 	//Ultimate and modifiers
 	public bool hasFrostNova = false;
@@ -108,6 +109,8 @@ public partial class IceWizardStats : CharacterStats
 		return activeUltimate switch {
 			UltimateAbility.FrostNova => 40,
 			UltimateAbility.IceSpike => 25,
+			UltimateAbility.Blizzard => 50,
+			UltimateAbility.FlashFreeze => 60,
 			_ => int.MaxValue
 		};
 	}
