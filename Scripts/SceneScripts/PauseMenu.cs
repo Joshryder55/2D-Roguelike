@@ -2,22 +2,23 @@ using Godot;
 
 public partial class PauseMenu : Control
 {
-	private Button resumeButton;
-	private Button mainMenuButton;
-	private Button quitButton;
+	private Button _resumeButton;
+	private Button _mainMenuButton;
+	private Button _quitButton;
 
 	public override void _Ready()
 	{
-		resumeButton = GetNode<Button>("CenterContainer/VBoxContainer/ResumeButton");
-		mainMenuButton = GetNode<Button>("CenterContainer/VBoxContainer/MainMenuButton");
-		quitButton = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
+		_resumeButton   = GetNode<Button>("CenterContainer/VBoxContainer/ResumeButton");
+		_mainMenuButton = GetNode<Button>("CenterContainer/VBoxContainer/MainMenuButton");
+		_quitButton     = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
 
-		resumeButton.Pressed += OnResumePressed;
-		mainMenuButton.Pressed += OnMainMenuPressed;
-		quitButton.Pressed += OnQuitPressed;
+		_resumeButton.Pressed   += OnResumePressed;
+		_mainMenuButton.Pressed += OnMainMenuPressed;
+		_quitButton.Pressed     += OnQuitPressed;
 
-		Visible = false;
+		Visible     = false;
 		ProcessMode = ProcessModeEnum.Always;
+		GetNode<Control>("CenterContainer").ProcessMode = ProcessModeEnum.Always;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -31,15 +32,20 @@ public partial class PauseMenu : Control
 
 	private void TogglePause()
 	{
-		bool shouldPause = !GetTree().Paused;
-		GetTree().Paused = shouldPause;
-		Visible = shouldPause;
+		ApplyPause(!GetTree().Paused);
+	}
+
+	private void ApplyPause(bool pausing)
+	{
+		GetTree().Paused = pausing;
+		Visible          = pausing;
+		// No GameManager calls needed — GameManager._Process checks
+		// GetTree().Paused itself, so the timer stops automatically
 	}
 
 	private void OnResumePressed()
 	{
-		GetTree().Paused = false;
-		Visible = false;
+		ApplyPause(false);
 	}
 
 	private void OnMainMenuPressed()

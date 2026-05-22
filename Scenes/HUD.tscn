@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cgp352qy0ys0h"]
+
+[ext_resource type="Script" uid="uid://bd1l5xbyho73m" path="res://Scripts/SceneScripts/HUD.cs" id="1_sd512"]
+
+[node name="Hud" type="Control" unique_id=1005367914]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sd512")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=566883234]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer" unique_id=414411095]
+layout_mode = 2
+text = "Score: "
+
+[node name="TimerLabel" type="Label" parent="VBoxContainer" unique_id=224551818]
+layout_mode = 2
+text = "00:00"
