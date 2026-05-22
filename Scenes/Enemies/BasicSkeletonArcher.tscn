@@ -64,6 +64,9 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvtu6"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
 [node name="SkeletonArcher" type="CharacterBody2D" unique_id=1205561568 groups=["enemies"]]
 collision_layer = 2
 collision_mask = 8
@@ -88,15 +91,17 @@ script = ExtResource("2_duuy4")
 position = Vector2(6.999999, 33)
 scale = Vector2(0.42395023, 0.42395023)
 sprite_frames = SubResource("SpriteFrames_7aog5")
-animation = &"Draw"
-frame = 3
-frame_progress = 1.0
+animation = &"Frozen"
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1898368329]
-offset_left = -3.0
-offset_top = -129.0
-offset_right = 1.0
-offset_bottom = -102.0
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1206019422]
+offset_left = -25.999998
+offset_top = -64.00001
+offset_right = 259.0
+offset_bottom = -37.000008
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/fill = SubResource("StyleBoxFlat_kvtu6")
+show_percentage = false
 script = ExtResource("9_su81r")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2088838011]
