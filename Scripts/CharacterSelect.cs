@@ -100,9 +100,9 @@ public partial class CharacterSelect : Control
 
 		GD.Print("Selected character: " + selectedCharacter);
 		GD.Print("Selected level: " + selectedLevel);
-      
-    GetNode<MusicManager>("/root/MusicManager").StopMenuMusic();
-    
+	  
+	GetNode<MusicManager>("/root/MusicManager").StopMenuMusic();
+	
 		switch (selectedLevel)
 		{
 			case "Level 1":

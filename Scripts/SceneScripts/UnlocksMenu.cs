@@ -63,25 +63,60 @@ public partial class UnlocksMenu : Control
 
 	// Core stats cost scaling: basically the cost scales like: baseCost * (statLevel + 1)
 	private static readonly System.Collections.Generic.HashSet<string> escalatingCostSkills =
-		new System.Collections.Generic.HashSet<string> { "Move Speed", "Attack Speed", "Health", "Damage" };
+		new System.Collections.Generic.HashSet<string> { 
+			// Core Stats
+			"Move Speed", "Attack Speed", "Health", "Damage", 
+			
+			// Ultimate Modifiers
+			
+			// Frost Nova upgrades
+			"Frost Nova Damage", "Frost Nova Radius", "Frost Nova Freeze Duration",
+			// Ice Spike upgrades
+			"Ice Spike Damage", "Ice Spike Freeze Duration", "Ice Spike Size",
+			// Multishot upgrades
+			"Multishot Count", "Multishot Chance",
+			// Chance to Freeze upgrades
+			"Freeze Chance", "Freeze Duration"
+		
+		};
 
 	private int getActualCost(string skillName)
 	{
+		int baseCost = skillCosts[skillName];
+		int level = skillLevels[skillName];
+
+		if (isCoreStatSkill(skillName))
+			return baseCost * (level + 1);
+
 		if (escalatingCostSkills.Contains(skillName))
-			return skillCosts[skillName] * (skillLevels[skillName] + 1);
-		return skillCosts[skillName];
+			return (int)(baseCost * Math.Pow(1.8, level));
+
+		return baseCost;
+	}
+	
+	private bool isCoreStatSkill(string skillName)
+	{
+		return skillName == "Move Speed" || skillName == "Attack Speed"
+			|| skillName == "Health" || skillName == "Damage";
 	}
 
 	private int getTotalCostForSkill(string skillName)
 	{
 		int level = skillLevels[skillName];
-		if (escalatingCostSkills.Contains(skillName))
-		{
-			int baseCost = skillCosts[skillName];
+		int baseCost = skillCosts[skillName];
+
+		if (isCoreStatSkill(skillName))
 			return baseCost * level * (level + 1) / 2;
+
+		if (escalatingCostSkills.Contains(skillName)) {
+			int total = 0;
+			for (int i = 0; i < level; i++)
+				total += (int)(baseCost * Math.Pow(1.8, i));
+			return total;
 		}
-		return level * skillCosts[skillName];
-	}
+
+	return level * baseCost;
+}
 
 	// ─── Ready ─────────────────────────────────────────────────────────
 	public override void _Ready()
@@ -198,10 +233,10 @@ public partial class UnlocksMenu : Control
 		AddSkill("Freeze Duration", 5, 5);
 
 		// Core Stats — permanent minor upgrades, escalating cost per level
-		AddSkill("Move Speed", 5, 5);
-		AddSkill("Attack Speed", 5, 5);
-		AddSkill("Health", 5, 5);
-		AddSkill("Damage", 5, 5);
+		AddSkill("Move Speed", 50, 5);
+		AddSkill("Attack Speed", 50, 5);
+		AddSkill("Health", 50, 5);
+		AddSkill("Damage", 50, 5);
 	}
 
 	private void AddSkill(string skillName, int maxLevel, int coinCost)
