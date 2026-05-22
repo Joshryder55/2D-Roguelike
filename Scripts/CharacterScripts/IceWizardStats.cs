@@ -69,6 +69,7 @@ public partial class IceWizardStats : CharacterStats
 		health = maxHealth;
 		playerSpeed += saveData.moveSpeedBonus;
 		fireRate -= saveData.attackSpeedBonus;
+		damageBonus = saveData.damageBonus;
 		
 		// Apply ability unlocks
 		hasMultiShot = saveData.hasMultiShot;

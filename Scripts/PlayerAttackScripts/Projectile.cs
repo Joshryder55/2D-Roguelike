@@ -37,7 +37,7 @@ public partial class Projectile : Area2D {
 			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
 			
 			if (enemyHealth != null){
-				enemyHealth.TakeDamage(damage);
+				enemyHealth.TakeDamage(damage + (characterStats?.damageBonus ?? 0));
 			}
 			
 			QueueFree();

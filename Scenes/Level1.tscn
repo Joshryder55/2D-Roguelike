@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bbny6ypnxbsfg" path="res://Scripts/SlowZone.cs" id="13_0wsr5"]
 [ext_resource type="Texture2D" uid="uid://dh7btygrngrwj" path="res://Assets/BurnedHouse.png" id="13_ubfni"]
 [ext_resource type="Texture2D" uid="uid://x7nd328123hw" path="res://Assets/Mauloseum.png" id="14_ug0sv"]
+[ext_resource type="PackedScene" uid="uid://cgp352qy0ys0h" path="res://Scenes/HUD.tscn" id="14_ulvkb"]
 [ext_resource type="Texture2D" uid="uid://wtbrexdlq04b" path="res://Assets/IntactBuildings.png" id="15_0wsr5"]
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="15_ug0sv"]
 [ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="17_pause"]
@@ -223,6 +224,8 @@ show_percentage = false
 script = ExtResource("5_xpbar")
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1647382910 instance=ExtResource("17_pause")]
+
+[node name="Hud" parent="CanvasLayer" unique_id=1005367914 instance=ExtResource("14_ulvkb")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
 z_index = -1

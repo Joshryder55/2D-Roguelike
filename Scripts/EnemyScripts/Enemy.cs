@@ -22,6 +22,7 @@ public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
 public float baseSpeed;
+public virtual int contactDamage { get; set; } = 6;
 
 
 public override void _Ready() {
@@ -59,7 +60,7 @@ private void OnBodyExited(Node2D body) {
 }
 
 private void DealDamage() {
-	characterStats.TakeDamage(3);
+	characterStats.TakeDamage(contactDamage);
 }
 
 

@@ -18,6 +18,8 @@ public partial class MainMenu : Control
 		unlocksButton.Pressed += OnUnlocksPressed;
 		optionsButton.Pressed += OnOptionsPressed;
 		quitButton.Pressed += OnQuitPressed;
+
+		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 	}
 
 	private void OnStartPressed()

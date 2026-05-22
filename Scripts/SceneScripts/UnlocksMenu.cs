@@ -61,6 +61,28 @@ public partial class UnlocksMenu : Control
 	private Dictionary<string, int> skillMaxLevels = new Dictionary<string, int>();
 	private Dictionary<string, int> skillCosts = new Dictionary<string, int>();
 
+	// Core stats cost scaling: basically the cost scales like: baseCost * (statLevel + 1)
+	private static readonly System.Collections.Generic.HashSet<string> escalatingCostSkills =
+		new System.Collections.Generic.HashSet<string> { "Move Speed", "Attack Speed", "Health", "Damage" };
+
+	private int getActualCost(string skillName)
+	{
+		if (escalatingCostSkills.Contains(skillName))
+			return skillCosts[skillName] * (skillLevels[skillName] + 1);
+		return skillCosts[skillName];
+	}
+
+	private int getTotalCostForSkill(string skillName)
+	{
+		int level = skillLevels[skillName];
+		if (escalatingCostSkills.Contains(skillName))
+		{
+			int baseCost = skillCosts[skillName];
+			return baseCost * level * (level + 1) / 2;
+		}
+		return level * skillCosts[skillName];
+	}
+
 	// ─── Ready ─────────────────────────────────────────────────────────
 	public override void _Ready()
 	{
@@ -127,6 +149,10 @@ public partial class UnlocksMenu : Control
 
 		descriptionLabel.Text = "Select a skill to view details.";
 
+		// Only play menu music in screens accessed from menu
+		if (!openedFromGame)
+			GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
+
 		// DEBUG - give 1000 coins - remove/disable before release ***
 		var debugButton = new Button();
 		debugButton.Text = "+1000 coin DEBUG";
@@ -159,23 +185,23 @@ public partial class UnlocksMenu : Control
 		AddSkill("Ice Spike Size", 5, 6);
 
 		// Passives
-		AddSkill("Permafrost", 1, 10);
-		AddSkill("Brittle", 1, 10);
+		AddSkill("Permafrost", 1, 7);
+		AddSkill("Brittle", 1, 7);
 		AddSkill("Ice Shield", 1, 10);
 
-		AddSkill("Multishot", 1, 5);
+		AddSkill("Multishot", 1, 3);
 		AddSkill("Multishot Count", 5, 5);
 		AddSkill("Multishot Chance", 5, 5);
 
-		AddSkill("Chance to Freeze", 1, 5);
+		AddSkill("Chance to Freeze", 1, 3);
 		AddSkill("Freeze Chance", 5, 5);
 		AddSkill("Freeze Duration", 5, 5);
 
-		// Core Stats
-		AddSkill("Move Speed", 50, 3);
-		AddSkill("Attack Speed", 50, 3);
-		AddSkill("Health", 50, 3);
-		AddSkill("Damage", 50, 3);
+		// Core Stats — permanent minor upgrades, escalating cost per level
+		AddSkill("Move Speed", 5, 5);
+		AddSkill("Attack Speed", 5, 5);
+		AddSkill("Health", 5, 5);
+		AddSkill("Damage", 5, 5);
 	}
 
 	private void AddSkill(string skillName, int maxLevel, int coinCost)
@@ -230,7 +256,7 @@ public partial class UnlocksMenu : Control
 	{
 		int currentLevel = skillLevels[skillName];
 		int maxLevel = skillMaxLevels[skillName];
-		int cost = skillCosts[skillName];
+		int cost = getActualCost(skillName);
 
 		if (currentLevel >= maxLevel) {
 			descriptionLabel.Text = skillName + "\n\nAlready max level.";
@@ -331,16 +357,16 @@ public partial class UnlocksMenu : Control
 
 			// Core Stats
 			case "Move Speed":
-				saveData.moveSpeedBonus += 10f;
+				saveData.moveSpeedBonus += 5f;
 				break;
 			case "Health":
-				saveData.healthBonus += 2;
+				saveData.healthBonus += 1;
 				break;
 			case "Attack Speed":
-				saveData.attackSpeedBonus += 0.05f;
+				saveData.attackSpeedBonus += 0.02f;
 				break;
 			case "Damage":
-				saveData.damageBonus += 5;
+				saveData.damageBonus += 2;
 				break;
 		}
 	}
@@ -350,7 +376,7 @@ public partial class UnlocksMenu : Control
 	{
 		int level = skillLevels[skillName];
 		int maxLevel = skillMaxLevels[skillName];
-		int cost = skillCosts[skillName];
+		int cost = getActualCost(skillName);
 		string description = GetSkillDescription(skillName);
 
 		descriptionLabel.Text =
@@ -412,13 +438,13 @@ public partial class UnlocksMenu : Control
 
 			// Core Stats
 			case "Move Speed":
-				return "Increases movement speed by 10.";
+				return "Permanently increases movement speed by 5.";
 			case "Attack Speed":
-				return "Increases attack speed by 5%.";
+				return "Permanently increases attack speed by 2%.";
 			case "Health":
-				return "Increases maximum health by 2.";
+				return "Permanently increases maximum health by 1.";
 			case "Damage":
-				return "Increases attack damage by 5.";
+				return "Permanently increases attack damage by 2.";
 
 			default:
 				return "No description yet.";
@@ -547,7 +573,7 @@ public partial class UnlocksMenu : Control
 	{
 		int level = skillLevels[skillName];
 		int maxLevel = skillMaxLevels[skillName];
-		int cost = skillCosts[skillName];
+		int cost = getActualCost(skillName);
 
 		if (level >= maxLevel)
 			return skillName + "\nMAX";
@@ -588,10 +614,10 @@ public partial class UnlocksMenu : Control
 		skillLevels["Freeze Chance"] = saveData.freezeChanceLevel;
 		skillLevels["Freeze Duration"] = saveData.freezeDurationLevel;
 
-		skillLevels["Move Speed"] = (int)(saveData.moveSpeedBonus / 10f);
-		skillLevels["Health"] = saveData.healthBonus / 2;
-		skillLevels["Attack Speed"] = (int)(saveData.attackSpeedBonus / 0.05f);
-		skillLevels["Damage"] = saveData.damageBonus / 5;
+		skillLevels["Move Speed"] = (int)(saveData.moveSpeedBonus / 5f);
+		skillLevels["Health"] = saveData.healthBonus;
+		skillLevels["Attack Speed"] = (int)(saveData.attackSpeedBonus / 0.02f);
+		skillLevels["Damage"] = saveData.damageBonus / 2;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -641,8 +667,7 @@ public partial class UnlocksMenu : Control
 		// Calculate refund — all spent coins minus respec cost
 		int totalSpent = 0;
 		foreach (var skill in skillLevels) {
-			if (skillMaxLevels[skill.Key] > 0)
-				totalSpent += skill.Value * skillCosts[skill.Key];
+			totalSpent += getTotalCostForSkill(skill.Key);
 		}
 		int refund = totalSpent - RespecCost;
 		gameManager.coins += refund;

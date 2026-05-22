@@ -30,6 +30,8 @@ public partial class CharacterSelect : Control
 		levelOptionButton.ItemSelected += OnLevelSelected;
 		confirmButton.Pressed += OnConfirmPressed;
 		backButton.Pressed += OnBackPressed;
+
+		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 	}
 
 	private void SetupCharacterOptions()
@@ -98,7 +100,9 @@ public partial class CharacterSelect : Control
 
 		GD.Print("Selected character: " + selectedCharacter);
 		GD.Print("Selected level: " + selectedLevel);
-
+      
+    GetNode<MusicManager>("/root/MusicManager").StopMenuMusic();
+    
 		switch (selectedLevel)
 		{
 			case "Level 1":
@@ -108,6 +112,8 @@ public partial class CharacterSelect : Control
 				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
 				break;
 		}
+		
+		
 	}
 
 	private void OnBackPressed()

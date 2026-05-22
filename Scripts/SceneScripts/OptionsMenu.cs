@@ -16,11 +16,13 @@ public partial class OptionsMenu : Control
 		fullscreenCheckBox.Toggled += OnFullscreenToggled;
 		backButton.Pressed += OnBackPressed;
 
-		volumeSlider.Value = 80;
+		volumeSlider.Value = 50;
 
 		fullscreenCheckBox.ButtonPressed =
 			DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ||
 			DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen;
+
+		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 	}
 
 	private void OnVolumeChanged(double value)
