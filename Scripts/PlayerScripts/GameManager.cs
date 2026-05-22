@@ -35,15 +35,10 @@ public partial class GameManager : Node
 	void LevelUp() {
 		level++;
 		xp -= xpToNextLevel;
-		// Each level requires 20% more XP than the previous - Will need to be adjusted and balanced for what we wnat
-		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.2f);
+		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f); // Each level requires 25% more XP than the previous - Can adjust as needed for balancing
 
-		// Scaling applied to player
-		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
-		if (player != null) {
-			CharacterStats stats = player.GetNode<CharacterStats>("Stats");
-			stats.ApplyLevelUp();
-		}
+		var menu = new LevelUpMenu();
+		GetTree().CurrentScene.AddChild(menu);
 	}
 
 	public void Reset() {

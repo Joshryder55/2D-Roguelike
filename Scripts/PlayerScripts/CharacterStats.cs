@@ -14,24 +14,11 @@ public partial class CharacterStats : Node
 	//public virtual int projectileDamage { get; set; } = 10;
 	
 	public virtual float playerSpeed { get; set; } = 100;
-	
+	public virtual int damageBonus { get; set; } = 0;
+
 	public virtual int ultimateCharge { get; set; } = 100;
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 
-	public virtual float healthMultiplier { get; set; } = 1.1f;    // +10% max HP per level
-	public virtual float speedMultiplier { get; set; } = 1.0f;
-	public virtual float fireRateMultiplier { get; set; } = 0.95f; // 5% faster fire rate per level
-	public virtual float rangeMultiplier { get; set; } = 1.0f;
-
-	public virtual void ApplyLevelUp() {
-		maxHealth = Mathf.RoundToInt(maxHealth * healthMultiplier);
-		health = Mathf.Min(health + Mathf.RoundToInt(maxHealth * 0.1f), maxHealth); // Heal 10% on level up
-		playerSpeed *= speedMultiplier;
-		fireRate *= fireRateMultiplier;
-		range *= rangeMultiplier;
-	}
-	
-	
 	public override void _Ready() {
 		gameManager = GetNode<GameManager>("/root/GameManager");
 	}

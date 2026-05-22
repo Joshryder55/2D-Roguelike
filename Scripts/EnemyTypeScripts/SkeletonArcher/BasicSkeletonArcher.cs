@@ -10,6 +10,7 @@ public partial class BasicSkeletonArcher : Enemy {
 	private bool isDrawing = false;
 
 	public override float speed { get; set; } = 40f;
+	public override int contactDamage { get; set; } = 8;
 
 	public override void _PhysicsProcess(double delta) {
 		if (Player == null) return;
