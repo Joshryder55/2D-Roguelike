@@ -149,6 +149,10 @@ public partial class UnlocksMenu : Control
 
 		descriptionLabel.Text = "Select a skill to view details.";
 
+		// Only play menu music in screens accessed from menu
+		if (!openedFromGame)
+			GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
+
 		// DEBUG - give 1000 coins - remove/disable before release ***
 		var debugButton = new Button();
 		debugButton.Text = "+1000 coin DEBUG";
