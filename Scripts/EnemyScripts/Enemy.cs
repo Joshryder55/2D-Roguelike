@@ -10,7 +10,7 @@ public CharacterBody2D Player;
 
 CharacterStats characterStats;
 
-GameManager gameManager;
+protected GameManager gameManager;
 
 NavigationAgent2D navAgent;
 
@@ -22,6 +22,7 @@ public StatusEffect currentStatus = StatusEffect.None;
 
 public virtual float speed { get; set; } = 50;
 public float baseSpeed;
+public virtual int contactDamage { get; set; } = 6;
 
 
 public override void _Ready() {
@@ -47,17 +48,19 @@ public override void _Ready() {
 }
 
 private void OnBodyEntered(Node2D body) {
-	if (body is CharacterBody2D) {
+	if (body.IsInGroup("player")) {
 		damageTimer.Start();
 	}
 }
 
 private void OnBodyExited(Node2D body) {
-	damageTimer.Stop();
+	if (body.IsInGroup("player")) {
+		damageTimer.Stop();
+	}
 }
 
 private void DealDamage() {
-	characterStats.TakeDamage(1);
+	characterStats.TakeDamage(contactDamage);
 }
 
 

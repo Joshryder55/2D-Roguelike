@@ -25,13 +25,13 @@ public partial class PauseMenu : Control
 		if (@event.IsActionPressed("pause_game"))
 		{
 			TogglePause();
+			GetViewport().SetInputAsHandled();
 		}
 	}
 
 	private void TogglePause()
 	{
 		bool shouldPause = !GetTree().Paused;
-
 		GetTree().Paused = shouldPause;
 		Visible = shouldPause;
 	}

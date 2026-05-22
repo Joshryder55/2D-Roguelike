@@ -3,9 +3,16 @@ using System;
 
 public partial class EnemyHealth : Node
 {
+	
+	GameManager gameManager;
 	public virtual int health { get; set; }= 20;
 	public virtual int maxHealth { get; set; }= 20;
-	public virtual float coinDropChance { get; set; } = 0.1f; // 10% chance
+	public virtual int xpValue { get; set; } = 5;
+	public virtual float coinDropChance { get; set; } = 0.1f; // 10% base chance
+	
+	public override void _Ready(){
+		gameManager = GetNode<GameManager>("/root/GameManager");
+	}
 	
 	public virtual void TakeDamage(int amount){
 		health -= amount;
@@ -16,13 +23,16 @@ public partial class EnemyHealth : Node
 	}
 	
 	public virtual void Die() {
-
+		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive);
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
-		stats.ultimateCharge++;
 		
-		// Coin drop chance
-		if (GD.Randf() < coinDropChance) {
+		if(gameManager.ultimateIsActive == false){
+		stats.ultimateCharge++;
+		}
+		
+		// Coin drop chance — boosted early in the run (5 min), then goes back to 1%
+		if (GD.Randf() < coinDropChance * gameManager.GetCoinDropMultiplier()) {
 			PackedScene coinScene = GD.Load<PackedScene>("res://Scenes/Coin.tscn");
 			CoinPickup coin = coinScene.Instantiate() as CoinPickup;
 			coin.GlobalPosition = GetParent<Node2D>().GlobalPosition;
@@ -33,6 +43,7 @@ public partial class EnemyHealth : Node
 		// Spawn XP orb at the mob's position on death
 		PackedScene orbScene = GD.Load<PackedScene>("res://Scenes/XPOrb.tscn");
 		XPOrb orb = orbScene.Instantiate<XPOrb>();
+		orb.xpValue = xpValue;
 		orb.GlobalPosition = GetParent<Node2D>().GlobalPosition;
 		GetTree().CurrentScene.CallDeferred("add_child", orb);
 

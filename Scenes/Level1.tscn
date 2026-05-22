@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/Enemies/BasicZombie.tscn" id="4_jghel"]
 [ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="4_slnnj"]
 [ext_resource type="PackedScene" uid="uid://c0qsi7fbvbxxj" path="res://Scenes/Enemies/BasicSkeleton.tscn" id="4_t3or0"]
+[ext_resource type="PackedScene" uid="uid://0o4wh3dt1wi7" path="res://Scenes/Enemies/BasicSkeletonArcher.tscn" id="5_jgorv"]
 [ext_resource type="Script" uid="uid://cmny6x80gncx7" path="res://Scripts/PlayerScripts/XPBar.cs" id="5_xpbar"]
 [ext_resource type="Texture2D" uid="uid://41jk7437trg" path="res://Assets/OrbEmpty.png" id="5_ysn8j"]
 [ext_resource type="Texture2D" uid="uid://cot74iajikwx7" path="res://Assets/HealthOrbFull.png" id="6_6ll4n"]
+[ext_resource type="PackedScene" uid="uid://c444dihibtefi" path="res://Scenes/Enemies/BasicGoblin.tscn" id="6_q1ws5"]
 [ext_resource type="Texture2D" uid="uid://d23dtt86pb37p" path="res://Assets/Level1.png" id="6_t3or0"]
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
@@ -17,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://x7nd328123hw" path="res://Assets/Mauloseum.png" id="14_ug0sv"]
 [ext_resource type="Texture2D" uid="uid://wtbrexdlq04b" path="res://Assets/IntactBuildings.png" id="15_0wsr5"]
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="15_ug0sv"]
+[ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="17_pause"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -151,7 +154,7 @@ position = Vector2(387, 216)
 [node name="EnemyManager" type="Node" parent="." unique_id=1219055535 node_paths=PackedStringArray("Player")]
 script = ExtResource("3_jghel")
 Player = NodePath("../IceWizard")
-EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0")])
+EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0"), ExtResource("5_jgorv"), ExtResource("6_q1ws5")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1932404102]
 
@@ -219,9 +222,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xpbar")
 show_percentage = false
 script = ExtResource("5_xpbar")
 
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1647382910 instance=ExtResource("17_pause")]
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
 z_index = -1
-position = Vector2(404.00012, 233.99994)
+position = Vector2(362, 173)
 scale = Vector2(1.5791016, 1.5791016)
 texture = SubResource("AtlasTexture_ysn8j")
 

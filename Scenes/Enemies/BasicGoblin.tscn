@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://c444dihibtefi"]
+
+[ext_resource type="Script" uid="uid://8ve1r8jyn8xq" path="res://Scripts/EnemyTypeScripts/Goblin/BasicGoblin.cs" id="1_0qgls"]
+[ext_resource type="Script" uid="uid://bxdecoedx8f1a" path="res://Scripts/EnemyTypeScripts/Goblin/BasicGoblinHealth.cs" id="2_5e3x6"]
+[ext_resource type="Texture2D" uid="uid://cbgswc1wuydvp" path="res://Assets/GoblinFrozen.png" id="3_5e3x6"]
+[ext_resource type="Texture2D" uid="uid://7ycvho0ki6ul" path="res://Assets/GoblinStill.png" id="3_48s8o"]
+[ext_resource type="Texture2D" uid="uid://b2fvi1hel3j4y" path="res://Assets/GoblinWalk1.png" id="4_wqe1x"]
+[ext_resource type="Texture2D" uid="uid://2m7usguij0f7" path="res://Assets/GoblinWalk2.png" id="5_rcub1"]
+[ext_resource type="Texture2D" uid="uid://cm8s52t1jbl5f" path="res://Assets/GoblinWalk3.png" id="6_7dxil"]
+[ext_resource type="Texture2D" uid="uid://cfhlifjrhniiw" path="res://Assets/GoblinWalk4.png" id="7_fxork"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="8_gynuh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0egvp"]
+size = Vector2(38, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0ksv"]
+size = Vector2(37, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wlqv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5e3x6")
+}],
+"loop": true,
+"name": &"Frozen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_48s8o")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wqe1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rcub1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wqe1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48s8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7dxil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fxork")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7dxil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48s8o")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}]
+
+[node name="BasicGoblin" type="CharacterBody2D" unique_id=818551213 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_0qgls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130360498]
+position = Vector2(8, -0.5)
+shape = SubResource("RectangleShape2D_0egvp")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=437209001]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=2006785777]
+position = Vector2(7.5, -0.5)
+shape = SubResource("RectangleShape2D_y0ksv")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=1241752111]
+script = ExtResource("2_5e3x6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342863719]
+position = Vector2(16.999989, 41.999992)
+scale = Vector2(0.3203125, 0.3203125)
+sprite_frames = SubResource("SpriteFrames_wlqv4")
+animation = &"Frozen"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=227080626]
+offset_left = -5.0
+offset_top = -124.0
+offset_right = -1.0
+offset_bottom = -97.0
+script = ExtResource("8_gynuh")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=45945679]

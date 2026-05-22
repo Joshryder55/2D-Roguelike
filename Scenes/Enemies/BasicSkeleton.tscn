@@ -52,10 +52,11 @@ collision_mask = 8
 script = ExtResource("1_xyira")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=19348704]
-position = Vector2(7.5, 64.5)
+position = Vector2(0.5, 7.5)
 shape = SubResource("RectangleShape2D_63bbo")
 
 [node name="HitDetection" type="Area2D" parent="." unique_id=2088845828]
+position = Vector2(-7, -57)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=28280192]
@@ -66,7 +67,7 @@ shape = SubResource("RectangleShape2D_2rf3w")
 script = ExtResource("2_gpwug")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=584679694]
-position = Vector2(9, 111.5)
+position = Vector2(2.0000014, 48.000004)
 scale = Vector2(0.43359375, 0.40820313)
 sprite_frames = SubResource("SpriteFrames_4qhg1")
 animation = &"Frozen"

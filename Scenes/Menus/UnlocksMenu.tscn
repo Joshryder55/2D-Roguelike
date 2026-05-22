@@ -178,30 +178,30 @@ text = "Duration"
 
 [node name="MoveSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=1920635041]
 offset_left = 22.0
-offset_top = 276.0
+offset_top = 286.0
 offset_right = 124.0
-offset_bottom = 307.0
+offset_bottom = 317.0
 text = "Move Speed"
 
 [node name="AttackSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=491327926]
 offset_left = 23.0
-offset_top = 319.0
+offset_top = 342.0
 offset_right = 132.0
-offset_bottom = 350.0
+offset_bottom = 373.0
 text = "Attack Speed"
 
 [node name="HealthButton" type="Button" parent="TreeArea/CoreStats" unique_id=991483064]
-offset_left = 24.0
-offset_top = 182.0
-offset_right = 84.0
-offset_bottom = 213.0
+offset_left = 23.0
+offset_top = 170.0
+offset_right = 83.0
+offset_bottom = 201.0
 text = "Health"
 
 [node name="DamageButton" type="Button" parent="TreeArea/CoreStats" unique_id=1071859552]
-offset_left = 22.0
-offset_top = 229.0
-offset_right = 94.0
-offset_bottom = 260.0
+offset_left = 23.0
+offset_top = 228.0
+offset_right = 95.0
+offset_bottom = 259.0
 text = "Damage"
 
 [node name="BackButton" type="Button" parent="." unique_id=228286773]
@@ -222,8 +222,45 @@ text = "Unlocks"
 
 [node name="DescriptionLabel" type="Label" parent="." unique_id=174715012]
 layout_mode = 0
-offset_left = 723.0
+offset_left = 863.0
 offset_top = 499.0
-offset_right = 937.0
+offset_right = 1077.0
 offset_bottom = 522.0
 text = "Select a skill to view details."
+
+[node name="CoinsLabel" type="Label" parent="." unique_id=1630202571]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 224.0
+offset_bottom = 31.0
+
+[node name="RespecButton" type="Button" parent="." unique_id=389929333]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 31.0
+text = "RESET SKILLS"
+
+[node name="RespecConfirmLabel" type="Label" parent="." unique_id=227346449]
+visible = false
+layout_mode = 0
+offset_top = 31.0
+offset_right = 140.0
+offset_bottom = 71.0
+text = "Are You Sure?"
+
+[node name="RespecYesButton" type="Button" parent="." unique_id=1963287892]
+visible = false
+layout_mode = 0
+offset_top = 75.0
+offset_right = 46.0
+offset_bottom = 106.0
+text = "Yes"
+
+[node name="RespecNoButton" type="Button" parent="." unique_id=1472883731]
+visible = false
+layout_mode = 0
+offset_left = 65.0
+offset_top = 75.0
+offset_right = 110.0
+offset_bottom = 106.0
+text = "No"

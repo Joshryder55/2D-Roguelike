@@ -5,8 +5,8 @@ public partial class IceWizardStats : CharacterStats
 {
 	
 	//Overriding base stats for stats from CharacterStats
-	public override int maxHealth { get; set;} = 10;
-	public override int health { get; set; } = 10;
+	public override int maxHealth { get; set;} = 100;
+	public override int health { get; set; } = 100;
 	public override float fireRate { get; set; } = 1.0f;
 	public override float range { get; set; } = 500.0f;
 	//public override float projectileSpeed { get; set; } = 300.0f;
@@ -69,6 +69,7 @@ public partial class IceWizardStats : CharacterStats
 		health = maxHealth;
 		playerSpeed += saveData.moveSpeedBonus;
 		fireRate -= saveData.attackSpeedBonus;
+		damageBonus = saveData.damageBonus;
 		
 		// Apply ability unlocks
 		hasMultiShot = saveData.hasMultiShot;
