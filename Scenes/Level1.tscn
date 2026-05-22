@@ -226,7 +226,7 @@ script = ExtResource("5_xpbar")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
 z_index = -1
-position = Vector2(362, 173)
+position = Vector2(405, 237.00002)
 scale = Vector2(1.5791016, 1.5791016)
 texture = SubResource("AtlasTexture_ysn8j")
 

@@ -6,6 +6,7 @@ public partial class PlayerSaveData : Node
 	
 	public IceWizardStats.UltimateAbility activeUltimate = IceWizardStats.UltimateAbility.None;
 	
+	public bool hasCompletedLevel1 = false;
 	
 	// Ice Wizard unlocks
 	public bool hasMultiShot = false;

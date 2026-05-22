@@ -28,7 +28,6 @@ public partial class CharacterSelect : Control
 
 		characterOptionButton.ItemSelected += OnCharacterSelected;
 		levelOptionButton.ItemSelected += OnLevelSelected;
-
 		confirmButton.Pressed += OnConfirmPressed;
 		backButton.Pressed += OnBackPressed;
 	}
@@ -45,6 +44,19 @@ public partial class CharacterSelect : Control
 		levelOptionButton.Clear();
 
 		levelOptionButton.AddItem("Level 1");
+		
+		// TODO: Unlock Level 2 after beating Level 1
+		// Uncomment when unlock system is ready:
+		// PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
+		// if (saveData.hasCompletedLevel1)
+		// {
+		//     levelOptionButton.AddItem("Level 2");
+		// }
+
+
+		// For now add Level 2 always for testing
+		levelOptionButton.AddItem("Level 2");
+		
 	}
 
 	private void OnCharacterSelected(long index)
@@ -72,6 +84,11 @@ public partial class CharacterSelect : Control
 			// No level image yet, so leave this blank for now.
 			levelPreviewTexture.Texture = null;
 		}
+		
+		if(selectedLevel == "Level 2"){
+			
+			levelPreviewTexture.Texture = null;
+		}
 	}
 
 	private void OnConfirmPressed()
@@ -82,7 +99,15 @@ public partial class CharacterSelect : Control
 		GD.Print("Selected character: " + selectedCharacter);
 		GD.Print("Selected level: " + selectedLevel);
 
-		GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
+		switch (selectedLevel)
+		{
+			case "Level 1":
+				GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
+				break;
+			case "Level 2":
+				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
+				break;
+		}
 	}
 
 	private void OnBackPressed()
