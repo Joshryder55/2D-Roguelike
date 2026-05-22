@@ -82,7 +82,7 @@ public partial class CharacterSelect : Control
 		GD.Print("Selected character: " + selectedCharacter);
 		GD.Print("Selected level: " + selectedLevel);
 
-		GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
 	}
 
 	private void OnBackPressed()
