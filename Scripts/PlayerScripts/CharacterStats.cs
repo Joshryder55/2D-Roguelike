@@ -38,11 +38,22 @@ public partial class CharacterStats : Node
 	}
 
 	public virtual void TakeDamage(int amount)
+{
+	// Ice Shield block check
+	IceWizardStats iceStats = this as IceWizardStats;
+	if (iceStats != null && iceStats.hasIceShield)
 	{
-		health -= amount;
-		if (health <= 0)
-			Die();
+		if (GD.Randf() < iceStats.iceShieldBlockChance)
+		{
+			GD.Print("Ice Shield blocked!");
+			return;
+		}
 	}
+	// Take Damage
+	health -= amount;
+	if (health <= 0)
+		Die();
+}
 
 	public virtual void Die()
 	{

@@ -3,7 +3,15 @@ public partial class SkillTreeLines : Control
 {
 	private Button coreButton;
 	private Button blizzardButton;
+	private Button blizzardDuration;
+	private Button blizzardSize;
+	private Button blizzardChill;
+
 	private Button flashFreezeButton;
+	private Button flashFreezeDuration;
+	private Button flashFreezeShatter;
+	private Button flashFreezeGlacial;
+
 	private Button frostNovaButton;
 	private Button iceSpikeButton;
 	
@@ -33,9 +41,15 @@ public partial class SkillTreeLines : Control
 		MouseFilter = MouseFilterEnum.Ignore;
 		coreButton = GetNodeOrNull<Button>("../CoreButton");
 		
-		blizzardButton = GetNodeOrNull<Button>("../Ultimate/BlizzardButton");
-		
-		flashFreezeButton = GetNodeOrNull<Button>("../Ultimate/FlashFreezeButton");
+		blizzardButton   = GetNodeOrNull<Button>("../Ultimate/BlizzardButton");
+		blizzardDuration = GetNodeOrNull<Button>("../Ultimate/BlizzardDuration");
+		blizzardSize     = GetNodeOrNull<Button>("../Ultimate/BlizzardSize");
+		blizzardChill    = GetNodeOrNull<Button>("../Ultimate/BlizzardChill");
+
+		flashFreezeButton   = GetNodeOrNull<Button>("../Ultimate/FlashFreezeButton");
+		flashFreezeDuration = GetNodeOrNull<Button>("../Ultimate/FlashFreezeDuration");
+		flashFreezeShatter  = GetNodeOrNull<Button>("../Ultimate/FlashFreezeShatter");
+		flashFreezeGlacial  = GetNodeOrNull<Button>("../Ultimate/FlashFreezeGlacial");
 		
 		frostNovaButton = GetNodeOrNull<Button>("../Ultimate/FrostNovaButton");
 		frostNovaSize = GetNodeOrNull<Button>("../Ultimate/FrostNovaSize");
@@ -48,9 +62,7 @@ public partial class SkillTreeLines : Control
 		iceSpikeFreezeDuration = GetNodeOrNull<Button>("../Ultimate/IceSpikeFreezeDuration");
 		
 		permafrostButton = GetNodeOrNull<Button>("../Passive/PermafrostButton");
-		
 		brittleButton = GetNodeOrNull<Button>("../Passive/BrittleButton");
-		
 		iceShieldButton = GetNodeOrNull<Button>("../Passive/IceShieldButton");
 		
 		multishotButton = GetNodeOrNull<Button>("../Passive/MultishotButton");
@@ -60,12 +72,7 @@ public partial class SkillTreeLines : Control
 		chanceToFreezeButton = GetNodeOrNull<Button>("../Passive/ChancetoFreezeButton");
 		chanceToFreezeChance = GetNodeOrNull<Button>("../Passive/ChancetoFreezeChance");
 		chanceToFreezeDuration = GetNodeOrNull<Button>("../Passive/ChancetoFreezeDuration");
-		
-		
-		
 
-		chanceToFreezeChance = GetNodeOrNull<Button>("../Passive/ChancetoFreezeChance");
-		chanceToFreezeDuration = GetNodeOrNull<Button>("../Passive/ChancetoFreezeDuration");
 		CheckMissingNodes();
 		QueueRedraw();
 	}
@@ -79,45 +86,61 @@ public partial class SkillTreeLines : Control
 	{
 		Color lineColor = new Color(0.2f, 0.8f, 1.0f, 1.0f);
 		float lineWidth = 4.0f;
-		
+
+		// Core to all main buttons
 		DrawConnection(coreButton, blizzardButton, lineColor, lineWidth);
 		DrawConnection(coreButton, flashFreezeButton, lineColor, lineWidth);
 		DrawConnection(coreButton, frostNovaButton, lineColor, lineWidth);
 		DrawConnection(coreButton, iceSpikeButton, lineColor, lineWidth);
-		
 		DrawConnection(coreButton, permafrostButton, lineColor, lineWidth);
 		DrawConnection(coreButton, brittleButton, lineColor, lineWidth);
 		DrawConnection(coreButton, iceShieldButton, lineColor, lineWidth);
 		DrawConnection(coreButton, multishotButton, lineColor, lineWidth);
 		DrawConnection(coreButton, chanceToFreezeButton, lineColor, lineWidth);
-		
-		// Frost Nova upgrades - only draw if visible
-if (frostNovaDamage != null && frostNovaDamage.Visible)
-	DrawConnection(frostNovaButton, frostNovaDamage, lineColor, lineWidth);
-if (frostNovaSize != null && frostNovaSize.Visible)
-	DrawConnection(frostNovaButton, frostNovaSize, lineColor, lineWidth);
-if (frostNovaFreezeDuration != null && frostNovaFreezeDuration.Visible)
-	DrawConnection(frostNovaButton, frostNovaFreezeDuration, lineColor, lineWidth);
 
-// Ice Spike upgrades
-if (iceSpikeDamage != null && iceSpikeDamage.Visible)
-	DrawConnection(iceSpikeButton, iceSpikeDamage, lineColor, lineWidth);
-if (iceSpikeSize != null && iceSpikeSize.Visible)
-	DrawConnection(iceSpikeButton, iceSpikeSize, lineColor, lineWidth);
-if (iceSpikeFreezeDuration != null && iceSpikeFreezeDuration.Visible)
-	DrawConnection(iceSpikeButton, iceSpikeFreezeDuration, lineColor, lineWidth);
+		// Blizzard upgrades
+		if (blizzardDuration != null && blizzardDuration.Visible)
+			DrawConnection(blizzardButton, blizzardDuration, lineColor, lineWidth);
+		if (blizzardSize != null && blizzardSize.Visible)
+			DrawConnection(blizzardButton, blizzardSize, lineColor, lineWidth);
+		if (blizzardChill != null && blizzardChill.Visible)
+			DrawConnection(blizzardButton, blizzardChill, lineColor, lineWidth);
 
-// Multishot upgrades
-if (multishotChance != null && multishotChance.Visible)
-	DrawConnection(multishotButton, multishotChance, lineColor, lineWidth);
-if (multishotCount != null && multishotCount.Visible)
-	DrawConnection(multishotButton, multishotCount, lineColor, lineWidth);
+		// Flash Freeze upgrades
+		if (flashFreezeDuration != null && flashFreezeDuration.Visible)
+			DrawConnection(flashFreezeButton, flashFreezeDuration, lineColor, lineWidth);
+		if (flashFreezeShatter != null && flashFreezeShatter.Visible)
+			DrawConnection(flashFreezeButton, flashFreezeShatter, lineColor, lineWidth);
+		if (flashFreezeGlacial != null && flashFreezeGlacial.Visible)
+			DrawConnection(flashFreezeButton, flashFreezeGlacial, lineColor, lineWidth);
 
-// Chance to Freeze upgrades
-if (chanceToFreezeChance != null && chanceToFreezeChance.Visible)
-	DrawConnection(chanceToFreezeButton, chanceToFreezeChance, lineColor, lineWidth);
-if (chanceToFreezeDuration != null && chanceToFreezeDuration.Visible)
-	DrawConnection(chanceToFreezeButton, chanceToFreezeDuration, lineColor, lineWidth);
+		// Frost Nova upgrades
+		if (frostNovaDamage != null && frostNovaDamage.Visible)
+			DrawConnection(frostNovaButton, frostNovaDamage, lineColor, lineWidth);
+		if (frostNovaSize != null && frostNovaSize.Visible)
+			DrawConnection(frostNovaButton, frostNovaSize, lineColor, lineWidth);
+		if (frostNovaFreezeDuration != null && frostNovaFreezeDuration.Visible)
+			DrawConnection(frostNovaButton, frostNovaFreezeDuration, lineColor, lineWidth);
+
+		// Ice Spike upgrades
+		if (iceSpikeDamage != null && iceSpikeDamage.Visible)
+			DrawConnection(iceSpikeButton, iceSpikeDamage, lineColor, lineWidth);
+		if (iceSpikeSize != null && iceSpikeSize.Visible)
+			DrawConnection(iceSpikeButton, iceSpikeSize, lineColor, lineWidth);
+		if (iceSpikeFreezeDuration != null && iceSpikeFreezeDuration.Visible)
+			DrawConnection(iceSpikeButton, iceSpikeFreezeDuration, lineColor, lineWidth);
+
+		// Multishot upgrades
+		if (multishotChance != null && multishotChance.Visible)
+			DrawConnection(multishotButton, multishotChance, lineColor, lineWidth);
+		if (multishotCount != null && multishotCount.Visible)
+			DrawConnection(multishotButton, multishotCount, lineColor, lineWidth);
+
+		// Chance to Freeze upgrades
+		if (chanceToFreezeChance != null && chanceToFreezeChance.Visible)
+			DrawConnection(chanceToFreezeButton, chanceToFreezeChance, lineColor, lineWidth);
+		if (chanceToFreezeDuration != null && chanceToFreezeDuration.Visible)
+			DrawConnection(chanceToFreezeButton, chanceToFreezeDuration, lineColor, lineWidth);
 	}
 
 	private void DrawConnection(Control fromNode, Control toNode, Color color, float width)
@@ -143,9 +166,4 @@ if (chanceToFreezeDuration != null && chanceToFreezeDuration.Visible)
 		if (multishotButton == null) GD.PrintErr("Missing MultishotButton");
 		if (chanceToFreezeButton == null) GD.PrintErr("Missing ChanceToFreezeButton");
 	}
-	
-
-
-
-
 }

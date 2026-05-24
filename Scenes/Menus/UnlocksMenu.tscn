@@ -109,6 +109,48 @@ offset_right = 505.0
 offset_bottom = 95.0
 text = "Freeze Duration"
 
+[node name="BlizzardDuration" type="Button" parent="TreeArea/Ultimate" unique_id=684477455]
+offset_left = 115.0
+offset_top = 257.0
+offset_right = 257.0
+offset_bottom = 288.0
+text = "Blizzard Duration"
+
+[node name="BlizzardSize" type="Button" parent="TreeArea/Ultimate" unique_id=510851768]
+offset_left = 101.0
+offset_top = 171.0
+offset_right = 205.0
+offset_bottom = 202.0
+text = "Blizzard Size"
+
+[node name="BlizzardChill" type="Button" parent="TreeArea/Ultimate" unique_id=1925631357]
+offset_left = 223.0
+offset_top = 154.0
+offset_right = 330.0
+offset_bottom = 185.0
+text = "Blizzard Chill"
+
+[node name="FlashFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=724156791]
+offset_left = 794.0
+offset_top = 161.0
+offset_right = 971.0
+offset_bottom = 192.0
+text = "Flash Freeze Duration"
+
+[node name="FlashFreezeShatter" type="Button" parent="TreeArea/Ultimate" unique_id=67480944]
+offset_left = 981.0
+offset_top = 173.0
+offset_right = 1146.0
+offset_bottom = 204.0
+text = "Flash Freeze Shatter"
+
+[node name="FlashFreezeGlacial" type="Button" parent="TreeArea/Ultimate" unique_id=466997192]
+offset_left = 968.0
+offset_top = 94.0
+offset_right = 1127.0
+offset_bottom = 125.0
+text = "Flash Freeze Glacial"
+
 [node name="Passive" type="Node" parent="TreeArea" unique_id=2002988305]
 
 [node name="BrittleButton" type="Button" parent="TreeArea/Passive" unique_id=1306270075]
