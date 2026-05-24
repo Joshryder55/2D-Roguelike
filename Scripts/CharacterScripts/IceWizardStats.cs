@@ -23,15 +23,21 @@ public partial class IceWizardStats : CharacterStats
 
 	// Passives
 	public bool hasBrittle = false;
+	public float brittleBonusDamageMultiplier = 1.5f; // base 50% bonus damage to frozen enemies
+	public bool brittleShatter = false; // unlocked via upgrade
+
 	public bool hasIceShield = false;
 	public float iceShieldBlockChance = 0.25f;
+	public bool iceShieldRetaliate = false; // unlocked via upgrade
+	public int iceShieldRetaliationDamage = 10;
+
 	public bool hasPermafrost = false;
-	public float permafrostRadius = 200.0f;
-	public float permafrostSlowFactor = 0.5f;
+	public float permafrostRadius = 150.0f;    // nerfed from 200
+	public float permafrostSlowFactor = 0.75f; // nerfed from 0.5 (enemies at 75% speed)
 
 	// Blizzard
 	public bool hasBlizzard = false;
-	public float blizzardDuration = 6.0f;
+	public float blizzardDuration = 2.0f;  // nerfed from 6
 	public float blizzardRadius = 150.0f;
 	public float blizzardSlowFactor = 0.4f;
 
@@ -96,7 +102,7 @@ public partial class IceWizardStats : CharacterStats
 		freezeDuration += saveData.freezeDurationLevel * 0.5f;
 
 		// Blizzard upgrades
-		blizzardDuration   += saveData.blizzardDurationLevel * 1f;
+		blizzardDuration   += saveData.blizzardDurationLevel * 0.6f; // base 2s, +0.6 per level, max 5s at lvl5
 		blizzardRadius     += saveData.blizzardSizeLevel * 50f;
 		blizzardSlowFactor  = Mathf.Max(0.15f, blizzardSlowFactor - saveData.blizzardChillLevel * 0.05f);
 
@@ -104,6 +110,18 @@ public partial class IceWizardStats : CharacterStats
 		flashFreezeDuration        += saveData.flashFreezeDurationLevel * 1f;
 		flashFreezeShatterBonus    += saveData.flashFreezeShatterLevel * 0.1f;
 		flashFreezeGlacialDuration += saveData.flashFreezeGlacialLevel * 1f;
+
+		// Brittle upgrades
+		brittleBonusDamageMultiplier += saveData.brittleBonusDamageLevel * 0.15f; // +15% per level
+		brittleShatter                = saveData.brittleShatterUnlocked;
+
+		// Ice Shield upgrades
+		iceShieldBlockChance    += saveData.iceShieldBlockChanceLevel * 0.1f; // +10% per level
+		iceShieldRetaliate       = saveData.iceShieldRetaliateUnlocked;
+
+		// Permafrost upgrades
+		permafrostRadius     += saveData.permafrostRadiusLevel * 25f;  // +25 per level
+		permafrostSlowFactor  = Mathf.Max(0.4f, permafrostSlowFactor - saveData.permafrostChillLevel * 0.05f);
 	}
 
 	public override int GetUltimateChargeRequired()

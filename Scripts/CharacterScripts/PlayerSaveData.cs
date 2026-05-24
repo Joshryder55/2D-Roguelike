@@ -48,4 +48,16 @@ public partial class PlayerSaveData : Node
 	public int flashFreezeDurationLevel = 0;
 	public int flashFreezeShatterLevel = 0;
 	public int flashFreezeGlacialLevel = 0;
+
+	// Brittle upgrades
+	public int brittleBonusDamageLevel = 0;
+	public bool brittleShatterUnlocked = false;
+
+	// Ice Shield upgrades
+	public int iceShieldBlockChanceLevel = 0;
+	public bool iceShieldRetaliateUnlocked = false;
+
+	// Permafrost upgrades
+	public int permafrostRadiusLevel = 0;
+	public int permafrostChillLevel = 0;
 }

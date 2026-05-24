@@ -22,11 +22,11 @@ public partial class EnemyHealth : Node
 
 		if (enemy != null && enemy.currentStatus == Enemy.StatusEffect.Frozen && iceStats != null)
 		{
-			// Brittle — bonus damage to frozen enemies always
+			// Brittle — bonus damage to frozen enemies
 			if (iceStats.hasBrittle)
-				amount = Mathf.RoundToInt(amount * 1.5f);
+				amount = Mathf.RoundToInt(amount * iceStats.brittleBonusDamageMultiplier);
 
-			// Shatter — extra bonus during flash freeze
+			// Shatter bonus from Flash Freeze
 			if (iceStats.flashFreezeShatterBonus > 0f)
 				amount = Mathf.RoundToInt(amount * (1f + iceStats.flashFreezeShatterBonus));
 		}
@@ -39,15 +39,37 @@ public partial class EnemyHealth : Node
 
 	public virtual void Die()
 	{
-		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive);
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
+		IceWizardStats iceStats = stats as IceWizardStats;
 
 		if (!gameManager.ultimateIsActive)
 			stats.ultimateCharge++;
 
 		gameManager.AddScore(scoreValue);
 
+		// Brittle Shatter — explode on death if frozen
+		if (iceStats != null && iceStats.brittleShatter &&
+			GetParent() is Enemy deadEnemy &&
+			deadEnemy.currentStatus == Enemy.StatusEffect.Frozen)
+		{
+			float shatterRadius = 100f;
+			Vector2 deathPos = GetParent<Node2D>().GlobalPosition;
+			foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+			{
+				if (node is CharacterBody2D body && IsInstanceValid(body))
+				{
+					float dist = deathPos.DistanceTo(body.GlobalPosition);
+					if (dist <= shatterRadius && dist > 0)
+					{
+						EnemyHealth nearbyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
+						nearbyHealth?.TakeDamage(Mathf.RoundToInt(iceStats.frostNovaDamage * 0.5f));
+					}
+				}
+			}
+		}
+
+		// Coin drop
 		if (GD.Randf() < coinDropChance * gameManager.GetCoinDropMultiplier())
 		{
 			PackedScene coinScene = GD.Load<PackedScene>("res://Scenes/Coin.tscn");
@@ -56,6 +78,7 @@ public partial class EnemyHealth : Node
 			GetTree().CurrentScene.CallDeferred("add_child", coin);
 		}
 
+		// XP orb
 		PackedScene orbScene = GD.Load<PackedScene>("res://Scenes/XPOrb.tscn");
 		XPOrb orb = orbScene.Instantiate<XPOrb>();
 		orb.xpValue = xpValue;

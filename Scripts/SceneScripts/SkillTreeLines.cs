@@ -2,6 +2,7 @@ using Godot;
 public partial class SkillTreeLines : Control
 {
 	private Button coreButton;
+
 	private Button blizzardButton;
 	private Button blizzardDuration;
 	private Button blizzardSize;
@@ -13,25 +14,32 @@ public partial class SkillTreeLines : Control
 	private Button flashFreezeGlacial;
 
 	private Button frostNovaButton;
-	private Button iceSpikeButton;
-	
-	private Button iceSpikeSize;
-	private Button iceSpikeDamage;
-	private Button iceSpikeFreezeDuration;
-	
 	private Button frostNovaSize;
 	private Button frostNovaDamage;
 	private Button frostNovaFreezeDuration;
-	
+
+	private Button iceSpikeButton;
+	private Button iceSpikeSize;
+	private Button iceSpikeDamage;
+	private Button iceSpikeFreezeDuration;
+
 	private Button permafrostButton;
+	private Button permafrostRadius;
+	private Button permafrostChill;
+
 	private Button brittleButton;
+	private Button brittleBonusDamage;
+	private Button brittleShatter;
+
 	private Button iceShieldButton;
+	private Button iceShieldBlockChance;
+	private Button iceShieldRetaliate;
+
 	private Button multishotButton;
-	private Button chanceToFreezeButton;
-	
 	private Button multishotChance;
 	private Button multishotCount;
-	
+
+	private Button chanceToFreezeButton;
 	private Button chanceToFreezeChance;
 	private Button chanceToFreezeDuration;
 
@@ -39,8 +47,9 @@ public partial class SkillTreeLines : Control
 	{
 		GD.Print("SkillTreeLines loaded. Size: " + Size);
 		MouseFilter = MouseFilterEnum.Ignore;
+
 		coreButton = GetNodeOrNull<Button>("../CoreButton");
-		
+
 		blizzardButton   = GetNodeOrNull<Button>("../Ultimate/BlizzardButton");
 		blizzardDuration = GetNodeOrNull<Button>("../Ultimate/BlizzardDuration");
 		blizzardSize     = GetNodeOrNull<Button>("../Ultimate/BlizzardSize");
@@ -50,27 +59,35 @@ public partial class SkillTreeLines : Control
 		flashFreezeDuration = GetNodeOrNull<Button>("../Ultimate/FlashFreezeDuration");
 		flashFreezeShatter  = GetNodeOrNull<Button>("../Ultimate/FlashFreezeShatter");
 		flashFreezeGlacial  = GetNodeOrNull<Button>("../Ultimate/FlashFreezeGlacial");
-		
-		frostNovaButton = GetNodeOrNull<Button>("../Ultimate/FrostNovaButton");
-		frostNovaSize = GetNodeOrNull<Button>("../Ultimate/FrostNovaSize");
-		frostNovaDamage = GetNodeOrNull<Button>("../Ultimate/FrostNovaDamage");
+
+		frostNovaButton         = GetNodeOrNull<Button>("../Ultimate/FrostNovaButton");
+		frostNovaSize           = GetNodeOrNull<Button>("../Ultimate/FrostNovaSize");
+		frostNovaDamage         = GetNodeOrNull<Button>("../Ultimate/FrostNovaDamage");
 		frostNovaFreezeDuration = GetNodeOrNull<Button>("../Ultimate/FrostNovaFreezeDuration");
-		
-		iceSpikeButton = GetNodeOrNull<Button>("../Ultimate/IceSpikeButton");
-		iceSpikeSize = GetNodeOrNull<Button>("../Ultimate/IceSpikeSize");
-		iceSpikeDamage = GetNodeOrNull<Button>("../Ultimate/IceSpikeDamage");
+
+		iceSpikeButton         = GetNodeOrNull<Button>("../Ultimate/IceSpikeButton");
+		iceSpikeSize           = GetNodeOrNull<Button>("../Ultimate/IceSpikeSize");
+		iceSpikeDamage         = GetNodeOrNull<Button>("../Ultimate/IceSpikeDamage");
 		iceSpikeFreezeDuration = GetNodeOrNull<Button>("../Ultimate/IceSpikeFreezeDuration");
-		
+
 		permafrostButton = GetNodeOrNull<Button>("../Passive/PermafrostButton");
-		brittleButton = GetNodeOrNull<Button>("../Passive/BrittleButton");
-		iceShieldButton = GetNodeOrNull<Button>("../Passive/IceShieldButton");
-		
+		permafrostRadius = GetNodeOrNull<Button>("../Passive/PermafrostRadius");
+		permafrostChill  = GetNodeOrNull<Button>("../Passive/PermafrostChill");
+
+		brittleButton      = GetNodeOrNull<Button>("../Passive/BrittleButton");
+		brittleBonusDamage = GetNodeOrNull<Button>("../Passive/BrittleBonusDamage");
+		brittleShatter     = GetNodeOrNull<Button>("../Passive/BrittleShatter");
+
+		iceShieldButton      = GetNodeOrNull<Button>("../Passive/IceShieldButton");
+		iceShieldBlockChance = GetNodeOrNull<Button>("../Passive/IceShieldBlockChance");
+		iceShieldRetaliate   = GetNodeOrNull<Button>("../Passive/IceShieldRetaliate");
+
 		multishotButton = GetNodeOrNull<Button>("../Passive/MultishotButton");
 		multishotChance = GetNodeOrNull<Button>("../Passive/MultishotChance");
-		multishotCount = GetNodeOrNull<Button>("../Passive/MultishotCount");
-		
-		chanceToFreezeButton = GetNodeOrNull<Button>("../Passive/ChancetoFreezeButton");
-		chanceToFreezeChance = GetNodeOrNull<Button>("../Passive/ChancetoFreezeChance");
+		multishotCount  = GetNodeOrNull<Button>("../Passive/MultishotCount");
+
+		chanceToFreezeButton   = GetNodeOrNull<Button>("../Passive/ChancetoFreezeButton");
+		chanceToFreezeChance   = GetNodeOrNull<Button>("../Passive/ChancetoFreezeChance");
 		chanceToFreezeDuration = GetNodeOrNull<Button>("../Passive/ChancetoFreezeDuration");
 
 		CheckMissingNodes();
@@ -130,6 +147,24 @@ public partial class SkillTreeLines : Control
 		if (iceSpikeFreezeDuration != null && iceSpikeFreezeDuration.Visible)
 			DrawConnection(iceSpikeButton, iceSpikeFreezeDuration, lineColor, lineWidth);
 
+		// Permafrost upgrades
+		if (permafrostRadius != null && permafrostRadius.Visible)
+			DrawConnection(permafrostButton, permafrostRadius, lineColor, lineWidth);
+		if (permafrostChill != null && permafrostChill.Visible)
+			DrawConnection(permafrostButton, permafrostChill, lineColor, lineWidth);
+
+		// Brittle upgrades
+		if (brittleBonusDamage != null && brittleBonusDamage.Visible)
+			DrawConnection(brittleButton, brittleBonusDamage, lineColor, lineWidth);
+		if (brittleShatter != null && brittleShatter.Visible)
+			DrawConnection(brittleButton, brittleShatter, lineColor, lineWidth);
+
+		// Ice Shield upgrades
+		if (iceShieldBlockChance != null && iceShieldBlockChance.Visible)
+			DrawConnection(iceShieldButton, iceShieldBlockChance, lineColor, lineWidth);
+		if (iceShieldRetaliate != null && iceShieldRetaliate.Visible)
+			DrawConnection(iceShieldButton, iceShieldRetaliate, lineColor, lineWidth);
+
 		// Multishot upgrades
 		if (multishotChance != null && multishotChance.Visible)
 			DrawConnection(multishotButton, multishotChance, lineColor, lineWidth);
@@ -155,15 +190,15 @@ public partial class SkillTreeLines : Control
 
 	private void CheckMissingNodes()
 	{
-		if (coreButton == null) GD.PrintErr("Missing CoreButton");
-		if (blizzardButton == null) GD.PrintErr("Missing BlizzardButton");
+		if (coreButton == null)        GD.PrintErr("Missing CoreButton");
+		if (blizzardButton == null)    GD.PrintErr("Missing BlizzardButton");
 		if (flashFreezeButton == null) GD.PrintErr("Missing FlashFreezeButton");
-		if (frostNovaButton == null) GD.PrintErr("Missing FrostNovaButton");
-		if (iceSpikeButton == null) GD.PrintErr("Missing IceSpikeButton");
-		if (permafrostButton == null) GD.PrintErr("Missing PermafrostButton");
-		if (brittleButton == null) GD.PrintErr("Missing BrittleButton");
-		if (iceShieldButton == null) GD.PrintErr("Missing IceShieldButton");
-		if (multishotButton == null) GD.PrintErr("Missing MultishotButton");
+		if (frostNovaButton == null)   GD.PrintErr("Missing FrostNovaButton");
+		if (iceSpikeButton == null)    GD.PrintErr("Missing IceSpikeButton");
+		if (permafrostButton == null)  GD.PrintErr("Missing PermafrostButton");
+		if (brittleButton == null)     GD.PrintErr("Missing BrittleButton");
+		if (iceShieldButton == null)   GD.PrintErr("Missing IceShieldButton");
+		if (multishotButton == null)   GD.PrintErr("Missing MultishotButton");
 		if (chanceToFreezeButton == null) GD.PrintErr("Missing ChanceToFreezeButton");
 	}
 }

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CharacterStats : Node
 {
@@ -7,17 +6,13 @@ public partial class CharacterStats : Node
 
 	public virtual int maxHealth { get; set; } = 100;
 	public virtual int health { get; set; } = 100;
-
 	public virtual float fireRate { get; set; } = 1.0f;
 	public virtual float range { get; set; } = 500.0f;
-
 	public virtual float playerSpeed { get; set; } = 100;
 	public virtual int damageBonus { get; set; } = 0;
-
 	public virtual int ultimateCharge { get; set; } = 100;
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 
-	// Multipliers for stat scaling on level up
 	public virtual float healthMultiplier { get; set; } = 1.1f;
 	public virtual float speedMultiplier { get; set; } = 1.0f;
 	public virtual float fireRateMultiplier { get; set; } = 0.95f;
@@ -25,11 +20,11 @@ public partial class CharacterStats : Node
 
 	public virtual void ApplyLevelUp()
 	{
-		maxHealth = Mathf.RoundToInt(maxHealth * healthMultiplier);
-		health = Mathf.Min(health + Mathf.RoundToInt(maxHealth * 0.1f), maxHealth);
+		maxHealth   = Mathf.RoundToInt(maxHealth * healthMultiplier);
+		health      = Mathf.Min(health + Mathf.RoundToInt(maxHealth * 0.1f), maxHealth);
 		playerSpeed *= speedMultiplier;
-		fireRate *= fireRateMultiplier;
-		range *= rangeMultiplier;
+		fireRate    *= fireRateMultiplier;
+		range       *= rangeMultiplier;
 	}
 
 	public override void _Ready()
@@ -38,22 +33,44 @@ public partial class CharacterStats : Node
 	}
 
 	public virtual void TakeDamage(int amount)
-{
-	// Ice Shield block check
-	IceWizardStats iceStats = this as IceWizardStats;
-	if (iceStats != null && iceStats.hasIceShield)
 	{
-		if (GD.Randf() < iceStats.iceShieldBlockChance)
+		// Ice Shield — chance to block incoming damage
+		IceWizardStats iceStats = this as IceWizardStats;
+		if (iceStats != null && iceStats.hasIceShield)
 		{
-			GD.Print("Ice Shield blocked!");
-			return;
+			if (GD.Randf() < iceStats.iceShieldBlockChance)
+			{
+				GD.Print("Ice Shield blocked!");
+
+				// Retaliate — deal damage back to attacker
+				// Note: attacker reference not available here so we deal AOE to nearest enemy
+				if (iceStats.iceShieldRetaliate)
+				{
+					CharacterBody2D player = GetParent() as CharacterBody2D;
+					if (player != null)
+					{
+						foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+						{
+							if (node is CharacterBody2D body && IsInstanceValid(body))
+							{
+								float dist = player.GlobalPosition.DistanceTo(body.GlobalPosition);
+								if (dist <= 80f) // only hit very close enemies
+								{
+									EnemyHealth eh = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
+									eh?.TakeDamage(iceStats.iceShieldRetaliationDamage);
+								}
+							}
+						}
+					}
+				}
+				return; // block the hit
+			}
 		}
+
+		health -= amount;
+		if (health <= 0)
+			Die();
 	}
-	// Take Damage
-	health -= amount;
-	if (health <= 0)
-		Die();
-}
 
 	public virtual void Die()
 	{
