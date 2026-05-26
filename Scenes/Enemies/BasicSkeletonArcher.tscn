@@ -91,9 +91,7 @@ script = ExtResource("2_duuy4")
 position = Vector2(6.999999, 33)
 scale = Vector2(0.42395023, 0.42395023)
 sprite_frames = SubResource("SpriteFrames_7aog5")
-animation = &"Draw"
-frame = 3
-frame_progress = 1.0
+animation = &"Frozen"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1848326446]
 offset_left = -19.999998
