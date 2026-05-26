@@ -11,6 +11,7 @@ public partial class CharacterStats : Node
 	public virtual float playerSpeed { get; set; } = 100;
 	public virtual int damageBonus { get; set; } = 0;
 	public virtual int ultimateCharge { get; set; } = 100;
+	
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 
 	public virtual float healthMultiplier { get; set; } = 1.1f;
