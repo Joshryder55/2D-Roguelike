@@ -16,7 +16,14 @@ public partial class UnlocksMenu : Control
 
 	// Ultimates
 	private Button blizzardButton;
+	private Button blizzardDurationButton;
+	private Button blizzardSizeButton;
+	private Button blizzardChillButton;
+
 	private Button flashFreezeButton;
+	private Button flashFreezeDurationButton;
+	private Button flashFreezeShatterButton;
+	private Button flashFreezeGlacialButton;
 
 	private Button frostNovaButton;
 	private Button frostNovaDamageButton;
@@ -30,8 +37,16 @@ public partial class UnlocksMenu : Control
 
 	// Passives
 	private Button permafrostButton;
+	private Button permafrostRadiusButton;
+	private Button permafrostChillButton;
+
 	private Button brittleButton;
+	private Button brittleBonusDamageButton;
+	private Button brittleShatterButton;
+
 	private Button iceShieldButton;
+	private Button iceShieldBlockChanceButton;
+	private Button iceShieldRetaliateButton;
 
 	private Button multishotButton;
 	private Button multishotCountButton;
@@ -46,8 +61,7 @@ public partial class UnlocksMenu : Control
 	private Button attackSpeedButton;
 	private Button healthButton;
 	private Button damageButton;
-	
-	
+
 	//Respec
 	private Button respecButton;
 	private Label respecConfirmLabel;
@@ -61,7 +75,6 @@ public partial class UnlocksMenu : Control
 	private Dictionary<string, int> skillMaxLevels = new Dictionary<string, int>();
 	private Dictionary<string, int> skillCosts = new Dictionary<string, int>();
 
-	// Core stats cost scaling: basically the cost scales like: baseCost * (statLevel + 1)
 	private static readonly System.Collections.Generic.HashSet<string> escalatingCostSkills =
 		new System.Collections.Generic.HashSet<string> { 
 			// Core Stats
@@ -129,50 +142,65 @@ public partial class UnlocksMenu : Control
 		coreButton = GetNode<Button>("TreeArea/CoreButton");
 
 		// Ultimates
-		blizzardButton = GetNode<Button>("TreeArea/Ultimate/BlizzardButton");
-		flashFreezeButton = GetNode<Button>("TreeArea/Ultimate/FlashFreezeButton");
+		blizzardButton         = GetNode<Button>("TreeArea/Ultimate/BlizzardButton");
+		blizzardDurationButton = GetNode<Button>("TreeArea/Ultimate/BlizzardDuration");
+		blizzardSizeButton     = GetNode<Button>("TreeArea/Ultimate/BlizzardSize");
+		blizzardChillButton    = GetNode<Button>("TreeArea/Ultimate/BlizzardChill");
 
-		frostNovaButton = GetNode<Button>("TreeArea/Ultimate/FrostNovaButton");
-		frostNovaDamageButton = GetNode<Button>("TreeArea/Ultimate/FrostNovaDamage");
-		frostNovaRadiusButton = GetNode<Button>("TreeArea/Ultimate/FrostNovaSize");
+		flashFreezeButton         = GetNode<Button>("TreeArea/Ultimate/FlashFreezeButton");
+		flashFreezeDurationButton = GetNode<Button>("TreeArea/Ultimate/FlashFreezeDuration");
+		flashFreezeShatterButton  = GetNode<Button>("TreeArea/Ultimate/FlashFreezeShatter");
+		flashFreezeGlacialButton  = GetNode<Button>("TreeArea/Ultimate/FlashFreezeGlacial");
+
+		frostNovaButton               = GetNode<Button>("TreeArea/Ultimate/FrostNovaButton");
+		frostNovaDamageButton         = GetNode<Button>("TreeArea/Ultimate/FrostNovaDamage");
+		frostNovaRadiusButton         = GetNode<Button>("TreeArea/Ultimate/FrostNovaSize");
 		frostNovaFreezeDurationButton = GetNode<Button>("TreeArea/Ultimate/FrostNovaFreezeDuration");
 
-		iceSpikeButton = GetNode<Button>("TreeArea/Ultimate/IceSpikeButton");
-		iceSpikeDamageButton = GetNode<Button>("TreeArea/Ultimate/IceSpikeDamage");
+		iceSpikeButton               = GetNode<Button>("TreeArea/Ultimate/IceSpikeButton");
+		iceSpikeDamageButton         = GetNode<Button>("TreeArea/Ultimate/IceSpikeDamage");
 		iceSpikeFreezeDurationButton = GetNode<Button>("TreeArea/Ultimate/IceSpikeFreezeDuration");
-		iceSpikeSizeButton = GetNode<Button>("TreeArea/Ultimate/IceSpikeSize");
+		iceSpikeSizeButton           = GetNode<Button>("TreeArea/Ultimate/IceSpikeSize");
 
 		// Passives
-		permafrostButton = GetNode<Button>("TreeArea/Passive/PermafrostButton");
-		brittleButton = GetNode<Button>("TreeArea/Passive/BrittleButton");
-		iceShieldButton = GetNode<Button>("TreeArea/Passive/IceShieldButton");
+		permafrostButton       = GetNode<Button>("TreeArea/Passive/PermafrostButton");
+		permafrostRadiusButton = GetNode<Button>("TreeArea/Passive/PermafrostRadius");
+		permafrostChillButton  = GetNode<Button>("TreeArea/Passive/PermafrostChill");
 
-		multishotButton = GetNode<Button>("TreeArea/Passive/MultishotButton");
-		multishotCountButton = GetNode<Button>("TreeArea/Passive/MultishotCount");
+		brittleButton            = GetNode<Button>("TreeArea/Passive/BrittleButton");
+		brittleBonusDamageButton = GetNode<Button>("TreeArea/Passive/BrittleBonusDamage");
+		brittleShatterButton     = GetNode<Button>("TreeArea/Passive/BrittleShatter");
+
+		iceShieldButton            = GetNode<Button>("TreeArea/Passive/IceShieldButton");
+		iceShieldBlockChanceButton = GetNode<Button>("TreeArea/Passive/IceShieldBlockChance");
+		iceShieldRetaliateButton   = GetNode<Button>("TreeArea/Passive/IceShieldRetaliate");
+
+		multishotButton       = GetNode<Button>("TreeArea/Passive/MultishotButton");
+		multishotCountButton  = GetNode<Button>("TreeArea/Passive/MultishotCount");
 		multishotChanceButton = GetNode<Button>("TreeArea/Passive/MultishotChance");
 
-		chanceToFreezeButton = GetNode<Button>("TreeArea/Passive/ChancetoFreezeButton");
-		chanceToFreezeChanceButton = GetNode<Button>("TreeArea/Passive/ChancetoFreezeChance");
+		chanceToFreezeButton         = GetNode<Button>("TreeArea/Passive/ChancetoFreezeButton");
+		chanceToFreezeChanceButton   = GetNode<Button>("TreeArea/Passive/ChancetoFreezeChance");
 		chanceToFreezeDurationButton = GetNode<Button>("TreeArea/Passive/ChancetoFreezeDuration");
 
 		// Core Stats
-		moveSpeedButton = GetNode<Button>("TreeArea/CoreStats/MoveSpeedButton");
+		moveSpeedButton   = GetNode<Button>("TreeArea/CoreStats/MoveSpeedButton");
 		attackSpeedButton = GetNode<Button>("TreeArea/CoreStats/AttackSpeedButton");
-		healthButton = GetNode<Button>("TreeArea/CoreStats/HealthButton");
-		damageButton = GetNode<Button>("TreeArea/CoreStats/DamageButton");
-		
-		respecButton = GetNode<Button>("RespecButton");
-		respecYesButton = GetNode<Button>("RespecYesButton");
-		respecNoButton = GetNode<Button>("RespecNoButton");
+		healthButton      = GetNode<Button>("TreeArea/CoreStats/HealthButton");
+		damageButton      = GetNode<Button>("TreeArea/CoreStats/DamageButton");
+
+		respecButton       = GetNode<Button>("RespecButton");
+		respecYesButton    = GetNode<Button>("RespecYesButton");
+		respecNoButton     = GetNode<Button>("RespecNoButton");
 		respecConfirmLabel = GetNode<Label>("RespecConfirmLabel");
 
-		respecYesButton.Visible = false;
-		respecNoButton.Visible = false;
+		respecYesButton.Visible    = false;
+		respecNoButton.Visible     = false;
 		respecConfirmLabel.Visible = false;
 
-		respecButton.Pressed += OnRespecPressed;
+		respecButton.Pressed    += OnRespecPressed;
 		respecYesButton.Pressed += OnRespecConfirmed;
-		respecNoButton.Pressed += OnRespecCancelled;
+		respecNoButton.Pressed  += OnRespecCancelled;
 
 		SetupSkills();
 		RestoreSkillLevels();
@@ -184,7 +212,6 @@ public partial class UnlocksMenu : Control
 
 		descriptionLabel.Text = "Select a skill to view details.";
 
-		// Only play menu music in screens accessed from menu
 		if (!openedFromGame)
 			GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 
@@ -204,11 +231,16 @@ public partial class UnlocksMenu : Control
 	private void SetupSkills()
 	{
 		// Ultimates
-		// high-tier
 		AddSkill("Blizzard", 1, 16);
-		AddSkill("Flash Freeze", 1, 16);
+		AddSkill("Blizzard Duration", 5, 8);
+		AddSkill("Blizzard Size", 5, 8);
+		AddSkill("Blizzard Chill", 5, 8);
 
-		// low-tier
+		AddSkill("Flash Freeze", 1, 16);
+		AddSkill("Flash Freeze Duration", 5, 8);
+		AddSkill("Flash Freeze Shatter", 5, 8);
+		AddSkill("Flash Freeze Glacial", 5, 8);
+
 		AddSkill("Frost Nova", 1, 5);
 		AddSkill("Frost Nova Damage", 5, 8);
 		AddSkill("Frost Nova Radius", 5, 6);
@@ -221,8 +253,16 @@ public partial class UnlocksMenu : Control
 
 		// Passives
 		AddSkill("Permafrost", 1, 7);
+		AddSkill("Permafrost Radius", 5, 5);
+		AddSkill("Permafrost Chill", 5, 5);
+
 		AddSkill("Brittle", 1, 7);
+		AddSkill("Brittle Bonus Damage", 5, 5);
+		AddSkill("Brittle Shatter", 1, 10);
+
 		AddSkill("Ice Shield", 1, 10);
+		AddSkill("Ice Shield Block Chance", 5, 5);
+		AddSkill("Ice Shield Retaliate", 1, 10);
 
 		AddSkill("Multishot", 1, 3);
 		AddSkill("Multishot Count", 5, 5);
@@ -241,9 +281,9 @@ public partial class UnlocksMenu : Control
 
 	private void AddSkill(string skillName, int maxLevel, int coinCost)
 	{
-		skillLevels[skillName] = 0;
+		skillLevels[skillName]    = 0;
 		skillMaxLevels[skillName] = maxLevel;
-		skillCosts[skillName] = coinCost;
+		skillCosts[skillName]     = coinCost;
 	}
 
 	// ─── Button Connections ────────────────────────────────────────────
@@ -253,51 +293,65 @@ public partial class UnlocksMenu : Control
 		backButton.Pressed += OnBackPressed;
 
 		// Ultimates
-		blizzardButton.Pressed += () => UpgradeSkill("Blizzard");
-		flashFreezeButton.Pressed += () => UpgradeSkill("Flash Freeze");
+		blizzardButton.Pressed         += () => UpgradeSkill("Blizzard");
+		blizzardDurationButton.Pressed += () => UpgradeSkill("Blizzard Duration");
+		blizzardSizeButton.Pressed     += () => UpgradeSkill("Blizzard Size");
+		blizzardChillButton.Pressed    += () => UpgradeSkill("Blizzard Chill");
 
-		frostNovaButton.Pressed += () => UpgradeSkill("Frost Nova");
-		frostNovaDamageButton.Pressed += () => UpgradeSkill("Frost Nova Damage");
-		frostNovaRadiusButton.Pressed += () => UpgradeSkill("Frost Nova Radius");
+		flashFreezeButton.Pressed         += () => UpgradeSkill("Flash Freeze");
+		flashFreezeDurationButton.Pressed += () => UpgradeSkill("Flash Freeze Duration");
+		flashFreezeShatterButton.Pressed  += () => UpgradeSkill("Flash Freeze Shatter");
+		flashFreezeGlacialButton.Pressed  += () => UpgradeSkill("Flash Freeze Glacial");
+
+		frostNovaButton.Pressed               += () => UpgradeSkill("Frost Nova");
+		frostNovaDamageButton.Pressed         += () => UpgradeSkill("Frost Nova Damage");
+		frostNovaRadiusButton.Pressed         += () => UpgradeSkill("Frost Nova Radius");
 		frostNovaFreezeDurationButton.Pressed += () => UpgradeSkill("Frost Nova Freeze Duration");
 
-		iceSpikeButton.Pressed += () => UpgradeSkill("Ice Spike");
-		iceSpikeDamageButton.Pressed += () => UpgradeSkill("Ice Spike Damage");
+		iceSpikeButton.Pressed               += () => UpgradeSkill("Ice Spike");
+		iceSpikeDamageButton.Pressed         += () => UpgradeSkill("Ice Spike Damage");
 		iceSpikeFreezeDurationButton.Pressed += () => UpgradeSkill("Ice Spike Freeze Duration");
-		iceSpikeSizeButton.Pressed += () => UpgradeSkill("Ice Spike Size");
+		iceSpikeSizeButton.Pressed           += () => UpgradeSkill("Ice Spike Size");
 
 		// Passives
-		permafrostButton.Pressed += () => UpgradeSkill("Permafrost");
-		brittleButton.Pressed += () => UpgradeSkill("Brittle");
-		iceShieldButton.Pressed += () => UpgradeSkill("Ice Shield");
+		permafrostButton.Pressed       += () => UpgradeSkill("Permafrost");
+		permafrostRadiusButton.Pressed += () => UpgradeSkill("Permafrost Radius");
+		permafrostChillButton.Pressed  += () => UpgradeSkill("Permafrost Chill");
 
-		multishotButton.Pressed += () => UpgradeSkill("Multishot");
-		multishotCountButton.Pressed += () => UpgradeSkill("Multishot Count");
+		brittleButton.Pressed            += () => UpgradeSkill("Brittle");
+		brittleBonusDamageButton.Pressed += () => UpgradeSkill("Brittle Bonus Damage");
+		brittleShatterButton.Pressed     += () => UpgradeSkill("Brittle Shatter");
+
+		iceShieldButton.Pressed            += () => UpgradeSkill("Ice Shield");
+		iceShieldBlockChanceButton.Pressed += () => UpgradeSkill("Ice Shield Block Chance");
+		iceShieldRetaliateButton.Pressed   += () => UpgradeSkill("Ice Shield Retaliate");
+
+		multishotButton.Pressed       += () => UpgradeSkill("Multishot");
+		multishotCountButton.Pressed  += () => UpgradeSkill("Multishot Count");
 		multishotChanceButton.Pressed += () => UpgradeSkill("Multishot Chance");
 
-		chanceToFreezeButton.Pressed += () => UpgradeSkill("Chance to Freeze");
-		chanceToFreezeChanceButton.Pressed += () => UpgradeSkill("Freeze Chance");
+		chanceToFreezeButton.Pressed         += () => UpgradeSkill("Chance to Freeze");
+		chanceToFreezeChanceButton.Pressed   += () => UpgradeSkill("Freeze Chance");
 		chanceToFreezeDurationButton.Pressed += () => UpgradeSkill("Freeze Duration");
 
 		// Core Stats
-		moveSpeedButton.Pressed += () => UpgradeSkill("Move Speed");
+		moveSpeedButton.Pressed   += () => UpgradeSkill("Move Speed");
 		attackSpeedButton.Pressed += () => UpgradeSkill("Attack Speed");
-		healthButton.Pressed += () => UpgradeSkill("Health");
-		damageButton.Pressed += () => UpgradeSkill("Damage");
+		healthButton.Pressed      += () => UpgradeSkill("Health");
+		damageButton.Pressed      += () => UpgradeSkill("Damage");
 	}
 
 	// ─── Upgrade Logic ─────────────────────────────────────────────────
 	private void UpgradeSkill(string skillName)
 	{
 		int currentLevel = skillLevels[skillName];
-		int maxLevel = skillMaxLevels[skillName];
-		int cost = getActualCost(skillName);
+		int maxLevel     = skillMaxLevels[skillName];
+		int cost         = getActualCost(skillName);
 
 		if (currentLevel >= maxLevel) {
 			descriptionLabel.Text = skillName + "\n\nAlready max level.";
 			return;
 		}
-
 		if (gameManager.coins < cost) {
 			descriptionLabel.Text = skillName + "\n\nNot enough coins.";
 			return;
@@ -313,21 +367,48 @@ public partial class UnlocksMenu : Control
 	private void ApplySkillEffect(string skillName)
 	{
 		switch (skillName) {
-			// Ultimates
+			// ── Blizzard ──
 			case "Blizzard":
 				saveData.hasBlizzard = true;
 				saveData.activeUltimate = IceWizardStats.UltimateAbility.Blizzard;
+				blizzardDurationButton.Visible = true;
+				blizzardSizeButton.Visible     = true;
+				blizzardChillButton.Visible    = true;
 				break;
+			case "Blizzard Duration":
+				saveData.blizzardDurationLevel++;
+				break;
+			case "Blizzard Size":
+				saveData.blizzardSizeLevel++;
+				break;
+			case "Blizzard Chill":
+				saveData.blizzardChillLevel++;
+				break;
+
+			// ── Flash Freeze ──
 			case "Flash Freeze":
 				saveData.hasFlashFreeze = true;
 				saveData.activeUltimate = IceWizardStats.UltimateAbility.FlashFreeze;
+				flashFreezeDurationButton.Visible = true;
+				flashFreezeShatterButton.Visible  = true;
+				flashFreezeGlacialButton.Visible  = true;
+				break;
+			case "Flash Freeze Duration":
+				saveData.flashFreezeDurationLevel++;
+				break;
+			case "Flash Freeze Shatter":
+				saveData.flashFreezeShatterLevel++;
+				break;
+			case "Flash Freeze Glacial":
+				saveData.flashFreezeGlacialLevel++;
 				break;
 
+			// ── Frost Nova ──
 			case "Frost Nova":
 				saveData.hasFrostNova = true;
 				saveData.activeUltimate = IceWizardStats.UltimateAbility.FrostNova;
-				frostNovaDamageButton.Visible = true;
-				frostNovaRadiusButton.Visible = true;
+				frostNovaDamageButton.Visible         = true;
+				frostNovaRadiusButton.Visible         = true;
 				frostNovaFreezeDurationButton.Visible = true;
 				break;
 			case "Frost Nova Damage":
@@ -340,12 +421,13 @@ public partial class UnlocksMenu : Control
 				saveData.frostNovaFreezeDurationLevel++;
 				break;
 
+			// ── Ice Spike ──
 			case "Ice Spike":
 				saveData.hasIceSpike = true;
 				saveData.activeUltimate = IceWizardStats.UltimateAbility.IceSpike;
-				iceSpikeDamageButton.Visible = true;
+				iceSpikeDamageButton.Visible         = true;
 				iceSpikeFreezeDurationButton.Visible = true;
-				iceSpikeSizeButton.Visible = true;
+				iceSpikeSizeButton.Visible           = true;
 				break;
 			case "Ice Spike Damage":
 				saveData.iceSpikeDamageLevel++;
@@ -357,20 +439,49 @@ public partial class UnlocksMenu : Control
 				saveData.iceSpikeSizeLevel++;
 				break;
 
-			// Passives
+			// ── Permafrost ──
 			case "Permafrost":
 				saveData.hasPermafrost = true;
+				permafrostRadiusButton.Visible = true;
+				permafrostChillButton.Visible  = true;
 				break;
-			case "Brittle":
-				saveData.hasBrittle = true;
+			case "Permafrost Radius":
+				saveData.permafrostRadiusLevel++;
 				break;
-			case "Ice Shield":
-				saveData.hasIceShield = true;
+			case "Permafrost Chill":
+				saveData.permafrostChillLevel++;
 				break;
 
+			// ── Brittle ──
+			case "Brittle":
+				saveData.hasBrittle = true;
+				brittleBonusDamageButton.Visible = true;
+				brittleShatterButton.Visible     = true;
+				break;
+			case "Brittle Bonus Damage":
+				saveData.brittleBonusDamageLevel++;
+				break;
+			case "Brittle Shatter":
+				saveData.brittleShatterUnlocked = true;
+				break;
+
+			// ── Ice Shield ──
+			case "Ice Shield":
+				saveData.hasIceShield = true;
+				iceShieldBlockChanceButton.Visible = true;
+				iceShieldRetaliateButton.Visible   = true;
+				break;
+			case "Ice Shield Block Chance":
+				saveData.iceShieldBlockChanceLevel++;
+				break;
+			case "Ice Shield Retaliate":
+				saveData.iceShieldRetaliateUnlocked = true;
+				break;
+
+			// ── Multishot ──
 			case "Multishot":
 				saveData.hasMultiShot = true;
-				multishotCountButton.Visible = true;
+				multishotCountButton.Visible  = true;
 				multishotChanceButton.Visible = true;
 				break;
 			case "Multishot Count":
@@ -380,9 +491,10 @@ public partial class UnlocksMenu : Control
 				saveData.multishotChanceLevel++;
 				break;
 
+			// ── Chance to Freeze ──
 			case "Chance to Freeze":
 				saveData.hasFreezeOnHit = true;
-				chanceToFreezeChanceButton.Visible = true;
+				chanceToFreezeChanceButton.Visible   = true;
 				chanceToFreezeDurationButton.Visible = true;
 				break;
 			case "Freeze Chance":
@@ -392,7 +504,7 @@ public partial class UnlocksMenu : Control
 				saveData.freezeDurationLevel++;
 				break;
 
-			// Core Stats
+			// ── Core Stats ──
 			case "Move Speed":
 				saveData.moveSpeedBonus += 5f;
 				break;
@@ -411,9 +523,9 @@ public partial class UnlocksMenu : Control
 	// ─── UI Updates ────────────────────────────────────────────────────
 	private void ShowSkillDescription(string skillName)
 	{
-		int level = skillLevels[skillName];
+		int level    = skillLevels[skillName];
 		int maxLevel = skillMaxLevels[skillName];
-		int cost = getActualCost(skillName);
+		int cost     = getActualCost(skillName);
 		string description = GetSkillDescription(skillName);
 
 		descriptionLabel.Text =
@@ -427,11 +539,23 @@ public partial class UnlocksMenu : Control
 	{
 		switch (skillName)
 		{
-			// Ultimates
 			case "Blizzard":
 				return "Ultimate. Place a persistent AOE snowstorm that damages and slows enemies inside.";
+			case "Blizzard Duration":
+				return "Increases Blizzard duration by 0.6 seconds.";
+			case "Blizzard Size":
+				return "Increases Blizzard radius by 50.";
+			case "Blizzard Chill":
+				return "Enemies inside the Blizzard move even slower.";
+
 			case "Flash Freeze":
 				return "Ultimate. Instantly freezes all enemies on screen briefly.";
+			case "Flash Freeze Duration":
+				return "Increases Flash Freeze duration by 1 second.";
+			case "Flash Freeze Shatter":
+				return "Frozen enemies take +10% bonus damage per level.";
+			case "Flash Freeze Glacial":
+				return "Enemies remain slowed for 1 additional second after freeze ends.";
 
 			case "Frost Nova":
 				return "Ultimate. Release Cold Winds that damage and freeze enemies.";
@@ -451,13 +575,26 @@ public partial class UnlocksMenu : Control
 			case "Ice Spike Size":
 				return "Increases Ice Spike size by 10%.";
 
-			// Passives
 			case "Permafrost":
 				return "Passive. A slow aura surrounds the player. Nearby enemies move slower.";
+			case "Permafrost Radius":
+				return "Increases Permafrost aura radius by 25.";
+			case "Permafrost Chill":
+				return "Enemies in the aura move even slower.";
+
 			case "Brittle":
 				return "Passive. Frozen enemies take bonus damage when hit.";
+			case "Brittle Bonus Damage":
+				return "Increases bonus damage dealt to frozen enemies by 15%.";
+			case "Brittle Shatter":
+				return "Frozen enemies explode on death dealing AOE damage to nearby enemies.";
+
 			case "Ice Shield":
 				return "Passive. Chance to block incoming damage when hit.";
+			case "Ice Shield Block Chance":
+				return "Increases block chance by 10%.";
+			case "Ice Shield Retaliate":
+				return "Blocked hits deal damage back to nearby attackers.";
 
 			case "Multishot":
 				return "Passive. Adds extra projectiles to each attack.";
@@ -473,7 +610,6 @@ public partial class UnlocksMenu : Control
 			case "Freeze Duration":
 				return "Increases freeze duration by 0.5 seconds.";
 
-			// Core Stats
 			case "Move Speed":
 				return "Permanently increases movement speed by 5.";
 			case "Attack Speed":
@@ -490,79 +626,127 @@ public partial class UnlocksMenu : Control
 
 	private void SetupTooltips()
 	{
-		// Ultimates
-		blizzardButton.TooltipText = GetSkillDescription("Blizzard");
-		flashFreezeButton.TooltipText = GetSkillDescription("Flash Freeze");
+		blizzardButton.TooltipText         = GetSkillDescription("Blizzard");
+		blizzardDurationButton.TooltipText = GetSkillDescription("Blizzard Duration");
+		blizzardSizeButton.TooltipText     = GetSkillDescription("Blizzard Size");
+		blizzardChillButton.TooltipText    = GetSkillDescription("Blizzard Chill");
 
-		frostNovaButton.TooltipText = GetSkillDescription("Frost Nova");
-		frostNovaDamageButton.TooltipText = GetSkillDescription("Frost Nova Damage");
-		frostNovaRadiusButton.TooltipText = GetSkillDescription("Frost Nova Radius");
+		flashFreezeButton.TooltipText         = GetSkillDescription("Flash Freeze");
+		flashFreezeDurationButton.TooltipText = GetSkillDescription("Flash Freeze Duration");
+		flashFreezeShatterButton.TooltipText  = GetSkillDescription("Flash Freeze Shatter");
+		flashFreezeGlacialButton.TooltipText  = GetSkillDescription("Flash Freeze Glacial");
+
+		frostNovaButton.TooltipText               = GetSkillDescription("Frost Nova");
+		frostNovaDamageButton.TooltipText         = GetSkillDescription("Frost Nova Damage");
+		frostNovaRadiusButton.TooltipText         = GetSkillDescription("Frost Nova Radius");
 		frostNovaFreezeDurationButton.TooltipText = GetSkillDescription("Frost Nova Freeze Duration");
 
-		iceSpikeButton.TooltipText = GetSkillDescription("Ice Spike");
-		iceSpikeDamageButton.TooltipText = GetSkillDescription("Ice Spike Damage");
+		iceSpikeButton.TooltipText               = GetSkillDescription("Ice Spike");
+		iceSpikeDamageButton.TooltipText         = GetSkillDescription("Ice Spike Damage");
 		iceSpikeFreezeDurationButton.TooltipText = GetSkillDescription("Ice Spike Freeze Duration");
-		iceSpikeSizeButton.TooltipText = GetSkillDescription("Ice Spike Size");
+		iceSpikeSizeButton.TooltipText           = GetSkillDescription("Ice Spike Size");
 
-		// Passives
-		permafrostButton.TooltipText = GetSkillDescription("Permafrost");
-		brittleButton.TooltipText = GetSkillDescription("Brittle");
-		iceShieldButton.TooltipText = GetSkillDescription("Ice Shield");
+		permafrostButton.TooltipText       = GetSkillDescription("Permafrost");
+		permafrostRadiusButton.TooltipText = GetSkillDescription("Permafrost Radius");
+		permafrostChillButton.TooltipText  = GetSkillDescription("Permafrost Chill");
 
-		multishotButton.TooltipText = GetSkillDescription("Multishot");
-		multishotCountButton.TooltipText = GetSkillDescription("Multishot Count");
+		brittleButton.TooltipText            = GetSkillDescription("Brittle");
+		brittleBonusDamageButton.TooltipText = GetSkillDescription("Brittle Bonus Damage");
+		brittleShatterButton.TooltipText     = GetSkillDescription("Brittle Shatter");
+
+		iceShieldButton.TooltipText            = GetSkillDescription("Ice Shield");
+		iceShieldBlockChanceButton.TooltipText = GetSkillDescription("Ice Shield Block Chance");
+		iceShieldRetaliateButton.TooltipText   = GetSkillDescription("Ice Shield Retaliate");
+
+		multishotButton.TooltipText       = GetSkillDescription("Multishot");
+		multishotCountButton.TooltipText  = GetSkillDescription("Multishot Count");
 		multishotChanceButton.TooltipText = GetSkillDescription("Multishot Chance");
 
-		chanceToFreezeButton.TooltipText = GetSkillDescription("Chance to Freeze");
-		chanceToFreezeChanceButton.TooltipText = GetSkillDescription("Freeze Chance");
+		chanceToFreezeButton.TooltipText         = GetSkillDescription("Chance to Freeze");
+		chanceToFreezeChanceButton.TooltipText   = GetSkillDescription("Freeze Chance");
 		chanceToFreezeDurationButton.TooltipText = GetSkillDescription("Freeze Duration");
 
-		// Core Stats
-		moveSpeedButton.TooltipText = GetSkillDescription("Move Speed");
+		moveSpeedButton.TooltipText   = GetSkillDescription("Move Speed");
 		attackSpeedButton.TooltipText = GetSkillDescription("Attack Speed");
-		healthButton.TooltipText = GetSkillDescription("Health");
-		damageButton.TooltipText = GetSkillDescription("Damage");
+		healthButton.TooltipText      = GetSkillDescription("Health");
+		damageButton.TooltipText      = GetSkillDescription("Damage");
 	}
 
 	// ─── Sub Button Visibility ─────────────────────────────────────────
 	private void HideSubButtons()
 	{
-		frostNovaDamageButton.Visible = false;
-		frostNovaRadiusButton.Visible = false;
+		blizzardDurationButton.Visible = false;
+		blizzardSizeButton.Visible     = false;
+		blizzardChillButton.Visible    = false;
+
+		flashFreezeDurationButton.Visible = false;
+		flashFreezeShatterButton.Visible  = false;
+		flashFreezeGlacialButton.Visible  = false;
+
+		frostNovaDamageButton.Visible         = false;
+		frostNovaRadiusButton.Visible         = false;
 		frostNovaFreezeDurationButton.Visible = false;
 
-		iceSpikeDamageButton.Visible = false;
+		iceSpikeDamageButton.Visible         = false;
 		iceSpikeFreezeDurationButton.Visible = false;
-		iceSpikeSizeButton.Visible = false;
+		iceSpikeSizeButton.Visible           = false;
 
-		multishotCountButton.Visible = false;
+		permafrostRadiusButton.Visible = false;
+		permafrostChillButton.Visible  = false;
+
+		brittleBonusDamageButton.Visible = false;
+		brittleShatterButton.Visible     = false;
+
+		iceShieldBlockChanceButton.Visible = false;
+		iceShieldRetaliateButton.Visible   = false;
+
+		multishotCountButton.Visible  = false;
 		multishotChanceButton.Visible = false;
 
-		chanceToFreezeChanceButton.Visible = false;
+		chanceToFreezeChanceButton.Visible   = false;
 		chanceToFreezeDurationButton.Visible = false;
 	}
 
 	private void RestoreUnlockedSubButtons()
 	{
+		if (saveData.hasBlizzard) {
+			blizzardDurationButton.Visible = true;
+			blizzardSizeButton.Visible     = true;
+			blizzardChillButton.Visible    = true;
+		}
+		if (saveData.hasFlashFreeze) {
+			flashFreezeDurationButton.Visible = true;
+			flashFreezeShatterButton.Visible  = true;
+			flashFreezeGlacialButton.Visible  = true;
+		}
 		if (saveData.hasFrostNova) {
-			frostNovaDamageButton.Visible = true;
-			frostNovaRadiusButton.Visible = true;
+			frostNovaDamageButton.Visible         = true;
+			frostNovaRadiusButton.Visible         = true;
 			frostNovaFreezeDurationButton.Visible = true;
 		}
-
 		if (saveData.hasIceSpike) {
-			iceSpikeDamageButton.Visible = true;
+			iceSpikeDamageButton.Visible         = true;
 			iceSpikeFreezeDurationButton.Visible = true;
-			iceSpikeSizeButton.Visible = true;
+			iceSpikeSizeButton.Visible           = true;
 		}
-
+		if (saveData.hasPermafrost) {
+			permafrostRadiusButton.Visible = true;
+			permafrostChillButton.Visible  = true;
+		}
+		if (saveData.hasBrittle) {
+			brittleBonusDamageButton.Visible = true;
+			brittleShatterButton.Visible     = true;
+		}
+		if (saveData.hasIceShield) {
+			iceShieldBlockChanceButton.Visible = true;
+			iceShieldRetaliateButton.Visible   = true;
+		}
 		if (saveData.hasMultiShot) {
-			multishotCountButton.Visible = true;
+			multishotCountButton.Visible  = true;
 			multishotChanceButton.Visible = true;
 		}
-
 		if (saveData.hasFreezeOnHit) {
-			chanceToFreezeChanceButton.Visible = true;
+			chanceToFreezeChanceButton.Visible   = true;
 			chanceToFreezeDurationButton.Visible = true;
 		}
 	}
@@ -572,49 +756,60 @@ public partial class UnlocksMenu : Control
 	{
 		UpdateCoinDisplay();
 
-		// Ultimates
-		blizzardButton.Text = GetSkillButtonText("Blizzard");
-		flashFreezeButton.Text = GetSkillButtonText("Flash Freeze");
+		blizzardButton.Text         = GetSkillButtonText("Blizzard");
+		blizzardDurationButton.Text = GetSkillButtonText("Blizzard Duration");
+		blizzardSizeButton.Text     = GetSkillButtonText("Blizzard Size");
+		blizzardChillButton.Text    = GetSkillButtonText("Blizzard Chill");
 
-		frostNovaButton.Text = GetSkillButtonText("Frost Nova");
-		frostNovaDamageButton.Text = GetSkillButtonText("Frost Nova Damage");
-		frostNovaRadiusButton.Text = GetSkillButtonText("Frost Nova Radius");
+		flashFreezeButton.Text         = GetSkillButtonText("Flash Freeze");
+		flashFreezeDurationButton.Text = GetSkillButtonText("Flash Freeze Duration");
+		flashFreezeShatterButton.Text  = GetSkillButtonText("Flash Freeze Shatter");
+		flashFreezeGlacialButton.Text  = GetSkillButtonText("Flash Freeze Glacial");
+
+		frostNovaButton.Text               = GetSkillButtonText("Frost Nova");
+		frostNovaDamageButton.Text         = GetSkillButtonText("Frost Nova Damage");
+		frostNovaRadiusButton.Text         = GetSkillButtonText("Frost Nova Radius");
 		frostNovaFreezeDurationButton.Text = GetSkillButtonText("Frost Nova Freeze Duration");
 
-		iceSpikeButton.Text = GetSkillButtonText("Ice Spike");
-		iceSpikeDamageButton.Text = GetSkillButtonText("Ice Spike Damage");
+		iceSpikeButton.Text               = GetSkillButtonText("Ice Spike");
+		iceSpikeDamageButton.Text         = GetSkillButtonText("Ice Spike Damage");
 		iceSpikeFreezeDurationButton.Text = GetSkillButtonText("Ice Spike Freeze Duration");
-		iceSpikeSizeButton.Text = GetSkillButtonText("Ice Spike Size");
+		iceSpikeSizeButton.Text           = GetSkillButtonText("Ice Spike Size");
 
-		// Passives
-		permafrostButton.Text = GetSkillButtonText("Permafrost");
-		brittleButton.Text = GetSkillButtonText("Brittle");
-		iceShieldButton.Text = GetSkillButtonText("Ice Shield");
+		permafrostButton.Text       = GetSkillButtonText("Permafrost");
+		permafrostRadiusButton.Text = GetSkillButtonText("Permafrost Radius");
+		permafrostChillButton.Text  = GetSkillButtonText("Permafrost Chill");
 
-		multishotButton.Text = GetSkillButtonText("Multishot");
-		multishotCountButton.Text = GetSkillButtonText("Multishot Count");
+		brittleButton.Text            = GetSkillButtonText("Brittle");
+		brittleBonusDamageButton.Text = GetSkillButtonText("Brittle Bonus Damage");
+		brittleShatterButton.Text     = GetSkillButtonText("Brittle Shatter");
+
+		iceShieldButton.Text            = GetSkillButtonText("Ice Shield");
+		iceShieldBlockChanceButton.Text = GetSkillButtonText("Ice Shield Block Chance");
+		iceShieldRetaliateButton.Text   = GetSkillButtonText("Ice Shield Retaliate");
+
+		multishotButton.Text       = GetSkillButtonText("Multishot");
+		multishotCountButton.Text  = GetSkillButtonText("Multishot Count");
 		multishotChanceButton.Text = GetSkillButtonText("Multishot Chance");
 
-		chanceToFreezeButton.Text = GetSkillButtonText("Chance to Freeze");
-		chanceToFreezeChanceButton.Text = GetSkillButtonText("Freeze Chance");
+		chanceToFreezeButton.Text         = GetSkillButtonText("Chance to Freeze");
+		chanceToFreezeChanceButton.Text   = GetSkillButtonText("Freeze Chance");
 		chanceToFreezeDurationButton.Text = GetSkillButtonText("Freeze Duration");
 
-		// Core Stats
-		moveSpeedButton.Text = GetSkillButtonText("Move Speed");
+		moveSpeedButton.Text   = GetSkillButtonText("Move Speed");
 		attackSpeedButton.Text = GetSkillButtonText("Attack Speed");
-		healthButton.Text = GetSkillButtonText("Health");
-		damageButton.Text = GetSkillButtonText("Damage");
+		healthButton.Text      = GetSkillButtonText("Health");
+		damageButton.Text      = GetSkillButtonText("Damage");
 	}
 
 	private string GetSkillButtonText(string skillName)
 	{
-		int level = skillLevels[skillName];
+		int level    = skillLevels[skillName];
 		int maxLevel = skillMaxLevels[skillName];
-		int cost = getActualCost(skillName);
+		int cost     = getActualCost(skillName);
 
 		if (level >= maxLevel)
 			return skillName + "\nMAX";
-
 		return skillName + "\nLv." + level + " | " + cost + "g";
 	}
 
@@ -626,35 +821,51 @@ public partial class UnlocksMenu : Control
 	// ─── Restore Levels ────────────────────────────────────────────────
 	private void RestoreSkillLevels()
 	{
-		if (saveData.hasBlizzard) skillLevels["Blizzard"] = 1;
+		if (saveData.hasBlizzard)    skillLevels["Blizzard"] = 1;
 		if (saveData.hasFlashFreeze) skillLevels["Flash Freeze"] = 1;
 
+		skillLevels["Blizzard Duration"] = saveData.blizzardDurationLevel;
+		skillLevels["Blizzard Size"]     = saveData.blizzardSizeLevel;
+		skillLevels["Blizzard Chill"]    = saveData.blizzardChillLevel;
+
+		skillLevels["Flash Freeze Duration"] = saveData.flashFreezeDurationLevel;
+		skillLevels["Flash Freeze Shatter"]  = saveData.flashFreezeShatterLevel;
+		skillLevels["Flash Freeze Glacial"]  = saveData.flashFreezeGlacialLevel;
+
 		if (saveData.hasFrostNova) skillLevels["Frost Nova"] = 1;
-		skillLevels["Frost Nova Damage"] = saveData.frostNovaDamageLevel;
-		skillLevels["Frost Nova Radius"] = saveData.frostNovaRadiusLevel;
+		skillLevels["Frost Nova Damage"]          = saveData.frostNovaDamageLevel;
+		skillLevels["Frost Nova Radius"]          = saveData.frostNovaRadiusLevel;
 		skillLevels["Frost Nova Freeze Duration"] = saveData.frostNovaFreezeDurationLevel;
 
 		if (saveData.hasIceSpike) skillLevels["Ice Spike"] = 1;
-		skillLevels["Ice Spike Damage"] = saveData.iceSpikeDamageLevel;
+		skillLevels["Ice Spike Damage"]          = saveData.iceSpikeDamageLevel;
 		skillLevels["Ice Spike Freeze Duration"] = saveData.iceSpikeFreezeDurationLevel;
-		skillLevels["Ice Spike Size"] = saveData.iceSpikeSizeLevel;
+		skillLevels["Ice Spike Size"]            = saveData.iceSpikeSizeLevel;
 
 		if (saveData.hasPermafrost) skillLevels["Permafrost"] = 1;
+		skillLevels["Permafrost Radius"] = saveData.permafrostRadiusLevel;
+		skillLevels["Permafrost Chill"]  = saveData.permafrostChillLevel;
+
 		if (saveData.hasBrittle) skillLevels["Brittle"] = 1;
+		skillLevels["Brittle Bonus Damage"] = saveData.brittleBonusDamageLevel;
+		if (saveData.brittleShatterUnlocked) skillLevels["Brittle Shatter"] = 1;
+
 		if (saveData.hasIceShield) skillLevels["Ice Shield"] = 1;
+		skillLevels["Ice Shield Block Chance"] = saveData.iceShieldBlockChanceLevel;
+		if (saveData.iceShieldRetaliateUnlocked) skillLevels["Ice Shield Retaliate"] = 1;
 
 		if (saveData.hasMultiShot) skillLevels["Multishot"] = 1;
-		skillLevels["Multishot Count"] = saveData.multishotCountLevel;
+		skillLevels["Multishot Count"]  = saveData.multishotCountLevel;
 		skillLevels["Multishot Chance"] = saveData.multishotChanceLevel;
 
 		if (saveData.hasFreezeOnHit) skillLevels["Chance to Freeze"] = 1;
-		skillLevels["Freeze Chance"] = saveData.freezeChanceLevel;
+		skillLevels["Freeze Chance"]   = saveData.freezeChanceLevel;
 		skillLevels["Freeze Duration"] = saveData.freezeDurationLevel;
 
-		skillLevels["Move Speed"] = (int)(saveData.moveSpeedBonus / 5f);
-		skillLevels["Health"] = saveData.healthBonus;
+		skillLevels["Move Speed"]   = (int)(saveData.moveSpeedBonus / 5f);
+		skillLevels["Health"]       = saveData.healthBonus;
 		skillLevels["Attack Speed"] = (int)(saveData.attackSpeedBonus / 0.02f);
-		skillLevels["Damage"] = saveData.damageBonus / 2;
+		skillLevels["Damage"]       = saveData.damageBonus / 2;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -683,8 +894,7 @@ public partial class UnlocksMenu : Control
 			GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
 		}
 	}
-	
-	
+
 	// ─── Respec ────────────────────────────────────────────────────────
 	private void OnRespecPressed()
 	{
@@ -692,58 +902,65 @@ public partial class UnlocksMenu : Control
 			descriptionLabel.Text = "Not enough coins to respec.\nCost: " + RespecCost + " coins.";
 			return;
 		}
-
-		respecConfirmLabel.Text = "Are you sure? This will reset all skills.\nCost: " + RespecCost + " coins.";
+		respecConfirmLabel.Text    = "Are you sure? This will reset all skills.\nCost: " + RespecCost + " coins.";
 		respecConfirmLabel.Visible = true;
-		respecYesButton.Visible = true;
-		respecNoButton.Visible = true;
+		respecYesButton.Visible    = true;
+		respecNoButton.Visible     = true;
 	}
 
 	private void OnRespecConfirmed()
 	{
-		// Calculate refund — all spent coins minus respec cost
 		int totalSpent = 0;
-		foreach (var skill in skillLevels) {
+		foreach (var skill in skillLevels)
 			totalSpent += getTotalCostForSkill(skill.Key);
-		}
 		int refund = totalSpent - RespecCost;
 		gameManager.coins += refund;
 
-		// Reset all save data
-		saveData.hasBlizzard = false;
+		saveData.hasBlizzard    = false;
 		saveData.hasFlashFreeze = false;
-		saveData.hasFrostNova = false;
-		saveData.hasIceSpike = false;
-		saveData.hasPermafrost = false;
-		saveData.hasBrittle = false;
-		saveData.hasIceShield = false;
-		saveData.hasMultiShot = false;
+		saveData.hasFrostNova   = false;
+		saveData.hasIceSpike    = false;
+		saveData.hasPermafrost  = false;
+		saveData.hasBrittle     = false;
+		saveData.hasIceShield   = false;
+		saveData.hasMultiShot   = false;
 		saveData.hasFreezeOnHit = false;
 		saveData.activeUltimate = IceWizardStats.UltimateAbility.None;
 
-		saveData.frostNovaDamageLevel = 0;
-		saveData.frostNovaRadiusLevel = 0;
+		saveData.blizzardDurationLevel    = 0;
+		saveData.blizzardSizeLevel        = 0;
+		saveData.blizzardChillLevel       = 0;
+		saveData.flashFreezeDurationLevel = 0;
+		saveData.flashFreezeShatterLevel  = 0;
+		saveData.flashFreezeGlacialLevel  = 0;
+		saveData.frostNovaDamageLevel     = 0;
+		saveData.frostNovaRadiusLevel     = 0;
 		saveData.frostNovaFreezeDurationLevel = 0;
-		saveData.iceSpikeDamageLevel = 0;
+		saveData.iceSpikeDamageLevel      = 0;
 		saveData.iceSpikeFreezeDurationLevel = 0;
-		saveData.iceSpikeSizeLevel = 0;
-		saveData.multishotCountLevel = 0;
-		saveData.multishotChanceLevel = 0;
-		saveData.freezeChanceLevel = 0;
-		saveData.freezeDurationLevel = 0;
-		saveData.moveSpeedBonus = 0;
-		saveData.healthBonus = 0;
-		saveData.attackSpeedBonus = 0;
-		saveData.damageBonus = 0;
+		saveData.iceSpikeSizeLevel        = 0;
+		saveData.permafrostRadiusLevel    = 0;
+		saveData.permafrostChillLevel     = 0;
+		saveData.brittleBonusDamageLevel  = 0;
+		saveData.brittleShatterUnlocked   = false;
+		saveData.iceShieldBlockChanceLevel   = 0;
+		saveData.iceShieldRetaliateUnlocked  = false;
+		saveData.multishotCountLevel      = 0;
+		saveData.multishotChanceLevel     = 0;
+		saveData.freezeChanceLevel        = 0;
+		saveData.freezeDurationLevel      = 0;
+		saveData.moveSpeedBonus           = 0;
+		saveData.healthBonus              = 0;
+		saveData.attackSpeedBonus         = 0;
+		saveData.damageBonus              = 0;
 
-		// Reset skill levels dictionary
 		SetupSkills();
 		HideSubButtons();
 		UpdateAllButtonText();
 
 		respecConfirmLabel.Visible = false;
-		respecYesButton.Visible = false;
-		respecNoButton.Visible = false;
+		respecYesButton.Visible    = false;
+		respecNoButton.Visible     = false;
 
 		descriptionLabel.Text = "Skills reset. " + refund + " coins refunded.";
 	}
@@ -751,8 +968,8 @@ public partial class UnlocksMenu : Control
 	private void OnRespecCancelled()
 	{
 		respecConfirmLabel.Visible = false;
-		respecYesButton.Visible = false;
-		respecNoButton.Visible = false;
+		respecYesButton.Visible    = false;
+		respecNoButton.Visible     = false;
 		descriptionLabel.Text = "Respec cancelled.";
 	}
 }

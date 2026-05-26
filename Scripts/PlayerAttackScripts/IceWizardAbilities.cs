@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class IceWizardAbilities : Node
 {
@@ -13,13 +12,17 @@ public partial class IceWizardAbilities : Node
 
 	public override void _Ready()
 	{
-		player = GetParent<CharacterBody2D>();
+		player      = GetParent<CharacterBody2D>();
 		gameManager = GetNode<GameManager>("/root/GameManager");
-		iceStats = GetParent().GetNode<IceWizardStats>("Stats");
+		iceStats    = GetParent().GetNode<IceWizardStats>("Stats");
 	}
 
 	public override void _Process(double delta)
 	{
+		// Permafrost passive — runs every frame
+		if (iceStats.hasPermafrost)
+			ApplyPermafrost();
+
 		if (Input.IsActionJustPressed("Ultimate"))
 		{
 			if (iceStats.activeUltimate != IceWizardStats.UltimateAbility.None &&
@@ -48,6 +51,8 @@ public partial class IceWizardAbilities : Node
 			}
 		}
 	}
+
+	// ── Ultimates ────────────────────────────────────────────────────
 
 	public void FireFrostNova()
 	{
@@ -96,9 +101,28 @@ public partial class IceWizardAbilities : Node
 			freezeTimer.Timeout += () => {
 				if (IsInstanceValid(enemy))
 				{
-					enemy.speed = originalSpeed;
 					enemy.currentStatus = Enemy.StatusEffect.None;
 					enemy.sprite.Play("Walking");
+
+					if (iceStats.flashFreezeGlacialDuration > 0f)
+					{
+						enemy.speed = originalSpeed * 0.5f;
+
+						Timer glacialTimer = new Timer();
+						glacialTimer.WaitTime = iceStats.flashFreezeGlacialDuration;
+						glacialTimer.OneShot = true;
+						glacialTimer.Timeout += () => {
+							if (IsInstanceValid(enemy) && enemy.currentStatus == Enemy.StatusEffect.None)
+								enemy.speed = originalSpeed;
+							glacialTimer.QueueFree();
+						};
+						enemy.AddChild(glacialTimer);
+						glacialTimer.Start();
+					}
+					else
+					{
+						enemy.speed = originalSpeed;
+					}
 				}
 				freezeTimer.QueueFree();
 			};
@@ -106,11 +130,38 @@ public partial class IceWizardAbilities : Node
 			freezeTimer.Start();
 		}
 
-		// White flash screen effect
 		DoFlashFreezeEffect();
-
 		gameManager.ultimateIsActive = false;
 	}
+
+	// ── Passives ─────────────────────────────────────────────────────
+
+	private void ApplyPermafrost()
+	{
+		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+		{
+			if (node is not CharacterBody2D body) continue;
+			Enemy enemy = body as Enemy;
+			if (enemy == null) continue;
+
+			float dist = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
+
+			if (dist <= iceStats.permafrostRadius)
+			{
+				// Only slow if not already frozen
+				if (enemy.currentStatus == Enemy.StatusEffect.None)
+					enemy.speed = Mathf.MoveToward(enemy.speed, enemy.baseSpeed * iceStats.permafrostSlowFactor, 50f);
+			}
+			else
+			{
+				// Outside aura — restore speed gradually
+				if (enemy.currentStatus == Enemy.StatusEffect.None)
+					enemy.speed = Mathf.MoveToward(enemy.speed, enemy.baseSpeed, 50f);
+			}
+		}
+	}
+
+	// ── Effects ──────────────────────────────────────────────────────
 
 	private void DoFlashFreezeEffect()
 	{
@@ -128,6 +179,8 @@ public partial class IceWizardAbilities : Node
 		tween.TweenProperty(flash, "color:a", 0.0f, 0.35f);
 		tween.TweenCallback(Callable.From(() => flash.QueueFree()));
 	}
+
+	// ── Helpers ──────────────────────────────────────────────────────
 
 	private CharacterBody2D FindNearestEnemy()
 	{

@@ -73,10 +73,10 @@ sprite_frames = SubResource("SpriteFrames_4qhg1")
 animation = &"Frozen"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=2058031701]
-offset_left = -25.999998
-offset_top = -64.00001
-offset_right = 259.0
-offset_bottom = -37.000008
+offset_left = -22.999998
+offset_top = -63.000008
+offset_right = 262.0
+offset_bottom = -36.000008
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 13
 theme_override_styles/fill = SubResource("StyleBoxFlat_xyira")

@@ -109,6 +109,48 @@ offset_right = 505.0
 offset_bottom = 95.0
 text = "Freeze Duration"
 
+[node name="BlizzardDuration" type="Button" parent="TreeArea/Ultimate" unique_id=684477455]
+offset_left = 115.0
+offset_top = 257.0
+offset_right = 257.0
+offset_bottom = 288.0
+text = "Blizzard Duration"
+
+[node name="BlizzardSize" type="Button" parent="TreeArea/Ultimate" unique_id=510851768]
+offset_left = 101.0
+offset_top = 171.0
+offset_right = 205.0
+offset_bottom = 202.0
+text = "Blizzard Size"
+
+[node name="BlizzardChill" type="Button" parent="TreeArea/Ultimate" unique_id=1925631357]
+offset_left = 223.0
+offset_top = 154.0
+offset_right = 330.0
+offset_bottom = 185.0
+text = "Blizzard Chill"
+
+[node name="FlashFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=724156791]
+offset_left = 794.0
+offset_top = 161.0
+offset_right = 971.0
+offset_bottom = 192.0
+text = "Flash Freeze Duration"
+
+[node name="FlashFreezeShatter" type="Button" parent="TreeArea/Ultimate" unique_id=67480944]
+offset_left = 981.0
+offset_top = 173.0
+offset_right = 1146.0
+offset_bottom = 204.0
+text = "Flash Freeze Shatter"
+
+[node name="FlashFreezeGlacial" type="Button" parent="TreeArea/Ultimate" unique_id=466997192]
+offset_left = 968.0
+offset_top = 94.0
+offset_right = 1127.0
+offset_bottom = 125.0
+text = "Flash Freeze Glacial"
+
 [node name="Passive" type="Node" parent="TreeArea" unique_id=2002988305]
 
 [node name="BrittleButton" type="Button" parent="TreeArea/Passive" unique_id=1306270075]
@@ -173,6 +215,48 @@ offset_top = 488.0
 offset_right = 551.0
 offset_bottom = 519.0
 text = "Duration"
+
+[node name="PermafrostRadius" type="Button" parent="TreeArea/Passive" unique_id=2135707734]
+offset_left = 286.0
+offset_top = 439.0
+offset_right = 346.0
+offset_bottom = 470.0
+text = "Radius"
+
+[node name="PermafrostChill" type="Button" parent="TreeArea/Passive" unique_id=822852287]
+offset_left = 202.0
+offset_top = 451.0
+offset_right = 244.0
+offset_bottom = 482.0
+text = "Chill"
+
+[node name="BrittleBonusDamage" type="Button" parent="TreeArea/Passive" unique_id=2092712517]
+offset_left = 973.0
+offset_top = 345.0
+offset_right = 1045.0
+offset_bottom = 376.0
+text = "Damage"
+
+[node name="BrittleShatter" type="Button" parent="TreeArea/Passive" unique_id=2054545518]
+offset_left = 910.0
+offset_top = 383.0
+offset_right = 976.0
+offset_bottom = 414.0
+text = "Shatter"
+
+[node name="IceShieldBlockChance" type="Button" parent="TreeArea/Passive" unique_id=1425482189]
+offset_left = 815.0
+offset_top = 442.0
+offset_right = 880.0
+offset_bottom = 473.0
+text = "Chance"
+
+[node name="IceShieldRetaliate" type="Button" parent="TreeArea/Passive" unique_id=1010116462]
+offset_left = 739.0
+offset_top = 448.0
+offset_right = 816.0
+offset_bottom = 479.0
+text = "Retaliate"
 
 [node name="CoreStats" type="Node" parent="TreeArea" unique_id=1090030383]
 

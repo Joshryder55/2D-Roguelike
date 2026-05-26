@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class EnemyHealth : Node
 {
@@ -8,7 +7,7 @@ public partial class EnemyHealth : Node
 	public virtual int maxHealth { get; set; } = 20;
 	public virtual int xpValue { get; set; } = 5;
 	public virtual float coinDropChance { get; set; } = 0.1f;
-	public virtual int scoreValue { get; set; } = 1; // override in subclasses for harder enemies
+	public virtual int scoreValue { get; set; } = 1;
 
 	public override void _Ready()
 	{
@@ -17,6 +16,21 @@ public partial class EnemyHealth : Node
 
 	public virtual void TakeDamage(int amount)
 	{
+		Enemy enemy = GetParent() as Enemy;
+		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
+		IceWizardStats iceStats = player?.GetNode<IceWizardStats>("Stats");
+
+		if (enemy != null && enemy.currentStatus == Enemy.StatusEffect.Frozen && iceStats != null)
+		{
+			// Brittle — bonus damage to frozen enemies
+			if (iceStats.hasBrittle)
+				amount = Mathf.RoundToInt(amount * iceStats.brittleBonusDamageMultiplier);
+
+			// Shatter bonus from Flash Freeze
+			if (iceStats.flashFreezeShatterBonus > 0f)
+				amount = Mathf.RoundToInt(amount * (1f + iceStats.flashFreezeShatterBonus));
+		}
+
 		health -= amount;
 		GetParent().GetNode<ProgressBar>("ProgressBar").Visible = true;
 		if (health <= 0)
@@ -25,17 +39,37 @@ public partial class EnemyHealth : Node
 
 	public virtual void Die()
 	{
-		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive);
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
+		IceWizardStats iceStats = stats as IceWizardStats;
 
-		if (gameManager.ultimateIsActive == false)
+		if (!gameManager.ultimateIsActive)
 			stats.ultimateCharge++;
 
-		// Add score on kill
 		gameManager.AddScore(scoreValue);
 
-		// Coin drop chance
+		// Brittle Shatter — explode on death if frozen
+		if (iceStats != null && iceStats.brittleShatter &&
+			GetParent() is Enemy deadEnemy &&
+			deadEnemy.currentStatus == Enemy.StatusEffect.Frozen)
+		{
+			float shatterRadius = 100f;
+			Vector2 deathPos = GetParent<Node2D>().GlobalPosition;
+			foreach (Node node in GetTree().GetNodesInGroup("enemies"))
+			{
+				if (node is CharacterBody2D body && IsInstanceValid(body))
+				{
+					float dist = deathPos.DistanceTo(body.GlobalPosition);
+					if (dist <= shatterRadius && dist > 0)
+					{
+						EnemyHealth nearbyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
+						nearbyHealth?.TakeDamage(Mathf.RoundToInt(iceStats.frostNovaDamage * 0.5f));
+					}
+				}
+			}
+		}
+
+		// Coin drop
 		if (GD.Randf() < coinDropChance * gameManager.GetCoinDropMultiplier())
 		{
 			PackedScene coinScene = GD.Load<PackedScene>("res://Scenes/Coin.tscn");
@@ -44,7 +78,7 @@ public partial class EnemyHealth : Node
 			GetTree().CurrentScene.CallDeferred("add_child", coin);
 		}
 
-		// Spawn XP orb
+		// XP orb
 		PackedScene orbScene = GD.Load<PackedScene>("res://Scenes/XPOrb.tscn");
 		XPOrb orb = orbScene.Instantiate<XPOrb>();
 		orb.xpValue = xpValue;

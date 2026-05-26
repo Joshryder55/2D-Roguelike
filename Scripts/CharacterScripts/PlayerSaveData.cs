@@ -1,10 +1,10 @@
 using Godot;
-using System;
 
 public partial class PlayerSaveData : Node
 {
-	
 	public IceWizardStats.UltimateAbility activeUltimate = IceWizardStats.UltimateAbility.None;
+
+	// Ability unlocks
 	
 	public bool hasCompletedLevel1 = false;
 	
@@ -19,18 +19,12 @@ public partial class PlayerSaveData : Node
 	public bool hasBrittle = false;
 	public bool hasIceShield = false;
 
-	// Ice Wizard upgrade levels
-	public int multishotLevel = 0;
-	public int freezeOnHitLevel = 0;
-	public int frostNovaLevel = 0;
-	// etc
-
 	// Shared stat bonuses
 	public float moveSpeedBonus = 0;
 	public int healthBonus = 0;
 	public float attackSpeedBonus = 0;
 	public int damageBonus = 0;
-	
+
 	// Frost Nova upgrades
 	public int frostNovaDamageLevel = 0;
 	public int frostNovaRadiusLevel = 0;
@@ -45,9 +39,29 @@ public partial class PlayerSaveData : Node
 	public int multishotCountLevel = 0;
 	public int multishotChanceLevel = 0;
 
-	// Chance to Freeze upgrades
+	// Freeze on hit upgrades
 	public int freezeChanceLevel = 0;
 	public int freezeDurationLevel = 0;
-	
-	
+
+	// Blizzard upgrades
+	public int blizzardDurationLevel = 0;
+	public int blizzardSizeLevel = 0;
+	public int blizzardChillLevel = 0;
+
+	// Flash Freeze upgrades
+	public int flashFreezeDurationLevel = 0;
+	public int flashFreezeShatterLevel = 0;
+	public int flashFreezeGlacialLevel = 0;
+
+	// Brittle upgrades
+	public int brittleBonusDamageLevel = 0;
+	public bool brittleShatterUnlocked = false;
+
+	// Ice Shield upgrades
+	public int iceShieldBlockChanceLevel = 0;
+	public bool iceShieldRetaliateUnlocked = false;
+
+	// Permafrost upgrades
+	public int permafrostRadiusLevel = 0;
+	public int permafrostChillLevel = 0;
 }
