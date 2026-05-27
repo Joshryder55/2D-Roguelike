@@ -1,5 +1,4 @@
 using Godot;
-
 public partial class EnemyHealth : Node
 {
 	GameManager gameManager;
@@ -14,7 +13,8 @@ public partial class EnemyHealth : Node
 		gameManager = GetNode<GameManager>("/root/GameManager");
 	}
 
-	public virtual void TakeDamage(int amount)
+	// canShatter = false prevents chain explosions from shatter damage killing nearby enemies
+	public virtual void TakeDamage(int amount, bool canShatter = true)
 	{
 		Enemy enemy = GetParent() as Enemy;
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
@@ -34,10 +34,10 @@ public partial class EnemyHealth : Node
 		health -= amount;
 		GetParent().GetNode<ProgressBar>("ProgressBar").Visible = true;
 		if (health <= 0)
-			Die();
+			Die(canShatter);
 	}
 
-	public virtual void Die()
+	public virtual void Die(bool canShatter = true)
 	{
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
@@ -48,8 +48,8 @@ public partial class EnemyHealth : Node
 
 		gameManager.AddScore(scoreValue);
 
-		// Brittle Shatter — explode on death if frozen
-		if (iceStats != null && iceStats.brittleShatter &&
+		// Brittle Shatter — explode on death if frozen, only if canShatter is true
+		if (canShatter && iceStats != null && iceStats.brittleShatter &&
 			GetParent() is Enemy deadEnemy &&
 			deadEnemy.currentStatus == Enemy.StatusEffect.Frozen)
 		{
@@ -63,7 +63,8 @@ public partial class EnemyHealth : Node
 					if (dist <= shatterRadius && dist > 0)
 					{
 						EnemyHealth nearbyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
-						nearbyHealth?.TakeDamage(Mathf.RoundToInt(iceStats.frostNovaDamage * 0.5f));
+						// Pass false so shatter damage can't trigger another shatter
+						nearbyHealth?.TakeDamage(Mathf.RoundToInt(iceStats.frostNovaDamage * 0.5f), false);
 					}
 				}
 			}
