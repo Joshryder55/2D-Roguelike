@@ -11,7 +11,7 @@ public partial class EnemyManager : Node {
 
 	float spawnInterval = 2.25f;
 	const float minSpawnInterval = 0.5f;
-	const int maxEnemies = 40;
+	const int maxEnemies = 60;
 
 	float elapsedTime = 0f;
 	// Spawn Rampup interval: every 18 seconds shave 0.25s off the spawn interval - ADJUST FOR BALANCING
