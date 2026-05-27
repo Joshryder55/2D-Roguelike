@@ -2,8 +2,8 @@ using Godot;
 
 public partial class IceWizardStats : CharacterStats
 {
-	public override int maxHealth { get; set; } = 100;
-	public override int health { get; set; } = 100;
+	public override int maxHealth { get; set; } = 60;
+	public override int health { get; set; } = 60;
 	public override float fireRate { get; set; } = 1.0f;
 	public override float range { get; set; } = 500.0f;
 	public override float playerSpeed { get; set; } = 100;

@@ -44,7 +44,10 @@ public override void _Ready() {
 	damageTimer.Timeout += DealDamage;
 	AddChild(damageTimer);
 	
-	baseSpeed = speed;
+	// Set speed and damage scaling at spawn
+	speed         *= gameManager.GetEnemySpeedMultiplier();
+	contactDamage  = Mathf.RoundToInt(contactDamage * gameManager.GetEnemyDamageMultiplier());
+	baseSpeed      = speed;
 }
 
 private void OnBodyEntered(Node2D body) {

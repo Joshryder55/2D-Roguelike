@@ -12,6 +12,11 @@ public partial class EnemyHealth : Node
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
+
+		// Scale health based on time of run
+		float multiplier = gameManager.GetEnemyHealthMultiplier();
+		maxHealth = Mathf.RoundToInt(maxHealth * multiplier);
+		health    = maxHealth;
 	}
 
 	public virtual void TakeDamage(int amount)
@@ -76,6 +81,15 @@ public partial class EnemyHealth : Node
 			CoinPickup coin = coinScene.Instantiate() as CoinPickup;
 			coin.GlobalPosition = GetParent<Node2D>().GlobalPosition;
 			GetTree().CurrentScene.CallDeferred("add_child", coin);
+		}
+
+		// XP vacuum power-up (1.5% chance) — collect all xp orbs on the map
+		if (GD.Randf() < 0.015f)
+		{
+			PackedScene vacuumScene = GD.Load<PackedScene>("res://Scenes/PowerUpXPVacuum.tscn");
+			PowerUpXPVacuum vacuum = vacuumScene.Instantiate<PowerUpXPVacuum>();
+			vacuum.GlobalPosition = GetParent<Node2D>().GlobalPosition;
+			GetTree().CurrentScene.CallDeferred("add_child", vacuum);
 		}
 
 		// XP orb
