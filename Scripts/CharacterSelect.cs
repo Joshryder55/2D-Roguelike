@@ -56,8 +56,9 @@ public partial class CharacterSelect : Control
 		// }
 
 
-		// For now add Level 2 always for testing
+		// For now add Level 2 & 3 always for testing
 		levelOptionButton.AddItem("Level 2");
+		levelOptionButton.AddItem("Level 3");
 		
 	}
 
@@ -91,6 +92,11 @@ public partial class CharacterSelect : Control
 			
 			levelPreviewTexture.Texture = null;
 		}
+		
+		if(selectedLevel == "Level 3"){
+			
+			levelPreviewTexture.Texture = null;
+		}
 	}
 
 	private void OnConfirmPressed()
@@ -110,6 +116,9 @@ public partial class CharacterSelect : Control
 				break;
 			case "Level 2":
 				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
+				break;
+			case "Level 3":
+				GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
 				break;
 		}
 		
