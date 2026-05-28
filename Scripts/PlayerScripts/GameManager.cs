@@ -28,10 +28,10 @@ public partial class GameManager : Node
 	// 4 phase enemy scaling (time-based at 3, 6, and 11 minutes).
 	// Each rate is a per-minute multiplier added on top of 1.0.
 	static float enemyScalingRamp(float gameTimeMinutes,
-	                               float earlyRate,    // 0–3 min
-	                               float smallRate,    // 3–6 min
-	                               float bigRate,      // 6–11 min
-	                               float largestRate)  // 11+ min
+								   float earlyRate,    // 0–3 min
+								   float smallRate,    // 3–6 min
+								   float bigRate,      // 6–11 min
+								   float largestRate)  // 11+ min
 	{
 		float multiplier = 1.0f;
 		multiplier += Mathf.Min(gameTimeMinutes,                         3f) * earlyRate;
