@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://0o4wh3dt1wi7" path="res://Scenes/Enemies/BasicSkeletonArcher.tscn" id="5_6skh4"]
 [ext_resource type="PackedScene" uid="uid://c444dihibtefi" path="res://Scenes/Enemies/BasicGoblin.tscn" id="6_0way5"]
 [ext_resource type="Texture2D" uid="uid://41jk7437trg" path="res://Assets/OrbEmpty.png" id="7_cw30w"]
+[ext_resource type="PackedScene" uid="uid://cgp352qy0ys0h" path="res://Scenes/HUD.tscn" id="8_ibolw"]
 [ext_resource type="Texture2D" uid="uid://cot74iajikwx7" path="res://Assets/HealthOrbFull.png" id="8_ie22q"]
 [ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="9_uxnm3"]
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="10_dgfc6"]
@@ -24,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c1yqiyhslxeam" path="res://Assets/CourtyardHouse3.png" id="21_s6bta"]
 [ext_resource type="Texture2D" uid="uid://csm05id1ku75w" path="res://Assets/Level2Outline.png" id="23_lt7tp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6skh4"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3cqh"]
@@ -71,26 +72,18 @@ size = Vector2(1624, 45)
 
 [node name="Level2" type="Node2D" unique_id=1132902248]
 
-[node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_6cjmx")]
-y_sort_enabled = true
-position = Vector2(186, 950)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=811683723]
 
-[node name="EnemyManager" type="Node" parent="." unique_id=1611450139 node_paths=PackedStringArray("Player")]
-script = ExtResource("2_s6bta")
-Player = NodePath("../IceWizard")
-EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1605141756]
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=2014779443]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=2071271091]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=1009728247]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=1015837995]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -106,8 +99,9 @@ fill_mode = 3
 texture_under = ExtResource("7_cw30w")
 texture_progress = ExtResource("8_ie22q")
 script = ExtResource("9_uxnm3")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=1673545259]
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=178658371]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -125,8 +119,9 @@ fill_mode = 3
 texture_under = ExtResource("7_cw30w")
 texture_progress = ExtResource("10_dgfc6")
 script = ExtResource("11_5fn7l")
+metadata/_edit_use_anchors_ = true
 
-[node name="LevelLabel" type="Label" parent="CanvasLayer" unique_id=831235333]
+[node name="LevelLabel" type="Label" parent="CanvasLayer" unique_id=2055163221]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -134,22 +129,34 @@ offset_left = 5.0
 offset_top = -55.0
 offset_right = 200.0
 offset_bottom = -32.0
-grow_vertical = 0
 text = "Level 1"
+metadata/_edit_use_anchors_ = true
 
-[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=417102024]
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer" unique_id=366405973]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_xpbar")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6skh4")
 show_percentage = false
 script = ExtResource("12_sj5x0")
+metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1315800233 instance=ExtResource("13_uelq8")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Hud" parent="CanvasLayer" unique_id=1005367914 instance=ExtResource("8_ibolw")]
+metadata/_edit_use_anchors_ = true
+
+[node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_6cjmx")]
+y_sort_enabled = true
+position = Vector2(186, 950)
+
+[node name="EnemyManager" type="Node" parent="." unique_id=1611450139 node_paths=PackedStringArray("Player")]
+script = ExtResource("2_s6bta")
+Player = NodePath("../IceWizard")
+EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1610501412]
 z_index = -1
