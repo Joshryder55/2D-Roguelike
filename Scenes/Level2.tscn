@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="11_5fn7l"]
 [ext_resource type="Script" uid="uid://cmny6x80gncx7" path="res://Scripts/PlayerScripts/XPBar.cs" id="12_sj5x0"]
 [ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="13_uelq8"]
+[ext_resource type="PackedScene" uid="uid://drmuhfq6jyyu0" path="res://Scenes/Enemies/KnightBoss.tscn" id="15_6skh4"]
 [ext_resource type="Texture2D" uid="uid://bxqkhm0fbqutp" path="res://Assets/Vendor2.png" id="17_1gnxd"]
 [ext_resource type="Texture2D" uid="uid://bbnrbddjowpwm" path="res://Assets/Gallows.png" id="18_ubjqm"]
 [ext_resource type="Script" uid="uid://bbny6ypnxbsfg" path="res://Scripts/SlowZone.cs" id="19_ywwsq"]
@@ -69,6 +70,9 @@ size = Vector2(1746, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytfs1"]
 size = Vector2(1624, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0way5"]
+size = Vector2(256, 44)
 
 [node name="Level2" type="Node2D" unique_id=1132902248]
 
@@ -157,6 +161,7 @@ position = Vector2(186, 950)
 script = ExtResource("2_s6bta")
 Player = NodePath("../IceWizard")
 EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
+BossScene = ExtResource("15_6skh4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1610501412]
 z_index = -1
@@ -382,6 +387,15 @@ script = ExtResource("19_ywwsq")
 polygon = PackedVector2Array(-635, 122, -636, -54, 985, -53, 988, 121, 306, 123, 307, 34, 289, 11, 268, -4, 234, -18, 214, -22, 196, -26, 149, -25, 120, -19, 80, -3, 52, 26, 48, 33, 48, 121)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=837470354]
+z_index = 3
 position = Vector2(223.49992, 180.00003)
 scale = Vector2(1.2685, 1.2689999)
 texture = ExtResource("23_lt7tp")
+
+[node name="Level2ExitGate" type="Area2D" parent="." unique_id=529168797]
+visible = false
+position = Vector2(175, -584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2ExitGate" unique_id=1820957981]
+position = Vector2(16, -1)
+shape = SubResource("RectangleShape2D_0way5")

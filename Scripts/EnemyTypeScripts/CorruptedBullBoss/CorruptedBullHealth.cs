@@ -14,8 +14,8 @@ public partial class CorruptedBullHealth : EnemyHealth {
 		Node level = GetTree().CurrentScene;
 		Area2D gate = level.GetNodeOrNull<Area2D>("Level1ExitGate");
 		if (gate != null) {
-			gate.Visible = true;
-			gate.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+			gate.CallDeferred("set_visible", true);
+			gate.GetNode<CollisionShape2D>("CollisionShape2D").CallDeferred("set_disabled", false);
 		}
 
 		base.Die(canShatter);

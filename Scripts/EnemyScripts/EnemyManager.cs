@@ -60,20 +60,21 @@ public partial class EnemyManager : Node {
 	}
 
 	private void SpawnBoss() {
-	if (BossScene == null) return;
-	bossSpawned = true;
+		if (BossScene == null) return;
+		bossSpawned = true;
 
-	spawnInterval = 5f;
-	spawnTimer.WaitTime = spawnInterval;
+		spawnInterval = 5f;
+		spawnTimer.WaitTime = spawnInterval;
 
-	CorruptedBull boss = BossScene.Instantiate<CorruptedBull>();
-	boss.Player = Player;
-	boss.GlobalPosition = GetRandomSpawnPosition();
-	AddChild(boss);
+		Node boss = BossScene.Instantiate();
+		if (boss is Enemy enemyBoss) {
+			enemyBoss.Player = Player;
+			enemyBoss.GlobalPosition = GetRandomSpawnPosition();
+			AddChild(boss);
+		}
 
-	GD.Print("Boss spawned!");
-}
-
+		GD.Print("Boss spawned!");
+	}
 	private void ResumNormalSpawning() {
 		// Reset spawn interval to where it was before boss
 		spawnInterval = minSpawnInterval;

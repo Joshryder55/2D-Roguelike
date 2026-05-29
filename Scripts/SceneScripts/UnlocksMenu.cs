@@ -273,10 +273,10 @@ public partial class UnlocksMenu : Control
 		AddSkill("Freeze Duration", 5, 5);
 
 		// Core Stats — permanent minor upgrades, escalating cost per level
-		AddSkill("Move Speed", 50, 5);
-		AddSkill("Attack Speed", 50, 5);
-		AddSkill("Health", 50, 5);
-		AddSkill("Damage", 50, 5);
+		AddSkill("Move Speed", 20, 5);
+		AddSkill("Attack Speed", 20, 5);
+		AddSkill("Health", 20, 5);
+		AddSkill("Damage", 20, 5);
 	}
 
 	private void AddSkill(string skillName, int maxLevel, int coinCost)
