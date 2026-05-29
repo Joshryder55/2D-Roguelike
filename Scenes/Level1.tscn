@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cot74iajikwx7" path="res://Assets/HealthOrbFull.png" id="6_6ll4n"]
 [ext_resource type="PackedScene" uid="uid://c444dihibtefi" path="res://Scenes/Enemies/BasicGoblin.tscn" id="6_q1ws5"]
 [ext_resource type="Texture2D" uid="uid://d23dtt86pb37p" path="res://Assets/Level1.png" id="6_t3or0"]
+[ext_resource type="PackedScene" uid="uid://cl4ige2mjlduj" path="res://Scenes/Enemies/CorruptedBull.tscn" id="7_fh0sh"]
 [ext_resource type="Texture2D" uid="uid://bhkm7gud8knk5" path="res://Assets/UltimateOrb.png" id="8_bdlbp"]
 [ext_resource type="Script" uid="uid://cgxe6mrq8r4jg" path="res://Scripts/PlayerScripts/UltimateBar.cs" id="9_2h8qs"]
 [ext_resource type="Texture2D" uid="uid://boq3e58tr44ia" path="res://Assets/Level1Background.png" id="11_2h8qs"]
@@ -21,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://wtbrexdlq04b" path="res://Assets/IntactBuildings.png" id="15_0wsr5"]
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="15_ug0sv"]
 [ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="17_pause"]
+[ext_resource type="Script" uid="uid://b17g3cxw22p0q" path="res://Scripts/Level1ExitGate.cs" id="23_03od6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -147,6 +149,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1592, 2164, 614, 2141, 1039.0177, 2107.2107, 1353.0397, 2105.3967, 1768, 2103, 2054.9321, 2112.6938, 2357, 2113, 2357, 1423, 2358.709, 1000.5654, 2359.1545, 710.1278, 2360, 160, 2364.2073, -329.099, 2365.699, -834.506, 2367.0598, -1295.5535, 2368, -1614, 1952.3823, -1616.1041, 1675.0198, -1617.5085, 1357.5066, -1619.1162, 1013.3098, -1620.8591, 715.8296, -1622.3654, 393, -1624, 16.189453, -1619.999, -295.17383, -1616.6934, -703.7009, -1612.3562, -1059.4097, -1608.5798, -1585, -1603, -1616.6296, -1326.5835, -1654, -1000, -1659, -696, -1646, -347, -1628, -40, -1637, 320, -1601, 721, -1617, 1190, -1597, 1607), PackedVector2Array(1252, 891, 1255, 1280, 866, 1283, 866, 888), PackedVector2Array(1420, 890, 1812, 892, 1811, 1276, 1415, 1278), PackedVector2Array(578, 50, 578, -29, 765, -30, 971, -32, 972, 54, 764, 53), PackedVector2Array(1243, 477, 619, 484, 619, 298, 1244, 305), PackedVector2Array(694, -305, 696, -491, 1082, -491, 1083, -311), PackedVector2Array(1218, -1084, 1217, -774, 684, -769, 681, -1081), PackedVector2Array(1504, -835, 1498, -1078, 1941, -1074, 1948, -838), PackedVector2Array(1432, -185, 1433, -464, 1960, -456, 1963, -177), PackedVector2Array(1435, 310, 1962, 312, 1964, 484, 1438, 482), PackedVector2Array(1427, 572, 1957, 572, 1961, 757, 1423, 757), PackedVector2Array(593, 584, 1254, 587, 1255, 758, 593, 763)])
 cell_size = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ocbn"]
+size = Vector2(316, 112)
+
 [node name="Level1" type="Node2D" unique_id=1451598271]
 
 [node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_kylad")]
@@ -156,6 +161,7 @@ position = Vector2(387, 216)
 script = ExtResource("3_jghel")
 Player = NodePath("../IceWizard")
 EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0"), ExtResource("5_jgorv"), ExtResource("6_q1ws5")])
+BossScene = ExtResource("7_fh0sh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1932404102]
 
@@ -618,3 +624,12 @@ avoidance_enabled = false
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1921396011]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_ubfni")
+
+[node name="Level1ExitGate" type="Area2D" parent="." unique_id=1650937872]
+visible = false
+position = Vector2(385, -1366)
+script = ExtResource("23_03od6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1ExitGate" unique_id=562387846]
+position = Vector2(21, -6)
+shape = SubResource("RectangleShape2D_3ocbn")

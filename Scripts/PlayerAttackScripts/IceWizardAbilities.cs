@@ -89,6 +89,7 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
+			if (enemy.immuneToAilments) continue; // skip bosses
 
 			float originalSpeed = enemy.baseSpeed;
 			enemy.speed = 0;
@@ -143,6 +144,7 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
+			if (enemy.immuneToAilments) continue; // skip bosses
 
 			float dist = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
 

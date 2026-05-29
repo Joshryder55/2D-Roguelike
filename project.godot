@@ -75,6 +75,10 @@ pause_game={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_6="Boss"
+
 [navigation]
 
 2d/merge_rasterizer_cell_scale=0.5

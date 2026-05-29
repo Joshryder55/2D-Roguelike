@@ -36,7 +36,7 @@ protected override void OnBodyEntered(Node2D body) {
 			}
 				
 				Enemy enemy = body as Enemy;
-					if (enemy != null) {
+					if (enemy != null && !enemy.immuneToAilments) {
 						
 						float originalSpeed = enemy.speed;
 						

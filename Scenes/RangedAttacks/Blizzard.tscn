@@ -55,7 +55,7 @@ animations = [{
 
 [node name="Blizzard" type="Area2D" unique_id=1672584029]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("1_grqat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2146378517]

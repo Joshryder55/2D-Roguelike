@@ -2,6 +2,8 @@ using Godot;
 
 public partial class CharacterSelect : Control
 {
+	GameManager gameManager;
+	
 	private OptionButton characterOptionButton;
 	private OptionButton levelOptionButton;
 	private Button confirmButton;
@@ -14,6 +16,10 @@ public partial class CharacterSelect : Control
 
 	public override void _Ready()
 	{
+		
+		gameManager = GetNode<GameManager>("/root/GameManager");
+
+
 		characterOptionButton = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/CharacterOptionButton");
 		levelOptionButton = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/LevelOptionButton");
 		confirmButton = GetNode<Button>("CenterContainer/HBoxContainer/VBoxContainer/ConfirmButton");
@@ -112,12 +118,15 @@ public partial class CharacterSelect : Control
 		switch (selectedLevel)
 		{
 			case "Level 1":
+				gameManager.currentLevel = "res://Scenes/Level1.tscn";
 				GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
 				break;
 			case "Level 2":
+				gameManager.currentLevel = "res://Scenes/Level2.tscn";
 				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
 				break;
 			case "Level 3":
+				gameManager.currentLevel = "res://Scenes/Level3.tscn";
 				GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
 				break;
 		}

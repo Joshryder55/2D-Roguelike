@@ -13,6 +13,8 @@ public partial class GameManager : Node
 	public int xpToNextLevel = 100;
 
 	public float gameTime = 0f;
+	
+	public string currentLevel = "res://Scenes/Level1.tscn";
 
 	public override void _Process(double delta)
 	{

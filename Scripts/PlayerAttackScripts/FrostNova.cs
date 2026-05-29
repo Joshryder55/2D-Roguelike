@@ -37,17 +37,15 @@ public partial class FrostNova : Area2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Scale = new Vector2(scale, scale);
 	}
 	
-	private void OnBodyEntered(Node2D body) {
-		
-		
+		private void OnBodyEntered(Node2D body) {
 		if (iceStats == null) return;
 		
 		if (body is CharacterBody2D) {
-			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
+			EnemyHealth enemyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
 			enemyHealth?.TakeDamage(iceStats.frostNovaDamage);
 			
 			Enemy enemy = body as Enemy;
-			if (enemy != null) {
+			if (enemy != null && !enemy.immuneToAilments) { // add check here
 				float originalSpeed = enemy.speed;
 				enemy.speed = 0;
 				enemy.currentStatus = Enemy.StatusEffect.Frozen;
