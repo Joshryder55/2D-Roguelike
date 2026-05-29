@@ -29,7 +29,7 @@ public partial class IceBolt : Projectile
 			if (random.NextDouble() < iceStats.freezeChance) {  // 15% chance
 				
 				Enemy enemy = body as Enemy;
-					if (enemy != null) {
+					if (enemy != null && !enemy.immuneToAilments) {
 						
 						float originalSpeed = enemy.speed;
 						

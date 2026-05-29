@@ -19,7 +19,7 @@ public partial class EnemyManager : Node {
 	const float rampAmount = 0.25f;
 	float nextRampAt = 18f;
 
-	const float bossSpawnTime = 600f; // 10 minutes
+	const float bossSpawnTime = 10f; // 10 minutes
 	bool bossSpawned = false;
 	bool bossDefeated = false;
 

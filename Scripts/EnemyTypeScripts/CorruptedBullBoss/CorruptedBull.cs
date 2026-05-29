@@ -4,6 +4,7 @@ using System;
 public partial class CorruptedBull : Enemy {
 	public override float speed { get; set; } = 80f;
 	public override int contactDamage { get; set; } = 20;
+	public override bool immuneToAilments { get; set; } = true;
 
 	private enum BullState { Walking, ChargeTelegraph, Charging, Recovering }
 	private BullState currentState = BullState.Walking;
