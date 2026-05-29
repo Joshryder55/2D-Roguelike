@@ -5,14 +5,18 @@ public partial class GameManager : Node
 	public bool isDead = false;
 	public bool ultimateIsActive = false;
 	public int coins = 0;
-	public int score = 0;  // incremented on enemy kill
+	public int score = 0;
 
 	// XP and leveling
 	public int xp = 0;
 	public int level = 1;
 	public int xpToNextLevel = 100;
-
 	public float gameTime = 0f;
+
+	public override void _Ready()
+	{
+		ProcessMode = ProcessModeEnum.Always;
+	}
 
 	public override void _Process(double delta)
 	{
@@ -28,10 +32,10 @@ public partial class GameManager : Node
 	// 4 phase enemy scaling (time-based at 3, 6, and 11 minutes).
 	// Each rate is a per-minute multiplier added on top of 1.0.
 	static float enemyScalingRamp(float gameTimeMinutes,
-	                               float earlyRate,    // 0–3 min
-	                               float smallRate,    // 3–6 min
-	                               float bigRate,      // 6–11 min
-	                               float largestRate)  // 11+ min
+								   float earlyRate,    // 0–3 min
+								   float smallRate,    // 3–6 min
+								   float bigRate,      // 6–11 min
+								   float largestRate)  // 11+ min
 	{
 		float multiplier = 1.0f;
 		multiplier += Mathf.Min(gameTimeMinutes,                         3f) * earlyRate;
@@ -42,7 +46,6 @@ public partial class GameManager : Node
 	}
 
 	// All enemy scaling multipliers cap at (map level + 1.0): L1 = 2.0×, L2 = 3.0×, L3 = 4.0×, etc.
-
 	// HP: gentle warm-up → progressively steeper ramp.
 	public float GetEnemyHealthMultiplier()
 	{
@@ -91,7 +94,7 @@ public partial class GameManager : Node
 	{
 		level++;
 		xp -= xpToNextLevel;
-		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f); // Each level requires 25% more XP than the previous - Can adjust as needed for balancing
+		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
 
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		if (player != null)
@@ -107,7 +110,7 @@ public partial class GameManager : Node
 	public void Reset()
 	{
 		isDead = false;
-		coins = 0;
+		// coins intentionally NOT reset — they persist across runs
 		score = 0;
 		xp = 0;
 		level = 1;

@@ -360,6 +360,7 @@ public partial class UnlocksMenu : Control
 		gameManager.coins -= cost;
 		skillLevels[skillName]++;
 		ApplySkillEffect(skillName);
+		GetNode<SaveSystem>("/root/SaveSystem").Save();
 		UpdateAllButtonText();
 		ShowSkillDescription(skillName);
 	}

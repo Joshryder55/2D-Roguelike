@@ -1,5 +1,4 @@
 using Godot;
-
 public partial class MainMenu : Control
 {
 	private Button startButton;
@@ -9,15 +8,17 @@ public partial class MainMenu : Control
 
 	public override void _Ready()
 	{
-		startButton = GetNode<Button>("CenterContainer/VBoxContainer/StartButton");
+		startButton   = GetNode<Button>("CenterContainer/VBoxContainer/StartButton");
 		unlocksButton = GetNode<Button>("CenterContainer/VBoxContainer/UnlocksButton");
 		optionsButton = GetNode<Button>("CenterContainer/VBoxContainer/OptionsButton");
-		quitButton = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
+		quitButton    = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
 
-		startButton.Pressed += OnStartPressed;
+		startButton.Pressed   += OnStartPressed;
 		unlocksButton.Pressed += OnUnlocksPressed;
 		optionsButton.Pressed += OnOptionsPressed;
-		quitButton.Pressed += OnQuitPressed;
+		quitButton.Pressed    += OnQuitPressed;
+
+		GetNode<SaveSystem>("/root/SaveSystem").Load();
 
 		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 	}
