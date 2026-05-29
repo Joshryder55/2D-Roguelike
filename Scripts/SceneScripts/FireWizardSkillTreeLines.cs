@@ -43,10 +43,6 @@ public partial class FireWizardSkillTreeLines : Control
 	private Button cauterizeChance;
 	private Button cauterizeHealAmount;
 
-	private Button moltenShieldButton;
-	private Button moltenShieldBlockChance;
-	private Button moltenShieldExplosionDamage;
-
 	public override void _Ready()
 	{
 		GD.Print("FireWizardSkillTreeLines loaded. Size: " + Size);
@@ -69,10 +65,10 @@ public partial class FireWizardSkillTreeLines : Control
 		fireNovaBurnDuration = GetNodeOrNull<Button>("../Ultimate/FireNovaBurnDuration");
 		fireNovaSpeed        = GetNodeOrNull<Button>("../Ultimate/FireNovaSpeed");
 
-		flameDashButton          = GetNodeOrNull<Button>("../Ultimate/FlameDashButton");
-		flameDashRange           = GetNodeOrNull<Button>("../Ultimate/FlameDashRange");
-		flameDashTrailDuration   = GetNodeOrNull<Button>("../Ultimate/FlameDashTrailDuration");
-		flameDashTrailDamage     = GetNodeOrNull<Button>("../Ultimate/FlameDashTrailDamage");
+		flameDashButton        = GetNodeOrNull<Button>("../Ultimate/FlameDashButton");
+		flameDashRange         = GetNodeOrNull<Button>("../Ultimate/FlameDashRange");
+		flameDashTrailDuration = GetNodeOrNull<Button>("../Ultimate/FlameDashTrailDuration");
+		flameDashTrailDamage   = GetNodeOrNull<Button>("../Ultimate/FlameDashTrailDamage");
 
 		igniteButton   = GetNodeOrNull<Button>("../Passive/IgniteButton");
 		igniteChance   = GetNodeOrNull<Button>("../Passive/IgniteChance");
@@ -94,10 +90,6 @@ public partial class FireWizardSkillTreeLines : Control
 		cauterizeChance     = GetNodeOrNull<Button>("../Passive/CauterizeChance");
 		cauterizeHealAmount = GetNodeOrNull<Button>("../Passive/CauterizeHealAmount");
 
-		moltenShieldButton           = GetNodeOrNull<Button>("../Passive/MoltenShieldButton");
-		moltenShieldBlockChance      = GetNodeOrNull<Button>("../Passive/MoltenShieldBlockChance");
-		moltenShieldExplosionDamage  = GetNodeOrNull<Button>("../Passive/MoltenShieldExplosionDamage");
-
 		CheckMissingNodes();
 		QueueRedraw();
 	}
@@ -118,7 +110,6 @@ public partial class FireWizardSkillTreeLines : Control
 		DrawConnection(coreButton, combustionButton, lineColor, lineWidth);
 		DrawConnection(coreButton, pyromaniacButton, lineColor, lineWidth);
 		DrawConnection(coreButton, cauterizeButton,  lineColor, lineWidth);
-		DrawConnection(coreButton, moltenShieldButton, lineColor, lineWidth);
 
 		if (infernoDuration  != null && infernoDuration.Visible)  DrawConnection(infernoButton, infernoDuration,  lineColor, lineWidth);
 		if (infernoSize      != null && infernoSize.Visible)      DrawConnection(infernoButton, infernoSize,      lineColor, lineWidth);
@@ -150,9 +141,6 @@ public partial class FireWizardSkillTreeLines : Control
 
 		if (cauterizeChance     != null && cauterizeChance.Visible)     DrawConnection(cauterizeButton, cauterizeChance,     lineColor, lineWidth);
 		if (cauterizeHealAmount != null && cauterizeHealAmount.Visible) DrawConnection(cauterizeButton, cauterizeHealAmount, lineColor, lineWidth);
-
-		if (moltenShieldBlockChance     != null && moltenShieldBlockChance.Visible)     DrawConnection(moltenShieldButton, moltenShieldBlockChance,     lineColor, lineWidth);
-		if (moltenShieldExplosionDamage != null && moltenShieldExplosionDamage.Visible) DrawConnection(moltenShieldButton, moltenShieldExplosionDamage, lineColor, lineWidth);
 	}
 
 	private void DrawConnection(Control fromNode, Control toNode, Color color, float width)
@@ -176,6 +164,5 @@ public partial class FireWizardSkillTreeLines : Control
 		if (combustionButton == null) GD.PrintErr("Missing CombustionButton");
 		if (pyromaniacButton == null) GD.PrintErr("Missing PyromaniacButton");
 		if (cauterizeButton == null)  GD.PrintErr("Missing CauterizeButton");
-		if (moltenShieldButton == null) GD.PrintErr("Missing MoltenShieldButton");
 	}
 }

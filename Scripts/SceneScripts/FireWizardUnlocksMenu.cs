@@ -215,7 +215,7 @@ public partial class FireWizardUnlocksMenu : Control
 		debugButton.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.BottomRight);
 		debugButton.OffsetLeft = -160; debugButton.OffsetTop = -40;
 		debugButton.OffsetRight = 0;   debugButton.OffsetBottom = 0;
-		debugButton.Pressed += () => { gameManager.coins += 1000; UpdateAllButtonText(); };
+		debugButton.Pressed += () => { gameManager.coins += 1000; UpdateAllButtonText(); GetNode<SaveSystem>("/root/SaveSystem").Save(); };
 		AddChild(debugButton);
 	}
 

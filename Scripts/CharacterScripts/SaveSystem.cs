@@ -36,6 +36,9 @@ public partial class SaveSystem : Node
 		{
 			{ "coins",             gm.coins },
 			{ "selectedCharacter", (int)data.selectedCharacter },
+			// Wizard unlock flags
+			{ "hasUnlockedIceWizard",  data.hasUnlockedIceWizard },
+			{ "hasUnlockedFireWizard", data.hasUnlockedFireWizard },
 
 			// Ice Wizard unlocks
 			{ "hasMultiShot",   data.hasMultiShot },
@@ -179,6 +182,9 @@ public partial class SaveSystem : Node
 
 		if (saveDict.ContainsKey("coins"))             gm.coins               = saveDict["coins"].AsInt32();
 		if (saveDict.ContainsKey("selectedCharacter")) data.selectedCharacter = (PlayerSaveData.Character)saveDict["selectedCharacter"].AsInt32();
+		// Wizard unlock flags
+		if (saveDict.ContainsKey("hasUnlockedIceWizard"))  data.hasUnlockedIceWizard  = saveDict["hasUnlockedIceWizard"].AsBool();
+		if (saveDict.ContainsKey("hasUnlockedFireWizard")) data.hasUnlockedFireWizard = saveDict["hasUnlockedFireWizard"].AsBool();
 
 		// Ice Wizard unlocks
 		if (saveDict.ContainsKey("hasMultiShot"))   data.hasMultiShot   = saveDict["hasMultiShot"].AsBool();
@@ -321,9 +327,11 @@ public partial class SaveSystem : Node
 		gm.isDead        = false;
 
 		// Character selection
-		data.selectedCharacter  = PlayerSaveData.Character.None;
-		data.activeUltimate     = IceWizardStats.UltimateAbility.None;
-		data.activeFireUltimate = PlayerSaveData.FireUltimateAbility.None;
+		data.selectedCharacter     = PlayerSaveData.Character.None;
+		data.hasUnlockedIceWizard  = false;
+		data.hasUnlockedFireWizard = false;
+		data.activeUltimate        = IceWizardStats.UltimateAbility.None;
+		data.activeFireUltimate    = PlayerSaveData.FireUltimateAbility.None;
 
 		// Ice Wizard unlocks
 		data.hasMultiShot  = false; data.hasFreezeOnHit = false;
@@ -352,10 +360,10 @@ public partial class SaveSystem : Node
 		data.permafrostRadiusLevel = 0; data.permafrostChillLevel = 0;
 
 		// Fire Wizard unlocks
-		data.hasFireMultiShot = false; data.hasIgnite    = false;
+		data.hasFireMultiShot = false; data.hasIgnite     = false;
 		data.hasCombustion    = false; data.hasPyromaniac = false;
 		data.hasCauterize     = false;
-		data.hasInferno = false; data.hasMeteor   = false;
+		data.hasInferno = false; data.hasMeteor    = false;
 		data.hasFireNova = false; data.hasFlameDash = false;
 
 		// Fire Wizard upgrade levels

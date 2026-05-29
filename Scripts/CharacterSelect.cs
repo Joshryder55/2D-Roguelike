@@ -8,6 +8,7 @@ public partial class CharacterSelect : Control
 	private OptionButton levelOptionButton;
 	private Button confirmButton;
 	private Button backButton;
+	private Button buyButton; // shown when selecting a locked wizard
 	private TextureRect characterPreviewTexture;
 	private TextureRect levelPreviewTexture;
 	private Label coinsLabel;
@@ -42,6 +43,13 @@ public partial class CharacterSelect : Control
 		lockLabel.Modulate = new Color(1f, 0.4f, 0.4f);
 		GetNode("CenterContainer/HBoxContainer/VBoxContainer").AddChild(lockLabel);
 
+		// Buy button — appears when selecting a locked wizard
+		buyButton = new Button();
+		buyButton.Text = "Unlock for 500 coins";
+		buyButton.Visible = false;
+		buyButton.Pressed += OnBuyPressed;
+		GetNode("CenterContainer/HBoxContainer/VBoxContainer").AddChild(buyButton);
+
 		SetupCharacterOptions();
 		SetupLevelOptions();
 		UpdatePreviews();
@@ -59,15 +67,7 @@ public partial class CharacterSelect : Control
 	{
 		characterOptionButton.Clear();
 		characterOptionButton.AddItem("Ice Wizard");
-
-		// If no character selected yet (new game) — Fire Wizard is free to pick
-		// If already have a character — other one costs 500 coins
-		if (saveData.selectedCharacter == PlayerSaveData.Character.None)
-			characterOptionButton.AddItem("Fire Wizard");
-		else if (saveData.selectedCharacter == PlayerSaveData.Character.FireWizard)
-			characterOptionButton.AddItem("Fire Wizard");
-		else
-			characterOptionButton.AddItem("Fire Wizard (500 coins to unlock)");
+		characterOptionButton.AddItem("Fire Wizard");
 	}
 
 	private void SetupLevelOptions()
@@ -99,23 +99,62 @@ public partial class CharacterSelect : Control
 		else
 			characterPreviewTexture.Texture = null; // Fire Wizard image when available
 
-		levelPreviewTexture.Texture = null;
+		if (selectedLevel == "Level 1")
+			levelPreviewTexture.Texture = null;
+		if (selectedLevel == "Level 2")
+			levelPreviewTexture.Texture = null;
 
-		// Show lock warning
 		bool isFireWizard = selectedCharacter.Contains("Fire Wizard");
 		bool isIceWizard  = selectedCharacter.Contains("Ice Wizard");
 		bool canAfford    = gameManager.coins >= FireWizardUnlockCost;
 
-		if (isFireWizard && saveData.selectedCharacter == PlayerSaveData.Character.IceWizard && !canAfford)
-			lockLabel.Text = "Not enough coins! Fire Wizard costs 500 coins.";
-		else if (isFireWizard && saveData.selectedCharacter == PlayerSaveData.Character.IceWizard && canAfford)
-			lockLabel.Text = "Selecting Fire Wizard will cost 500 coins.";
-		else if (isIceWizard && saveData.selectedCharacter == PlayerSaveData.Character.FireWizard && !canAfford)
-			lockLabel.Text = "Not enough coins! Ice Wizard costs 500 coins.";
-		else if (isIceWizard && saveData.selectedCharacter == PlayerSaveData.Character.FireWizard && canAfford)
-			lockLabel.Text = "Selecting Ice Wizard will cost 500 coins.";
+		// No character picked yet — both free, no lock prompt
+		if (saveData.selectedCharacter == PlayerSaveData.Character.None)
+		{
+			lockLabel.Text        = "";
+			buyButton.Visible     = false;
+			confirmButton.Visible = true;
+			return;
+		}
+
+		// Check if selected wizard is locked
+		bool selectedIsLocked =
+			(isFireWizard && !saveData.hasUnlockedFireWizard) ||
+			(isIceWizard  && !saveData.hasUnlockedIceWizard);
+
+		if (selectedIsLocked)
+		{
+			lockLabel.Text        = canAfford
+				? "This wizard costs 500 coins to unlock."
+				: "Not enough coins! This wizard costs 500 coins.";
+			buyButton.Visible     = canAfford;
+			confirmButton.Visible = false;
+		}
 		else
-			lockLabel.Text = "";
+		{
+			lockLabel.Text        = "";
+			buyButton.Visible     = false;
+			confirmButton.Visible = true;
+		}
+	}
+
+	private void OnBuyPressed()
+	{
+		if (gameManager.coins < FireWizardUnlockCost) return;
+
+		string selected   = characterOptionButton.GetItemText(characterOptionButton.Selected);
+		bool isFireWizard = selected.Contains("Fire Wizard");
+
+		gameManager.coins -= FireWizardUnlockCost;
+
+		if (isFireWizard)
+			saveData.hasUnlockedFireWizard = true;
+		else
+			saveData.hasUnlockedIceWizard = true;
+
+		GetNode<SaveSystem>("/root/SaveSystem").Save();
+		UpdateCoinsLabel();
+		UpdatePreviews();
 	}
 
 	private void UpdateCoinsLabel()
@@ -131,33 +170,25 @@ public partial class CharacterSelect : Control
 		bool isFireWizard = selectedCharacter.Contains("Fire Wizard");
 		bool isIceWizard  = selectedCharacter.Contains("Ice Wizard");
 
-		// First time picking — free choice
+		// First time picking — free choice, lock the other
 		if (saveData.selectedCharacter == PlayerSaveData.Character.None)
 		{
 			saveData.selectedCharacter = isFireWizard
 				? PlayerSaveData.Character.FireWizard
 				: PlayerSaveData.Character.IceWizard;
+
+			// Chosen wizard is unlocked, other is locked
+			saveData.hasUnlockedFireWizard = isFireWizard;
+			saveData.hasUnlockedIceWizard  = isIceWizard;
+
 			GetNode<SaveSystem>("/root/SaveSystem").Save();
 		}
-		// Switching to the other wizard — costs coins
-		else if (isFireWizard && saveData.selectedCharacter == PlayerSaveData.Character.IceWizard)
+		else
 		{
-			if (gameManager.coins < FireWizardUnlockCost) {
-				lockLabel.Text = "Not enough coins! Fire Wizard costs 500 coins.";
-				return;
-			}
-			gameManager.coins -= FireWizardUnlockCost;
-			saveData.selectedCharacter = PlayerSaveData.Character.FireWizard;
-			GetNode<SaveSystem>("/root/SaveSystem").Save();
-		}
-		else if (isIceWizard && saveData.selectedCharacter == PlayerSaveData.Character.FireWizard)
-		{
-			if (gameManager.coins < FireWizardUnlockCost) {
-				lockLabel.Text = "Not enough coins! Ice Wizard costs 500 coins.";
-				return;
-			}
-			gameManager.coins -= FireWizardUnlockCost;
-			saveData.selectedCharacter = PlayerSaveData.Character.IceWizard;
+			// Switching character — only possible if already unlocked (confirm only shows when unlocked)
+			saveData.selectedCharacter = isFireWizard
+				? PlayerSaveData.Character.FireWizard
+				: PlayerSaveData.Character.IceWizard;
 			GetNode<SaveSystem>("/root/SaveSystem").Save();
 		}
 

@@ -12,6 +12,12 @@ public partial class MainMenu : Control
 	private Button confirmYesButton;
 	private Button confirmNoButton;
 
+	// Wizard select popup (shown when both wizards are unlocked)
+	private Panel wizardSelectPanel;
+	private Button iceWizardTreeButton;
+	private Button fireWizardTreeButton;
+	private Button wizardSelectCancelButton;
+
 	public override void _Ready()
 	{
 		startButton   = GetNode<Button>("CenterContainer/VBoxContainer/StartButton");
@@ -26,7 +32,7 @@ public partial class MainMenu : Control
 		quitButton.Pressed    += OnQuitPressed;
 		newGameButton.Pressed += OnNewGamePressed;
 
-		// Build confirmation popup in code
+		// Build New Game confirmation popup in code
 		confirmPanel = new Panel();
 		confirmPanel.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.Center);
 		confirmPanel.CustomMinimumSize = new Vector2(400, 160);
@@ -69,6 +75,56 @@ public partial class MainMenu : Control
 		confirmNoButton.Pressed += () => confirmPanel.Visible = false;
 		hbox.AddChild(confirmNoButton);
 
+		// Build Wizard Select popup in code
+		wizardSelectPanel = new Panel();
+		wizardSelectPanel.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.Center);
+		wizardSelectPanel.CustomMinimumSize = new Vector2(350, 180);
+		wizardSelectPanel.Visible = false;
+		AddChild(wizardSelectPanel);
+
+		var wsMargin = new MarginContainer();
+		wsMargin.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+		wsMargin.AddThemeConstantOverride("margin_left", 20);
+		wsMargin.AddThemeConstantOverride("margin_right", 20);
+		wsMargin.AddThemeConstantOverride("margin_top", 20);
+		wsMargin.AddThemeConstantOverride("margin_bottom", 20);
+		wizardSelectPanel.AddChild(wsMargin);
+
+		var wsVbox = new VBoxContainer();
+		wsVbox.AddThemeConstantOverride("separation", 12);
+		wsMargin.AddChild(wsVbox);
+
+		var wsLabel = new Label();
+		wsLabel.Text = "Which skill tree would you like to view?";
+		wsLabel.HorizontalAlignment = HorizontalAlignment.Center;
+		wsVbox.AddChild(wsLabel);
+
+		var wsHbox = new HBoxContainer();
+		wsHbox.Alignment = BoxContainer.AlignmentMode.Center;
+		wsHbox.AddThemeConstantOverride("separation", 12);
+		wsVbox.AddChild(wsHbox);
+
+		iceWizardTreeButton = new Button();
+		iceWizardTreeButton.Text = "Ice Wizard";
+		iceWizardTreeButton.Pressed += () => {
+			wizardSelectPanel.Visible = false;
+			GetTree().ChangeSceneToFile("res://Scenes/Menus/UnlocksMenu.tscn");
+		};
+		wsHbox.AddChild(iceWizardTreeButton);
+
+		fireWizardTreeButton = new Button();
+		fireWizardTreeButton.Text = "Fire Wizard";
+		fireWizardTreeButton.Pressed += () => {
+			wizardSelectPanel.Visible = false;
+			GetTree().ChangeSceneToFile("res://Scenes/Menus/FireWizardUnlocksMenu.tscn");
+		};
+		wsHbox.AddChild(fireWizardTreeButton);
+
+		wizardSelectCancelButton = new Button();
+		wizardSelectCancelButton.Text = "Cancel";
+		wizardSelectCancelButton.Pressed += () => wizardSelectPanel.Visible = false;
+		wsVbox.AddChild(wizardSelectCancelButton);
+
 		// Load save data
 		GetNode<SaveSystem>("/root/SaveSystem").Load();
 		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
@@ -82,8 +138,16 @@ public partial class MainMenu : Control
 
 	private void OnUnlocksPressed()
 	{
-		// Route to correct unlock tree based on selected character
 		PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
+
+		// Both wizards unlocked — show picker
+		if (saveData.hasUnlockedIceWizard && saveData.hasUnlockedFireWizard)
+		{
+			wizardSelectPanel.Visible = true;
+			return;
+		}
+
+		// Route to whichever tree they own
 		if (saveData.selectedCharacter == PlayerSaveData.Character.FireWizard)
 			GetTree().ChangeSceneToFile("res://Scenes/Menus/FireWizardUnlocksMenu.tscn");
 		else
@@ -108,9 +172,9 @@ public partial class MainMenu : Control
 
 	private void OnConfirmNewGame()
 	{
-	confirmPanel.Visible = false;
-	// Fully reset everything in memory and on disk
-	GetNode<SaveSystem>("/root/SaveSystem").ResetData();
-	// Stay on main menu — player clicks Start to pick their wizard
+		confirmPanel.Visible = false;
+		// Fully reset everything in memory and on disk
+		GetNode<SaveSystem>("/root/SaveSystem").ResetData();
+		// Stay on main menu — player clicks Start to pick their wizard
 	}
 }
