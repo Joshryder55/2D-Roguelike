@@ -27,7 +27,7 @@ animations = [{
 
 [node name="IceSpike" type="Area2D" unique_id=1213785099]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("1_e53kv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2059663694]
