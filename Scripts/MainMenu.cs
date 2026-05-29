@@ -108,14 +108,9 @@ public partial class MainMenu : Control
 
 	private void OnConfirmNewGame()
 	{
-		confirmPanel.Visible = false;
-		GetNode<SaveSystem>("/root/SaveSystem").DeleteSave();
-		// Reset PlayerSaveData in memory
-		PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
-		saveData.selectedCharacter  = PlayerSaveData.Character.None;
-		saveData.activeUltimate     = IceWizardStats.UltimateAbility.None;
-		saveData.activeFireUltimate = PlayerSaveData.FireUltimateAbility.None;
-		// Go straight to character select for a fresh pick
-		GetTree().ChangeSceneToFile("res://Scenes/Menus/CharacterSelect.tscn");
+	confirmPanel.Visible = false;
+	// Fully reset everything in memory and on disk
+	GetNode<SaveSystem>("/root/SaveSystem").ResetData();
+	// Stay on main menu — player clicks Start to pick their wizard
 	}
 }

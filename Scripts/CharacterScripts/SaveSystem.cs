@@ -34,11 +34,10 @@ public partial class SaveSystem : Node
 
 		var saveDict = new Godot.Collections.Dictionary
 		{
-			// Meta
 			{ "coins",             gm.coins },
 			{ "selectedCharacter", (int)data.selectedCharacter },
 
-			// ── Ice Wizard unlocks ──
+			// Ice Wizard unlocks
 			{ "hasMultiShot",   data.hasMultiShot },
 			{ "hasFreezeOnHit", data.hasFreezeOnHit },
 			{ "hasFrostNova",   data.hasFrostNova },
@@ -96,34 +95,37 @@ public partial class SaveSystem : Node
 			{ "permafrostRadiusLevel", data.permafrostRadiusLevel },
 			{ "permafrostChillLevel",  data.permafrostChillLevel },
 
-			// ── Fire Wizard unlocks ──
+			// Fire Wizard unlocks
 			{ "activeFireUltimate", (int)data.activeFireUltimate },
 			{ "hasFireMultiShot",  data.hasFireMultiShot },
 			{ "hasIgnite",         data.hasIgnite },
 			{ "hasCombustion",     data.hasCombustion },
 			{ "hasPyromaniac",     data.hasPyromaniac },
 			{ "hasCauterize",      data.hasCauterize },
-			{ "hasMoltenShield",   data.hasMoltenShield },
 			{ "hasInferno",        data.hasInferno },
 			{ "hasMeteor",         data.hasMeteor },
 			{ "hasFireNova",       data.hasFireNova },
 			{ "hasFlameDash",      data.hasFlameDash },
 
 			// Inferno upgrades
-			{ "infernoDurationLevel", data.infernoDurationLevel },
-			{ "infernoSizeLevel",     data.infernoSizeLevel },
+			{ "infernoDurationLevel",  data.infernoDurationLevel },
+			{ "infernoSizeLevel",      data.infernoSizeLevel },
+			{ "infernoIntensityLevel", data.infernoIntensityLevel },
 
 			// Meteor upgrades
 			{ "meteorDamageLevel",      data.meteorDamageLevel },
 			{ "meteorBlastRadiusLevel", data.meteorBlastRadiusLevel },
+			{ "meteorCraterLevel",      data.meteorCraterLevel },
 
 			// Fire Nova upgrades
 			{ "fireNovaDamageLevel",       data.fireNovaDamageLevel },
 			{ "fireNovaBurnDurationLevel", data.fireNovaBurnDurationLevel },
+			{ "fireNovaSpeedLevel",        data.fireNovaSpeedLevel },
 
 			// Flame Dash upgrades
-			{ "flameDashRangeLevel",        data.flameDashRangeLevel },
+			{ "flameDashRangeLevel",         data.flameDashRangeLevel },
 			{ "flameDashTrailDurationLevel", data.flameDashTrailDurationLevel },
+			{ "flameDashTrailDamageLevel",   data.flameDashTrailDamageLevel },
 
 			// Ignite upgrades
 			{ "igniteChanceLevel",   data.igniteChanceLevel },
@@ -138,16 +140,12 @@ public partial class SaveSystem : Node
 			{ "combustionRadiusLevel", data.combustionRadiusLevel },
 
 			// Pyromaniac upgrades
-			{ "pyromaniacStackCountLevel",    data.pyromaniacStackCountLevel },
+			{ "pyromaniacStackCountLevel",     data.pyromaniacStackCountLevel },
 			{ "pyromaniacDamagePerStackLevel", data.pyromaniacDamagePerStackLevel },
 
 			// Cauterize upgrades
-			{ "cauterizeChanceLevel",    data.cauterizeChanceLevel },
+			{ "cauterizeChanceLevel",     data.cauterizeChanceLevel },
 			{ "cauterizeHealAmountLevel", data.cauterizeHealAmountLevel },
-
-			// Molten Shield upgrades
-			{ "moltenShieldBlockChanceLevel",    data.moltenShieldBlockChanceLevel },
-			{ "moltenShieldExplosionDamageLevel", data.moltenShieldExplosionDamageLevel },
 		};
 
 		using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
@@ -179,11 +177,10 @@ public partial class SaveSystem : Node
 		GameManager gm      = GetNode<GameManager>("/root/GameManager");
 		PlayerSaveData data = GetNode<PlayerSaveData>("/root/PlayerSaveData");
 
-		// Meta
-		if (saveDict.ContainsKey("coins"))             gm.coins             = saveDict["coins"].AsInt32();
+		if (saveDict.ContainsKey("coins"))             gm.coins               = saveDict["coins"].AsInt32();
 		if (saveDict.ContainsKey("selectedCharacter")) data.selectedCharacter = (PlayerSaveData.Character)saveDict["selectedCharacter"].AsInt32();
 
-		// ── Ice Wizard unlocks ──
+		// Ice Wizard unlocks
 		if (saveDict.ContainsKey("hasMultiShot"))   data.hasMultiShot   = saveDict["hasMultiShot"].AsBool();
 		if (saveDict.ContainsKey("hasFreezeOnHit")) data.hasFreezeOnHit = saveDict["hasFreezeOnHit"].AsBool();
 		if (saveDict.ContainsKey("hasFrostNova"))   data.hasFrostNova   = saveDict["hasFrostNova"].AsBool();
@@ -242,7 +239,7 @@ public partial class SaveSystem : Node
 		if (saveDict.ContainsKey("permafrostRadiusLevel")) data.permafrostRadiusLevel = saveDict["permafrostRadiusLevel"].AsInt32();
 		if (saveDict.ContainsKey("permafrostChillLevel"))  data.permafrostChillLevel  = saveDict["permafrostChillLevel"].AsInt32();
 
-		// ── Fire Wizard unlocks ──
+		// Fire Wizard unlocks
 		if (saveDict.ContainsKey("activeFireUltimate"))
 			data.activeFireUltimate = (PlayerSaveData.FireUltimateAbility)saveDict["activeFireUltimate"].AsInt32();
 		if (saveDict.ContainsKey("hasFireMultiShot")) data.hasFireMultiShot = saveDict["hasFireMultiShot"].AsBool();
@@ -250,27 +247,30 @@ public partial class SaveSystem : Node
 		if (saveDict.ContainsKey("hasCombustion"))    data.hasCombustion    = saveDict["hasCombustion"].AsBool();
 		if (saveDict.ContainsKey("hasPyromaniac"))    data.hasPyromaniac    = saveDict["hasPyromaniac"].AsBool();
 		if (saveDict.ContainsKey("hasCauterize"))     data.hasCauterize     = saveDict["hasCauterize"].AsBool();
-		if (saveDict.ContainsKey("hasMoltenShield"))  data.hasMoltenShield  = saveDict["hasMoltenShield"].AsBool();
 		if (saveDict.ContainsKey("hasInferno"))       data.hasInferno       = saveDict["hasInferno"].AsBool();
 		if (saveDict.ContainsKey("hasMeteor"))        data.hasMeteor        = saveDict["hasMeteor"].AsBool();
 		if (saveDict.ContainsKey("hasFireNova"))      data.hasFireNova      = saveDict["hasFireNova"].AsBool();
 		if (saveDict.ContainsKey("hasFlameDash"))     data.hasFlameDash     = saveDict["hasFlameDash"].AsBool();
 
 		// Inferno upgrades
-		if (saveDict.ContainsKey("infernoDurationLevel")) data.infernoDurationLevel = saveDict["infernoDurationLevel"].AsInt32();
-		if (saveDict.ContainsKey("infernoSizeLevel"))     data.infernoSizeLevel     = saveDict["infernoSizeLevel"].AsInt32();
+		if (saveDict.ContainsKey("infernoDurationLevel"))  data.infernoDurationLevel  = saveDict["infernoDurationLevel"].AsInt32();
+		if (saveDict.ContainsKey("infernoSizeLevel"))      data.infernoSizeLevel      = saveDict["infernoSizeLevel"].AsInt32();
+		if (saveDict.ContainsKey("infernoIntensityLevel")) data.infernoIntensityLevel = saveDict["infernoIntensityLevel"].AsInt32();
 
 		// Meteor upgrades
 		if (saveDict.ContainsKey("meteorDamageLevel"))      data.meteorDamageLevel      = saveDict["meteorDamageLevel"].AsInt32();
 		if (saveDict.ContainsKey("meteorBlastRadiusLevel")) data.meteorBlastRadiusLevel = saveDict["meteorBlastRadiusLevel"].AsInt32();
+		if (saveDict.ContainsKey("meteorCraterLevel"))      data.meteorCraterLevel      = saveDict["meteorCraterLevel"].AsInt32();
 
 		// Fire Nova upgrades
 		if (saveDict.ContainsKey("fireNovaDamageLevel"))       data.fireNovaDamageLevel       = saveDict["fireNovaDamageLevel"].AsInt32();
 		if (saveDict.ContainsKey("fireNovaBurnDurationLevel")) data.fireNovaBurnDurationLevel = saveDict["fireNovaBurnDurationLevel"].AsInt32();
+		if (saveDict.ContainsKey("fireNovaSpeedLevel"))        data.fireNovaSpeedLevel        = saveDict["fireNovaSpeedLevel"].AsInt32();
 
 		// Flame Dash upgrades
 		if (saveDict.ContainsKey("flameDashRangeLevel"))         data.flameDashRangeLevel         = saveDict["flameDashRangeLevel"].AsInt32();
 		if (saveDict.ContainsKey("flameDashTrailDurationLevel")) data.flameDashTrailDurationLevel = saveDict["flameDashTrailDurationLevel"].AsInt32();
+		if (saveDict.ContainsKey("flameDashTrailDamageLevel"))   data.flameDashTrailDamageLevel   = saveDict["flameDashTrailDamageLevel"].AsInt32();
 
 		// Ignite upgrades
 		if (saveDict.ContainsKey("igniteChanceLevel"))   data.igniteChanceLevel   = saveDict["igniteChanceLevel"].AsInt32();
@@ -292,10 +292,6 @@ public partial class SaveSystem : Node
 		if (saveDict.ContainsKey("cauterizeChanceLevel"))     data.cauterizeChanceLevel     = saveDict["cauterizeChanceLevel"].AsInt32();
 		if (saveDict.ContainsKey("cauterizeHealAmountLevel")) data.cauterizeHealAmountLevel = saveDict["cauterizeHealAmountLevel"].AsInt32();
 
-		// Molten Shield upgrades
-		if (saveDict.ContainsKey("moltenShieldBlockChanceLevel"))     data.moltenShieldBlockChanceLevel     = saveDict["moltenShieldBlockChanceLevel"].AsInt32();
-		if (saveDict.ContainsKey("moltenShieldExplosionDamageLevel")) data.moltenShieldExplosionDamageLevel = saveDict["moltenShieldExplosionDamageLevel"].AsInt32();
-
 		GD.Print("Game loaded. Coins: " + gm.coins);
 	}
 
@@ -306,5 +302,78 @@ public partial class SaveSystem : Node
 		if (FileAccess.FileExists(SavePath))
 			DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath(SavePath));
 		GD.Print("Save deleted.");
+	}
+
+	// ── Reset All Data ────────────────────────────────────────────────
+
+	public void ResetData()
+	{
+		GameManager gm      = GetNode<GameManager>("/root/GameManager");
+		PlayerSaveData data = GetNode<PlayerSaveData>("/root/PlayerSaveData");
+
+		// GameManager
+		gm.coins         = 0;
+		gm.score         = 0;
+		gm.xp            = 0;
+		gm.level         = 1;
+		gm.xpToNextLevel = 100;
+		gm.gameTime      = 0f;
+		gm.isDead        = false;
+
+		// Character selection
+		data.selectedCharacter  = PlayerSaveData.Character.None;
+		data.activeUltimate     = IceWizardStats.UltimateAbility.None;
+		data.activeFireUltimate = PlayerSaveData.FireUltimateAbility.None;
+
+		// Ice Wizard unlocks
+		data.hasMultiShot  = false; data.hasFreezeOnHit = false;
+		data.hasFrostNova  = false; data.hasIceSpike    = false;
+		data.hasBlizzard   = false; data.hasFlashFreeze = false;
+		data.hasPermafrost = false; data.hasBrittle     = false;
+		data.hasIceShield  = false;
+
+		// Shared stat bonuses
+		data.moveSpeedBonus = 0; data.healthBonus = 0;
+		data.attackSpeedBonus = 0; data.damageBonus = 0;
+
+		// Ice Wizard upgrade levels
+		data.frostNovaDamageLevel = 0; data.frostNovaRadiusLevel = 0;
+		data.frostNovaFreezeDurationLevel = 0;
+		data.iceSpikeDamageLevel = 0; data.iceSpikeFreezeDurationLevel = 0;
+		data.iceSpikeSizeLevel = 0;
+		data.multishotCountLevel = 0; data.multishotChanceLevel = 0;
+		data.freezeChanceLevel = 0; data.freezeDurationLevel = 0;
+		data.blizzardDurationLevel = 0; data.blizzardSizeLevel = 0;
+		data.blizzardChillLevel = 0;
+		data.flashFreezeDurationLevel = 0; data.flashFreezeShatterLevel = 0;
+		data.flashFreezeGlacialLevel = 0;
+		data.brittleBonusDamageLevel = 0; data.brittleShatterUnlocked = false;
+		data.iceShieldBlockChanceLevel = 0; data.iceShieldRetaliateUnlocked = false;
+		data.permafrostRadiusLevel = 0; data.permafrostChillLevel = 0;
+
+		// Fire Wizard unlocks
+		data.hasFireMultiShot = false; data.hasIgnite    = false;
+		data.hasCombustion    = false; data.hasPyromaniac = false;
+		data.hasCauterize     = false;
+		data.hasInferno = false; data.hasMeteor   = false;
+		data.hasFireNova = false; data.hasFlameDash = false;
+
+		// Fire Wizard upgrade levels
+		data.infernoDurationLevel = 0; data.infernoSizeLevel = 0;
+		data.infernoIntensityLevel = 0;
+		data.meteorDamageLevel = 0; data.meteorBlastRadiusLevel = 0;
+		data.meteorCraterLevel = 0;
+		data.fireNovaDamageLevel = 0; data.fireNovaBurnDurationLevel = 0;
+		data.fireNovaSpeedLevel = 0;
+		data.flameDashRangeLevel = 0; data.flameDashTrailDurationLevel = 0;
+		data.flameDashTrailDamageLevel = 0;
+		data.igniteChanceLevel = 0; data.igniteDurationLevel = 0;
+		data.fireMultishotCountLevel = 0; data.fireMultishotChanceLevel = 0;
+		data.combustionChanceLevel = 0; data.combustionRadiusLevel = 0;
+		data.pyromaniacStackCountLevel = 0; data.pyromaniacDamagePerStackLevel = 0;
+		data.cauterizeChanceLevel = 0; data.cauterizeHealAmountLevel = 0;
+
+		DeleteSave();
+		GD.Print("Game fully reset.");
 	}
 }

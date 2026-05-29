@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://r5ix884j6403"]
+
+[node name="FireWizard" type="CharacterBody2D" unique_id=246270369]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=829937354]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1224736712]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=21186429]
+
+[node name="Targeting" type="Node" parent="." unique_id=874193429]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1923415008]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1316530619]
+
+[node name="Stats" type="Node" parent="." unique_id=1128689177]
+
+[node name="Ability" type="Node" parent="." unique_id=1466272629]

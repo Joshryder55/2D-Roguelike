@@ -60,9 +60,11 @@ public partial class CharacterSelect : Control
 		characterOptionButton.Clear();
 		characterOptionButton.AddItem("Ice Wizard");
 
-		// Fire Wizard — show as locked if not purchased
-		if (saveData.selectedCharacter == PlayerSaveData.Character.FireWizard ||
-			gameManager.coins >= FireWizardUnlockCost)
+		// If no character selected yet (new game) — Fire Wizard is free to pick
+		// If already have a character — other one costs 500 coins
+		if (saveData.selectedCharacter == PlayerSaveData.Character.None)
+			characterOptionButton.AddItem("Fire Wizard");
+		else if (saveData.selectedCharacter == PlayerSaveData.Character.FireWizard)
 			characterOptionButton.AddItem("Fire Wizard");
 		else
 			characterOptionButton.AddItem("Fire Wizard (500 coins to unlock)");
@@ -100,15 +102,18 @@ public partial class CharacterSelect : Control
 		levelPreviewTexture.Texture = null;
 
 		// Show lock warning
-		bool isFireWizard     = selectedCharacter.Contains("Fire Wizard");
-		bool fireWizardOwned  = saveData.selectedCharacter == PlayerSaveData.Character.FireWizard
-								|| saveData.selectedCharacter == PlayerSaveData.Character.None;
-		bool canAfford        = gameManager.coins >= FireWizardUnlockCost;
+		bool isFireWizard = selectedCharacter.Contains("Fire Wizard");
+		bool isIceWizard  = selectedCharacter.Contains("Ice Wizard");
+		bool canAfford    = gameManager.coins >= FireWizardUnlockCost;
 
 		if (isFireWizard && saveData.selectedCharacter == PlayerSaveData.Character.IceWizard && !canAfford)
 			lockLabel.Text = "Not enough coins! Fire Wizard costs 500 coins.";
 		else if (isFireWizard && saveData.selectedCharacter == PlayerSaveData.Character.IceWizard && canAfford)
 			lockLabel.Text = "Selecting Fire Wizard will cost 500 coins.";
+		else if (isIceWizard && saveData.selectedCharacter == PlayerSaveData.Character.FireWizard && !canAfford)
+			lockLabel.Text = "Not enough coins! Ice Wizard costs 500 coins.";
+		else if (isIceWizard && saveData.selectedCharacter == PlayerSaveData.Character.FireWizard && canAfford)
+			lockLabel.Text = "Selecting Ice Wizard will cost 500 coins.";
 		else
 			lockLabel.Text = "";
 	}
