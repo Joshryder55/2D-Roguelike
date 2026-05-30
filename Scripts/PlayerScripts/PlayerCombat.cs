@@ -38,7 +38,7 @@ public partial class PlayerCombat : Node {
 		CharacterBody2D nearestEnemy = FindNearestEnemy();
 		if (nearestEnemy == null) return;
 
-		GetNode<SoundManager>("/root/SoundManager").PlaySfx("IceCast");
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("IceBolt");
 
 		Vector2 mainDirection = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
 		
