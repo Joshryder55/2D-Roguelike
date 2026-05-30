@@ -25,8 +25,9 @@ public partial class SoundManager : Node
 		{ "GameOver",    new SfxDef { Path = "res://Assets/Audio/gameover.mp3" } },
 		{ "LevelUp",     new SfxDef { Path = "res://Assets/Audio/LevelUp.mp3" } },
 		{ "XPCollect",   new SfxDef { Path = "res://Assets/Audio/XPCollect.mp3" } },
-		{ "IceCast",     new SfxDef { Path = "res://Assets/Audio/IceCast.ogg", Bus = "Attacks", Pitch = 1.45f } },
+		{ "IceBolt",     new SfxDef { Path = "res://Assets/Audio/IceBolt.ogg", Bus = "Attacks", Pitch = 1.45f } },
 		{ "EnemyFreeze", new SfxDef { Path = "res://Assets/Audio/EnemyFreeze.ogg", Bus = "Attacks" } },
+		{ "IceSpike",    new SfxDef { Path = "res://Assets/Audio/IceSpike.ogg", Bus = "Attacks" } },
 	};
 
 	private readonly Dictionary<string, AudioStream> streams = new();
