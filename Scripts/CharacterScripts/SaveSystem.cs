@@ -10,6 +10,7 @@ using Godot;
 public partial class SaveSystem : Node
 {
 	private const string SavePath = "user://savegame.json";
+	private bool hasLoaded = false;
 
 	public static SaveSystem Instance { get; private set; }
 
@@ -160,6 +161,11 @@ public partial class SaveSystem : Node
 
 	public void Load()
 	{
+		// Only load once per session — prevents overwriting in-memory data
+		// when returning to the main menu from a run
+		if (hasLoaded) return;
+		hasLoaded = true;
+
 		if (!FileAccess.FileExists(SavePath))
 		{
 			GD.Print("No save file found, starting fresh.");
@@ -382,6 +388,7 @@ public partial class SaveSystem : Node
 		data.cauterizeChanceLevel = 0; data.cauterizeHealAmountLevel = 0;
 
 		DeleteSave();
+		hasLoaded = false; // Allow fresh load after new game
 		GD.Print("Game fully reset.");
 	}
 }
