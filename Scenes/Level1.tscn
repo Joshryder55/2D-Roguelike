@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4dcurgwnx7lk"]
 
-[ext_resource type="PackedScene" uid="uid://7h5q2l83v4ay" path="res://Scenes/Characters/IceWizard.tscn" id="1_kylad"]
+[ext_resource type="Script" uid="uid://cxqu00isctxdw" path="res://Scripts/CharacterScripts/LevelManager.cs" id="1_ulvkb"]
 [ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyScripts/EnemyManager.cs" id="3_jghel"]
 [ext_resource type="PackedScene" uid="uid://cgbuxstw7koox" path="res://Scenes/Enemies/BasicZombie.tscn" id="4_jghel"]
 [ext_resource type="Script" uid="uid://dath44j1xl7jy" path="res://Scripts/PlayerScripts/HealthBar.cs" id="4_slnnj"]
@@ -153,13 +153,14 @@ cell_size = 20.0
 size = Vector2(316, 112)
 
 [node name="Level1" type="Node2D" unique_id=1451598271]
+script = ExtResource("1_ulvkb")
 
-[node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_kylad")]
-position = Vector2(387, 216)
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=85650827]
+position = Vector2(387, 0)
 
 [node name="EnemyManager" type="Node" parent="." unique_id=1219055535 node_paths=PackedStringArray("Player")]
 script = ExtResource("3_jghel")
-Player = NodePath("../IceWizard")
+Player = NodePath("")
 EnemyScenes = Array[PackedScene]([ExtResource("4_jghel"), ExtResource("4_t3or0"), ExtResource("5_jgorv"), ExtResource("6_q1ws5")])
 BossScene = ExtResource("7_fh0sh")
 

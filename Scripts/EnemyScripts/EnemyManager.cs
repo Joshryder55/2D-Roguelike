@@ -34,7 +34,12 @@ public partial class EnemyManager : Node {
 		spawnTimer.Timeout += SpawnEnemy;
 		AddChild(spawnTimer);
 		spawnTimer.Start();
+<<<<<<< HEAD
 		SpawnEnemy();
+=======
+
+		//SpawnEnemy();
+>>>>>>> 8f79d53 (Character select implemented)
 	}
 
 	public override void _Process(double delta) {
@@ -87,6 +92,7 @@ public partial class EnemyManager : Node {
 	}
 
 	private Vector2 GetRandomSpawnPosition() {
+		if (Player == null) return Vector2.Zero;
 		Vector2 cameraPos = Player.GetNode<Camera2D>("Camera2D").GlobalPosition;
 		float offset = 600.0f;
 		int side = random.Next(4);
@@ -98,8 +104,9 @@ public partial class EnemyManager : Node {
 		};
 	}
 
-	private void SpawnEnemy() {
+	public void SpawnEnemy() {
 		if (gameManager.isDead) return;
+		if (Player == null) return;
 		if (GetTree().GetNodesInGroup("enemies").Count >= maxEnemies) return;
 
 		int index = random.Next(EnemyScenes.Length);
