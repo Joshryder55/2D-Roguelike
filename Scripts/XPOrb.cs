@@ -35,6 +35,7 @@ public partial class XPOrb : Area2D
 	void OnBodyEntered(Node2D body)
 	{
 		if (!body.IsInGroup("player")) return;
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("XPCollect");
 		gameManager.AddXP(xpValue);
 		QueueFree();
 	}

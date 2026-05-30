@@ -95,6 +95,8 @@ public partial class GameManager : Node
 		xp -= xpToNextLevel;
 		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f); // Each level requires 25% more XP than the previous - Can adjust as needed for balancing
 
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("LevelUp", true);
+
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		if (player != null)
 		{

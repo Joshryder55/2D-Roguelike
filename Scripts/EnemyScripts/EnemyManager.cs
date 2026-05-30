@@ -25,6 +25,10 @@ public partial class EnemyManager : Node {
 
 	public override void _Ready() {
 		gameManager = GetNode<GameManager>("/root/GameManager");
+
+		// Start this level's music
+		GetNode<MusicManager>("/root/MusicManager").PlayLevelMusic(GetTree().CurrentScene.SceneFilePath);
+
 		spawnTimer = new Timer();
 		spawnTimer.WaitTime = spawnInterval;
 		spawnTimer.Timeout += SpawnEnemy;
