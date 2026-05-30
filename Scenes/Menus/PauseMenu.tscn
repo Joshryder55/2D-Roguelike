@@ -30,6 +30,10 @@ text = "Paused"
 layout_mode = 2
 text = "Resume"
 
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
 [node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2090468906]
 layout_mode = 2
 text = "Main Menu"
@@ -37,3 +41,53 @@ text = "Main Menu"
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1256744309]
 layout_mode = 2
 text = "Quit"
+
+[node name="OptionsPanel" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="OptionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="MusicLabel" type="Label" parent="OptionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 100.0
+value = 75.0
+
+[node name="SfxLabel" type="Label" parent="OptionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="SfxSlider" type="HSlider" parent="OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+
+[node name="AttackLabel" type="Label" parent="OptionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Attack Volume"
+
+[node name="AttackSlider" type="HSlider" parent="OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+
+[node name="BackButton" type="Button" parent="OptionsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Back"

@@ -35,6 +35,8 @@ public partial class CharacterStats : Node
 
 	public virtual void TakeDamage(int amount)
 	{
+		if (gameManager.isDead) return;
+
 		// Ice Shield — chance to block incoming damage
 		IceWizardStats iceStats = this as IceWizardStats;
 		if (iceStats != null && iceStats.hasIceShield)
@@ -70,12 +72,15 @@ public partial class CharacterStats : Node
 
 		health -= amount;
 		if (health <= 0)
-			Die();
+			Die(); // fatal hit plays the game-over stinger instead of the damage sound
+		else
+			GetNode<SoundManager>("/root/SoundManager").PlaySfx("DamageTaken");
 	}
 
 	public virtual void Die()
 	{
 		gameManager.isDead = true;
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("GameOver", true);
 		GD.Print("Coins Collected: " + gameManager.coins);
 		PackedScene gameOverScene = GD.Load<PackedScene>("res://Scenes/GameOver.tscn");
 		GetTree().CurrentScene.AddChild(gameOverScene.Instantiate());
