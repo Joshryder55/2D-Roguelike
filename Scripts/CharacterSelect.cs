@@ -106,33 +106,41 @@ public partial class CharacterSelect : Control
 	}
 
 	private void OnConfirmPressed()
-	{
-		string selectedCharacter = characterOptionButton.GetItemText(characterOptionButton.Selected);
-		string selectedLevel = levelOptionButton.GetItemText(levelOptionButton.Selected);
+{
+	string selectedCharacter = characterOptionButton.GetItemText(characterOptionButton.Selected);
+	string selectedLevel = levelOptionButton.GetItemText(levelOptionButton.Selected);
+	GD.Print("Selected character: " + selectedCharacter);
+	GD.Print("Selected level: " + selectedLevel);
 
-		GD.Print("Selected character: " + selectedCharacter);
-		GD.Print("Selected level: " + selectedLevel);
-	  
 	GetNode<MusicManager>("/root/MusicManager").StopMenuMusic();
-	
-		switch (selectedLevel)
-		{
-			case "Level 1":
-				gameManager.currentLevel = "res://Scenes/Level1.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
-				break;
-			case "Level 2":
-				gameManager.currentLevel = "res://Scenes/Level2.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
-				break;
-			case "Level 3":
-				gameManager.currentLevel = "res://Scenes/Level3.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
-				break;
-		}
-		
-		
+
+	// Set selected character in save data
+	PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
+	switch (selectedCharacter) {
+		case "Ice Wizard":
+			saveData.selectedCharacter = PlayerSaveData.Character.IceWizard;
+			break;
+		case "Fire Wizard":
+			saveData.selectedCharacter = PlayerSaveData.Character.FireWizard;
+			break;
 	}
+
+	switch (selectedLevel)
+	{
+		case "Level 1":
+			gameManager.currentLevel = "res://Scenes/Level1.tscn";
+			GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
+			break;
+		case "Level 2":
+			gameManager.currentLevel = "res://Scenes/Level2.tscn";
+			GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
+			break;
+		case "Level 3":
+			gameManager.currentLevel = "res://Scenes/Level3.tscn";
+			GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
+			break;
+	}
+}
 
 	private void OnBackPressed()
 	{

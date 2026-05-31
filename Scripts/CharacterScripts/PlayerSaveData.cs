@@ -3,7 +3,8 @@ using Godot;
 public partial class PlayerSaveData : Node
 {
 	public IceWizardStats.UltimateAbility activeUltimate = IceWizardStats.UltimateAbility.None;
-
+	public enum Character { IceWizard, FireWizard }
+	public Character selectedCharacter = Character.IceWizard;
 	// Ability unlocks
 	
 	public bool hasCompletedLevel1 = false;
