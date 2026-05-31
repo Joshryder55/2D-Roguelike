@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dvu3edoi21dls"]
 
 [ext_resource type="Texture2D" uid="uid://5uqdo2rn06cj" path="res://Assets/Level3.png" id="1_dl4b5"]
+[ext_resource type="PackedScene" uid="uid://dl5pqrepsj5wa" path="res://Scenes/Enemies/CorruptedKing.tscn" id="1_xxw0v"]
 [ext_resource type="Texture2D" uid="uid://diwsah6kra261" path="res://Assets/Level3Outline.png" id="2_ktnig"]
 [ext_resource type="PackedScene" uid="uid://7h5q2l83v4ay" path="res://Scenes/Characters/IceWizard.tscn" id="2_t5kwq"]
 [ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyScripts/EnemyManager.cs" id="3_ms3ee"]
@@ -59,6 +60,11 @@ size = Vector2(1317, 27)
 size = Vector2(1320, 27)
 
 [node name="Level3" type="Node2D" unique_id=1311407759]
+
+[node name="CorruptedKing" parent="." unique_id=887774497 instance=ExtResource("1_xxw0v")]
+z_index = 1
+position = Vector2(544, -280)
+scale = Vector2(0.56950676, 0.65291274)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2024860277]
 
