@@ -1,65 +1,141 @@
 [gd_scene format=3 uid="uid://b0jcarluh8kxx"]
 
 [ext_resource type="Script" uid="uid://cjdaqlb52rtnb" path="res://Scripts/PlayerAttackScripts/Blizzard.cs" id="1_grqat"]
-[ext_resource type="Texture2D" uid="uid://ku2caomp6ros" path="res://Assets/FrostNova1.png" id="2_1dixn"]
-[ext_resource type="Texture2D" uid="uid://h4kd3ak4ihkv" path="res://Assets/FrostNova2.png" id="3_o8blp"]
-[ext_resource type="Texture2D" uid="uid://crvcv3j0xmble" path="res://Assets/FrostNova3.png" id="4_7a6s7"]
-[ext_resource type="Texture2D" uid="uid://dhyp24nwdqbl8" path="res://Assets/FrostNova4.png" id="5_ic8y0"]
-[ext_resource type="Texture2D" uid="uid://bd1qwdic6uxbv" path="res://Assets/FrostNova5.png" id="6_vwfa8"]
-[ext_resource type="Texture2D" uid="uid://cubpsdt11637g" path="res://Assets/FrostNova6.png" id="7_f5ef7"]
-[ext_resource type="Texture2D" uid="uid://crc7sr2ybcfv5" path="res://Assets/FrostNova7.png" id="8_87s6q"]
-[ext_resource type="Texture2D" uid="uid://bbb4bo5jkog26" path="res://Assets/FrostNova8.png" id="9_ifkim"]
-[ext_resource type="Texture2D" uid="uid://cjg4aq1veleed" path="res://Assets/FrostNova9.png" id="10_8mixu"]
-[ext_resource type="Texture2D" uid="uid://pkinqv74u70y" path="res://Assets/FrostNova10.png" id="11_wmhqs"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rfl25"]
-radius = 150.0
+[ext_resource type="Texture2D" uid="uid://dnrl1ptqnknx8" path="res://Assets/Blizzard1.png" id="2_2v1kh"]
+[ext_resource type="Texture2D" uid="uid://ckd1g5c6hjngo" path="res://Assets/Blizzard2.png" id="3_4u7ex"]
+[ext_resource type="Texture2D" uid="uid://4txjohr5psp1" path="res://Assets/Blizzard3.png" id="4_iukrc"]
+[ext_resource type="Texture2D" uid="uid://mklwe2wkj5o2" path="res://Assets/Blizzard4.png" id="5_1dixn"]
+[ext_resource type="Texture2D" uid="uid://de0vq588mcxi5" path="res://Assets/Blizzard5.png" id="6_o8blp"]
+[ext_resource type="Texture2D" uid="uid://cnaji5kx5cq0" path="res://Assets/Blizzard6.png" id="7_7a6s7"]
+[ext_resource type="Texture2D" uid="uid://cwdivmo3ie5ih" path="res://Assets/Blizzard7.png" id="8_ic8y0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_grqat"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1dixn")
+"texture": ExtResource("2_2v1kh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_o8blp")
+"texture": ExtResource("3_4u7ex")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_7a6s7")
+"texture": ExtResource("4_iukrc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ic8y0")
+"texture": ExtResource("5_1dixn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_vwfa8")
+"texture": ExtResource("6_o8blp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_f5ef7")
+"texture": ExtResource("7_7a6s7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_87s6q")
+"texture": ExtResource("8_ic8y0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_ifkim")
+"texture": ExtResource("6_o8blp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_8mixu")
+"texture": ExtResource("7_7a6s7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_wmhqs")
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ic8y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o8blp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7a6s7")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfl25"]
+radius = 150.0
 
 [node name="Blizzard" type="Area2D" unique_id=1672584029]
 collision_layer = 16
 collision_mask = 34
 script = ExtResource("1_grqat")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2116589897]
+sprite_frames = SubResource("SpriteFrames_grqat")
+frame_progress = 0.68587786
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2146378517]
 shape = SubResource("CircleShape2D_rfl25")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=2116589897]
-sprite_frames = SubResource("SpriteFrames_grqat")

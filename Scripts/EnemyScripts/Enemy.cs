@@ -18,7 +18,7 @@ Area2D damageArea;
 Timer damageTimer;
 
 public virtual bool immuneToAilments { get; set; } = false;
-
+public bool killedByUltimate = false;
 public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
 
@@ -33,13 +33,18 @@ public override void _Ready() {
 	navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 	gameManager = GetNode<GameManager>("/root/GameManager");
 	
-	characterStats = GetTree().GetFirstNodeInGroup("player").GetNode<CharacterStats>("Stats");
+	var playerNode = GetTree().GetFirstNodeInGroup("player");
+	if (playerNode != null)
+		characterStats = playerNode.GetNode<CharacterStats>("Stats");
 
 	damageArea = GetNode<Area2D>("HitDetection");
 	damageArea.BodyEntered += OnBodyEntered;
 	damageArea.BodyExited += OnBodyExited;
 
+	if (sprite.SpriteFrames.HasAnimation("Walking"))
 	sprite.Play("Walking");
+	else
+	sprite.Play("Still");
 	
 	damageTimer = new Timer();
 	damageTimer.WaitTime = 0.5f;
@@ -65,6 +70,12 @@ private void OnBodyExited(Node2D body) {
 }
 
 private void DealDamage() {
+	if (characterStats == null) {
+		var playerNode = GetTree().GetFirstNodeInGroup("player");
+		if (playerNode != null)
+			characterStats = playerNode.GetNode<CharacterStats>("Stats");
+		else return;
+	}
 	characterStats.TakeDamage(contactDamage);
 }
 

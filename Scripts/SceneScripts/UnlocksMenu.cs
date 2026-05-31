@@ -76,22 +76,29 @@ public partial class UnlocksMenu : Control
 	private Dictionary<string, int> skillCosts = new Dictionary<string, int>();
 
 	private static readonly System.Collections.Generic.HashSet<string> escalatingCostSkills =
-		new System.Collections.Generic.HashSet<string> { 
-			// Core Stats
-			"Move Speed", "Attack Speed", "Health", "Damage", 
-			
-			// Ultimate Modifiers
-			
-			// Frost Nova upgrades
-			"Frost Nova Damage", "Frost Nova Radius", "Frost Nova Freeze Duration",
-			// Ice Spike upgrades
-			"Ice Spike Damage", "Ice Spike Freeze Duration", "Ice Spike Size",
-			// Multishot upgrades
-			"Multishot Count", "Multishot Chance",
-			// Chance to Freeze upgrades
-			"Freeze Chance", "Freeze Duration"
+	new System.Collections.Generic.HashSet<string> { 
+		// Core Stats
+		"Move Speed", "Attack Speed", "Health", "Damage", 
 		
-		};
+		// Blizzard upgrades
+		"Blizzard Duration", "Blizzard Size", "Blizzard Chill",
+		// Flash Freeze upgrades
+		"Flash Freeze Duration", "Flash Freeze Shatter", "Flash Freeze Glacial",
+		// Frost Nova upgrades
+		"Frost Nova Damage", "Frost Nova Radius", "Frost Nova Freeze Duration",
+		// Ice Spike upgrades
+		"Ice Spike Damage", "Ice Spike Freeze Duration", "Ice Spike Size",
+		// Permafrost upgrades
+		"Permafrost Radius", "Permafrost Chill",
+		// Brittle upgrades
+		"Brittle Bonus Damage",
+		// Ice Shield upgrades
+		"Ice Shield Block Chance",
+		// Multishot upgrades
+		"Multishot Count", "Multishot Chance",
+		// Chance to Freeze upgrades
+		"Freeze Chance", "Freeze Duration"
+	};
 
 	private int getActualCost(string skillName)
 	{

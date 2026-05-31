@@ -19,7 +19,6 @@ public partial class IceWizardAbilities : Node
 
 	public override void _Process(double delta)
 	{
-		// Permafrost passive — runs every frame
 		if (iceStats.hasPermafrost)
 			ApplyPermafrost();
 
@@ -28,19 +27,24 @@ public partial class IceWizardAbilities : Node
 			if (iceStats.activeUltimate != IceWizardStats.UltimateAbility.None &&
 				iceStats.ultimateCharge >= iceStats.GetUltimateChargeRequired())
 			{
-				GD.Print("Setting ultimateIsActive to true");
-				gameManager.ultimateIsActive = true;
-
 				switch (iceStats.activeUltimate)
 				{
 					case IceWizardStats.UltimateAbility.FrostNova:
-						if (iceStats.hasFrostNova) FireFrostNova();
+						if (iceStats.hasFrostNova) {
+							gameManager.ultimateIsActive = true;
+							FireFrostNova();
+						}
 						break;
 					case IceWizardStats.UltimateAbility.IceSpike:
-						if (iceStats.hasIceSpike) FireIceSpike();
+						if (iceStats.hasIceSpike) {
+							FireIceSpikeWithDelay();
+						}
 						break;
 					case IceWizardStats.UltimateAbility.Blizzard:
-						if (iceStats.hasBlizzard) FireBlizzard();
+						if (iceStats.hasBlizzard) {
+							gameManager.ultimateIsActive = true;
+							FireBlizzard();
+						}
 						break;
 					case IceWizardStats.UltimateAbility.FlashFreeze:
 						if (iceStats.hasFlashFreeze) FireFlashFreeze();
@@ -60,6 +64,16 @@ public partial class IceWizardAbilities : Node
 		frostNova.iceStats = iceStats;
 		frostNova.GlobalPosition = player.GlobalPosition;
 		GetTree().CurrentScene.AddChild(frostNova);
+	}
+
+	public async void FireIceSpikeWithDelay()
+	{
+		gameManager.ultimateIsActive = true;
+		FireIceSpike();
+
+		// Keep ultimateIsActive true for 3 seconds to cover spike travel time
+		await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
+		gameManager.ultimateIsActive = false;
 	}
 
 	public void FireIceSpike()
@@ -91,7 +105,7 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
-			if (enemy.immuneToAilments) continue; // skip bosses
+			if (enemy.immuneToAilments) continue;
 
 			float originalSpeed = enemy.baseSpeed;
 			enemy.speed = 0;
@@ -146,19 +160,17 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
-			if (enemy.immuneToAilments) continue; // skip bosses
+			if (enemy.immuneToAilments) continue;
 
 			float dist = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
 
 			if (dist <= iceStats.permafrostRadius)
 			{
-				// Only slow if not already frozen
 				if (enemy.currentStatus == Enemy.StatusEffect.None)
 					enemy.speed = Mathf.MoveToward(enemy.speed, enemy.baseSpeed * iceStats.permafrostSlowFactor, 50f);
 			}
 			else
 			{
-				// Outside aura — restore speed gradually
 				if (enemy.currentStatus == Enemy.StatusEffect.None)
 					enemy.speed = Mathf.MoveToward(enemy.speed, enemy.baseSpeed, 50f);
 			}
