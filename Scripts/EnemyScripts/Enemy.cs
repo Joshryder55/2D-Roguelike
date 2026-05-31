@@ -1,13 +1,19 @@
 using Godot;
 using System;
+
 public partial class Enemy : CharacterBody2D
 {
 	
 public AnimatedSprite2D sprite;
+
 public CharacterBody2D Player;	
+
 CharacterStats characterStats;
+
 protected GameManager gameManager;
+
 NavigationAgent2D navAgent;
+
 Area2D damageArea;
 Timer damageTimer;
 
@@ -15,23 +21,24 @@ public virtual bool immuneToAilments { get; set; } = false;
 
 public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
+
 public virtual float speed { get; set; } = 50;
 public float baseSpeed;
 public virtual int contactDamage { get; set; } = 6;
+
+
 public override void _Ready() {
 	
 	sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 	gameManager = GetNode<GameManager>("/root/GameManager");
 	
-	// Player may not be spawned yet — try to get stats, will retry in DealDamage if null
-	var playerNode = GetTree().GetFirstNodeInGroup("player");
-	if (playerNode != null)
-		characterStats = playerNode.GetNode<CharacterStats>("Stats");
+	characterStats = GetTree().GetFirstNodeInGroup("player").GetNode<CharacterStats>("Stats");
 
 	damageArea = GetNode<Area2D>("HitDetection");
 	damageArea.BodyEntered += OnBodyEntered;
 	damageArea.BodyExited += OnBodyExited;
+
 	sprite.Play("Walking");
 	
 	damageTimer = new Timer();
@@ -44,26 +51,24 @@ public override void _Ready() {
 	contactDamage  = Mathf.RoundToInt(contactDamage * gameManager.GetEnemyDamageMultiplier());
 	baseSpeed      = speed;
 }
+
 private void OnBodyEntered(Node2D body) {
 	if (body.IsInGroup("player")) {
 		damageTimer.Start();
 	}
 }
+
 private void OnBodyExited(Node2D body) {
 	if (body.IsInGroup("player")) {
 		damageTimer.Stop();
 	}
 }
+
 private void DealDamage() {
-	// Retry finding player stats if not found during _Ready
-	if (characterStats == null) {
-		var playerNode = GetTree().GetFirstNodeInGroup("player");
-		if (playerNode != null)
-			characterStats = playerNode.GetNode<CharacterStats>("Stats");
-		else return;
-	}
 	characterStats.TakeDamage(contactDamage);
 }
+
+
 public override void _PhysicsProcess(double delta) {
 	if (Player == null) return;
 	
@@ -72,14 +77,17 @@ public override void _PhysicsProcess(double delta) {
 		sprite.Play("Still");
 		return;
 	}
+
 	Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
 	Velocity = direction * speed;
 	MoveAndSlide();
+
 	if (Player.GlobalPosition.X < GlobalPosition.X) {
 		sprite.FlipH = true;
 	} else {
 		sprite.FlipH = false;
 	}
+
 	if (currentStatus == StatusEffect.None) {
 		if (Velocity.Length() > 0) {
 			sprite.Play("Walking");
@@ -88,6 +96,8 @@ public override void _PhysicsProcess(double delta) {
 		}
 	}
 }
+
+
 //My shitty attempt at better pathfinding, literally cannot figure it tf out
 //public override void _PhysicsProcess(double delta) {
 	//if (Player == null) return;
@@ -126,4 +136,6 @@ public override void _PhysicsProcess(double delta) {
 		//}
 	//}
 //}
+
+
 }

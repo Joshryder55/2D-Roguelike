@@ -223,7 +223,7 @@ public partial class UnlocksMenu : Control
 		debugButton.OffsetTop = -40;
 		debugButton.OffsetRight = 0;
 		debugButton.OffsetBottom = 0;
-		debugButton.Pressed += () => { gameManager.coins += 1000; UpdateAllButtonText(); GetNode<SaveSystem>("/root/SaveSystem").Save(); };
+		debugButton.Pressed += () => { gameManager.coins += 1000; UpdateAllButtonText(); };
 		AddChild(debugButton);
 	}
 
@@ -360,7 +360,6 @@ public partial class UnlocksMenu : Control
 		gameManager.coins -= cost;
 		skillLevels[skillName]++;
 		ApplySkillEffect(skillName);
-		GetNode<SaveSystem>("/root/SaveSystem").Save();
 		UpdateAllButtonText();
 		ShowSkillDescription(skillName);
 	}

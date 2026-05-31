@@ -48,7 +48,6 @@ public partial class EnemyHealth : Node
 		CharacterStats stats = player.GetNode<CharacterStats>("Stats");
 		IceWizardStats iceStats = stats as IceWizardStats;
 
-		GD.Print("ultimateIsActive: " + gameManager.ultimateIsActive + " | charge: " + stats.ultimateCharge);
 		if (!gameManager.ultimateIsActive)
 			stats.ultimateCharge++;
 
