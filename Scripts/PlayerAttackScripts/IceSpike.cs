@@ -26,47 +26,47 @@ public partial class IceSpike : Projectile
 		}
 	}
 
-protected override void OnBodyEntered(Node2D body) {
-		if (body is CharacterBody2D) {
-			//Instantiating object of enemyHealth
-			EnemyHealth enemyHealth = body.GetNode<EnemyHealth>("EnemyHealth");
-			
-			if (enemyHealth != null){
-				enemyHealth.TakeDamage(damage);
-			}
-				
+		protected override void OnBodyEntered(Node2D body) {
+			if (body is CharacterBody2D) {
+				EnemyHealth enemyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
+
 				Enemy enemy = body as Enemy;
-					if (enemy != null && !enemy.immuneToAilments && !enemy.IsQueuedForDeletion()) {
+				if (enemy != null) {
+					enemy.killedByUltimate = true; // set BEFORE TakeDamage
+				}
 
-						float originalSpeed = enemy.speed;
+				if (enemyHealth != null) {
+					enemyHealth.TakeDamage(damage);
+				}
 
-						enemy.speed = 0;
-						enemy.currentStatus = Enemy.StatusEffect.Frozen;
-						enemy.sprite.Play("Frozen");
+				if (enemy != null && !enemy.immuneToAilments && !enemy.IsQueuedForDeletion()) {
+					float originalSpeed = enemy.speed;
+					enemy.speed = 0;
+					enemy.currentStatus = Enemy.StatusEffect.Frozen;
+					enemy.sprite.Play("Frozen");
 
-						SoundManager sound = GetNode<SoundManager>("/root/SoundManager");
-						SceneTreeTimer freezeSoundDelay = GetTree().CreateTimer(0.08f);
-						freezeSoundDelay.Timeout += () => {
-							if (IsInstanceValid(enemy) && !enemy.IsQueuedForDeletion())
-								sound.PlaySfx("EnemyFreeze");
-						};
-						
-						Timer freezeTimer = new Timer();
-						freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
-						freezeTimer.OneShot = true;
-						
-							freezeTimer.Timeout += () => {
-								enemy.speed = originalSpeed;
-								enemy.sprite.Play("Walking");
-								enemy.currentStatus = Enemy.StatusEffect.None;
-								freezeTimer.QueueFree();
-							};
-						enemy.AddChild(freezeTimer);
-						freezeTimer.Start();
-						
-						}
+					SoundManager sound = GetNode<SoundManager>("/root/SoundManager");
+					SceneTreeTimer freezeSoundDelay = GetTree().CreateTimer(0.08f);
+					freezeSoundDelay.Timeout += () => {
+						if (IsInstanceValid(enemy) && !enemy.IsQueuedForDeletion())
+							sound.PlaySfx("EnemyFreeze");
+					};
+
+					Timer freezeTimer = new Timer();
+					freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
+					freezeTimer.OneShot = true;
+					freezeTimer.Timeout += () => {
+						enemy.speed = originalSpeed;
+						enemy.sprite.Play("Walking");
+						enemy.currentStatus = Enemy.StatusEffect.None;
+						enemy.killedByUltimate = false;
+						freezeTimer.QueueFree();
+					};
+					enemy.AddChild(freezeTimer);
+					freezeTimer.Start();
+				}
 			}
-}
+		}
 
 
 

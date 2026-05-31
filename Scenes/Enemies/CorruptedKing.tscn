@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://dl5pqrepsj5wa"]
+
+[ext_resource type="Script" uid="uid://csj15bs275ot7" path="res://Scripts/EnemyTypeScripts/MadKing/MadKing.cs" id="1_61n0j"]
+[ext_resource type="Texture2D" uid="uid://g2hmfhtxsjio" path="res://Assets/CorruptedKingStill.png" id="2_bd6nu"]
+[ext_resource type="PackedScene" uid="uid://cmi2jy5sy5dvm" path="res://Scenes/Enemies/CorruptedSkeleton.tscn" id="2_y2r5e"]
+[ext_resource type="PackedScene" uid="uid://b8ldaq5stuib7" path="res://Scenes/RangedAttacks/CorruptionArrow.tscn" id="3_38276"]
+[ext_resource type="Texture2D" uid="uid://creffpaxlfeaw" path="res://Assets/CorruptedKingRaise1.png" id="3_y2r5e"]
+[ext_resource type="Texture2D" uid="uid://baaolgeqnifyb" path="res://Assets/CorruptedKingRaise2.png" id="4_38276"]
+[ext_resource type="Texture2D" uid="uid://becea0sjpabhv" path="res://Assets/CorruptedKingRaise3.png" id="5_ecc1s"]
+[ext_resource type="Texture2D" uid="uid://cpwtqwl6fewjs" path="res://Assets/CorruptedKingshoot1.png" id="6_hx367"]
+[ext_resource type="Texture2D" uid="uid://baq508d3j7x0c" path="res://Assets/CorruptedKingRaise4.png" id="7_alp10"]
+[ext_resource type="Texture2D" uid="uid://dskrlmopdqtgd" path="res://Assets/CorruptedKingRaise5.png" id="8_vp2u0"]
+[ext_resource type="Texture2D" uid="uid://dxlx5gdjp2gb8" path="res://Assets/CorruptedKingRaise6.png" id="9_ijeit"]
+[ext_resource type="Script" uid="uid://cbrdl57f1xfn7" path="res://Scripts/EnemyTypeScripts/MadKing/MadKingHealth.cs" id="10_k2jhg"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="11_sj1ek"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_agyy4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bd6nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y2r5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38276")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ecc1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hx367")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38276")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y2r5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bd6nu")
+}],
+"loop": false,
+"name": &"Cast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bd6nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y2r5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38276")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ecc1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_alp10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vp2u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ijeit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ijeit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ijeit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vp2u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_alp10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ecc1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38276")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y2r5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bd6nu")
+}],
+"loop": false,
+"name": &"Raise",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bd6nu")
+}],
+"loop": false,
+"name": &"Still",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksyxu"]
+size = Vector2(224, 256)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpndq"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esxji"]
+size = Vector2(223, 256)
+
+[node name="CorruptedKing" type="CharacterBody2D" unique_id=887774497 groups=["boss"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_61n0j")
+MinionScene = ExtResource("2_y2r5e")
+ProjectileScene = ExtResource("3_38276")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1610483100]
+sprite_frames = SubResource("SpriteFrames_agyy4")
+animation = &"Still"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1599781997]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ksyxu")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=1299047561]
+script = ExtResource("10_k2jhg")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=158615894]
+custom_minimum_size = Vector2(0, 5)
+offset_left = -90.0
+offset_top = -88.000015
+offset_right = 854.9999
+offset_bottom = -61.000015
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_bpndq")
+show_percentage = false
+script = ExtResource("11_sj1ek")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1532453842]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1262984894]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_esxji")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=895585306]

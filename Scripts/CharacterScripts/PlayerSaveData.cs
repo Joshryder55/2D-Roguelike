@@ -8,6 +8,7 @@ public partial class PlayerSaveData : Node
 	
 	public bool hasCompletedLevel1 = false;
 	public bool hasCompletedLevel2 = false;
+	public bool hasCompletedLevel3 = false;
 	
 	// Ice Wizard unlocks
 	public bool hasMultiShot = false;
