@@ -10,7 +10,7 @@ public partial class CharacterStats : Node
 	public virtual float range { get; set; } = 500.0f;
 	public virtual float playerSpeed { get; set; } = 100;
 	public virtual int damageBonus { get; set; } = 0;
-	public virtual int ultimateCharge { get; set; } = 100;
+	public virtual int ultimateCharge { get; set; } = 0;
 	
 	public virtual int GetUltimateChargeRequired() { return int.MaxValue; }
 

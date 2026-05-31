@@ -49,23 +49,16 @@ public partial class CharacterSelect : Control
 
 	private void SetupLevelOptions()
 	{
-		levelOptionButton.Clear();
+	PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
 
-		levelOptionButton.AddItem("Level 1");
-		
-		// TODO: Unlock Level 2 after beating Level 1
-		// Uncomment when unlock system is ready:
-		// PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
-		// if (saveData.hasCompletedLevel1)
-		// {
-		//     levelOptionButton.AddItem("Level 2");
-		// }
+	levelOptionButton.Clear();
+	levelOptionButton.AddItem("Level 1");
 
-
-		// For now add Level 2 & 3 always for testing
+	if (saveData.hasCompletedLevel1)
 		levelOptionButton.AddItem("Level 2");
+
+	if (saveData.hasCompletedLevel2)
 		levelOptionButton.AddItem("Level 3");
-		
 	}
 
 	private void OnCharacterSelected(long index)
