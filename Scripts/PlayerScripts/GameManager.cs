@@ -12,6 +12,8 @@ public partial class GameManager : Node
 	public int level = 1;
 	public int xpToNextLevel = 100;
 	public float gameTime = 0f;
+	
+	public string currentLevel = "res://Scenes/Level1.tscn";
 
 	public override void _Ready()
 	{
@@ -95,6 +97,8 @@ public partial class GameManager : Node
 		level++;
 		xp -= xpToNextLevel;
 		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
+
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("LevelUp", true);
 
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		if (player != null)

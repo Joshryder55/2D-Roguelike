@@ -29,13 +29,20 @@ public partial class IceBolt : Projectile
 			if (random.NextDouble() < iceStats.freezeChance) {  // 15% chance
 				
 				Enemy enemy = body as Enemy;
-					if (enemy != null) {
+					if (enemy != null && !enemy.immuneToAilments && !enemy.IsQueuedForDeletion()) {
 						
 						float originalSpeed = enemy.speed;
 						
 						enemy.speed = 0;
 						enemy.currentStatus = Enemy.StatusEffect.Frozen;
 						enemy.sprite.Play("Frozen");
+
+						SoundManager sound = GetNode<SoundManager>("/root/SoundManager");
+						SceneTreeTimer freezeSoundDelay = GetTree().CreateTimer(0.08f);
+						freezeSoundDelay.Timeout += () => {
+							if (IsInstanceValid(enemy) && !enemy.IsQueuedForDeletion())
+								sound.PlaySfx("EnemyFreeze");
+						};
 						
 						Timer freezeTimer = new Timer();
 						freezeTimer.WaitTime = iceStats.freezeDuration;

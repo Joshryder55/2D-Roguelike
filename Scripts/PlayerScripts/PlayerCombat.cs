@@ -37,6 +37,9 @@ public partial class PlayerCombat : Node
 		if (gameManager.isDead) return;
 		CharacterBody2D nearestEnemy = FindNearestEnemy();
 		if (nearestEnemy == null) return;
+
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("IceBolt");
+
 		Vector2 mainDirection = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
 
 		// Ice Wizard multishot

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bu12ckndpqa0u"]
 
 [ext_resource type="Script" uid="uid://dvtmonoi50oqm" path="res://Scripts/SceneScripts/OptionsMenu.cs" id="1_6fwcd"]
+[ext_resource type="Texture2D" uid="uid://cl1s1ifi88rqu" path="res://Assets/menubackground.jpg" id="2_bgimg"]
 
 [node name="OptionsMenu" type="Control" unique_id=1619838616]
 layout_mode = 3
@@ -10,6 +11,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6fwcd")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bgimg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1395621614]
 layout_mode = 1
@@ -26,13 +39,35 @@ layout_mode = 2
 layout_mode = 2
 text = "Options"
 
-[node name="VolumeLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1983998786]
+[node name="MusicLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+text = "Music Volume"
 
-[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer" unique_id=430113088]
+[node name="MusicSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-value = 80.0
+max_value = 100.0
+value = 75.0
+
+[node name="SfxLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="SfxSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+
+[node name="AttackLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Attack Volume"
+
+[node name="AttackSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 100.0
+value = 50.0
 
 [node name="FullscreenCheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer" unique_id=892851278]
 layout_mode = 2

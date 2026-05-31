@@ -30,6 +30,8 @@ public partial class PowerUpXPVacuum : Area2D
 	{
 		if (!body.IsInGroup("player")) return;
 
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("XPCollect");
+
 		// Vacuum up every XP orb currently on the map
 		int totalXP = 0;
 		foreach (Node node in GetTree().GetNodesInGroup("xp_orbs"))

@@ -60,7 +60,7 @@ public partial class Blizzard : Area2D
 			eh?.TakeDamage(iceStats?.frostNovaDamage / 3 ?? 5);
 
 			Enemy enemy = body as Enemy;
-			if (enemy != null && enemy.currentStatus == Enemy.StatusEffect.None)
+			if (enemy != null && !enemy.immuneToAilments && enemy.currentStatus == Enemy.StatusEffect.None)
 				enemy.speed = enemy.baseSpeed * _slowFactor;
 		}
 	}
@@ -70,7 +70,7 @@ public partial class Blizzard : Area2D
 		foreach (Node2D body in GetOverlappingBodies())
 		{
 			Enemy enemy = body as Enemy;
-			if (enemy != null && enemy.currentStatus == Enemy.StatusEffect.None)
+			if (enemy != null && !enemy.immuneToAilments && enemy.currentStatus == Enemy.StatusEffect.None)
 				enemy.speed = enemy.baseSpeed;
 		}
 	}
@@ -78,7 +78,7 @@ public partial class Blizzard : Area2D
 	private void OnBodyExited(Node2D body)
 	{
 		Enemy enemy = body as Enemy;
-		if (enemy != null && enemy.currentStatus == Enemy.StatusEffect.None)
+		if (enemy != null && !enemy.immuneToAilments && enemy.currentStatus == Enemy.StatusEffect.None)
 			enemy.speed = enemy.baseSpeed;
 	}
 }

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b76laqtpk7tjp" path="res://Scripts/SceneScripts/UnlocksMenu.cs" id="1_jtvuu"]
 [ext_resource type="Script" uid="uid://be6gpxucluiwk" path="res://Scripts/SceneScripts/SkillTreeLines.cs" id="2_65xq8"]
+[ext_resource type="Texture2D" uid="uid://cl1s1ifi88rqu" path="res://Assets/menubackground.jpg" id="3_bgimg"]
 
 [node name="UnlocksMenu" type="Control" unique_id=1124840176]
 layout_mode = 3
@@ -11,6 +12,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jtvuu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_bgimg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="TreeArea" type="Control" parent="." unique_id=1219092567]
 layout_mode = 1

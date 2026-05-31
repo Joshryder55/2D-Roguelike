@@ -67,6 +67,8 @@ public partial class IceWizardAbilities : Node
 		CharacterBody2D nearestEnemy = FindNearestEnemy();
 		if (nearestEnemy == null) return;
 
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("IceSpike");
+
 		IceSpike iceSpike = IceSpikeScene.Instantiate<IceSpike>();
 		iceSpike.characterStats = iceStats;
 		iceSpike.Direction = (nearestEnemy.GlobalPosition - player.GlobalPosition).Normalized();
@@ -89,6 +91,7 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
+			if (enemy.immuneToAilments) continue; // skip bosses
 
 			float originalSpeed = enemy.baseSpeed;
 			enemy.speed = 0;
@@ -143,6 +146,7 @@ public partial class IceWizardAbilities : Node
 			if (node is not CharacterBody2D body) continue;
 			Enemy enemy = body as Enemy;
 			if (enemy == null) continue;
+			if (enemy.immuneToAilments) continue; // skip bosses
 
 			float dist = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
 

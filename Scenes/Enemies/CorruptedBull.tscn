@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cl4ige2mjlduj"]
+
+[ext_resource type="Texture2D" uid="uid://rvyebmejp1yo" path="res://Assets/BullBossStill.png" id="1_necb7"]
+[ext_resource type="Script" uid="uid://uiwc6aq7mgu8" path="res://Scripts/EnemyTypeScripts/CorruptedBullBoss/CorruptedBull.cs" id="1_uxoav"]
+[ext_resource type="Texture2D" uid="uid://uoarv7swplkx" path="res://Assets/BullBossCharge1.png" id="2_2og6f"]
+[ext_resource type="Texture2D" uid="uid://c1d14kadh88s" path="res://Assets/BullBossCharge2.png" id="3_uxoav"]
+[ext_resource type="Texture2D" uid="uid://br0tkuagffgj7" path="res://Assets/BullBossCharge3.png" id="4_d2xa0"]
+[ext_resource type="Texture2D" uid="uid://cpb6hn6nr2erf" path="res://Assets/BullBossCharge4.png" id="5_0jxe5"]
+[ext_resource type="Texture2D" uid="uid://d1amcnhgp7kmf" path="res://Assets/BullBossStomp1.png" id="6_kk4f6"]
+[ext_resource type="Texture2D" uid="uid://djeimipluotku" path="res://Assets/BullBossStomp2.png" id="7_34hqr"]
+[ext_resource type="Texture2D" uid="uid://blbkn8wm11p3y" path="res://Assets/BullBossStomp3.png" id="8_onk1v"]
+[ext_resource type="Texture2D" uid="uid://cbnhgo644v2vb" path="res://Assets/BullBossStomp4.png" id="9_ib0rf"]
+[ext_resource type="Texture2D" uid="uid://0v6irg2lttma" path="res://Assets/BullBossWalk1.png" id="10_iyy2t"]
+[ext_resource type="Texture2D" uid="uid://ccyxq1qaos2rb" path="res://Assets/BullBossWalk2.png" id="11_1x14y"]
+[ext_resource type="Texture2D" uid="uid://btvnk8jqxph2p" path="res://Assets/BullBossWalk3.png" id="12_yjfnl"]
+[ext_resource type="Texture2D" uid="uid://c6hqsvaq4m8bs" path="res://Assets/BullBossWalk4.png" id="13_anr5f"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="14_0qbhu"]
+[ext_resource type="Script" uid="uid://exjnwtjutcea" path="res://Scripts/EnemyTypeScripts/CorruptedBullBoss/CorruptedBullHealth.cs" id="15_d2xa0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h2a3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2og6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uxoav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2og6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d2xa0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0jxe5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d2xa0")
+}],
+"loop": true,
+"name": &"Charge",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kk4f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_34hqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_onk1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ib0rf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_onk1v")
+}],
+"loop": true,
+"name": &"Stomp",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iyy2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1x14y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iyy2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_necb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yjfnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_anr5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yjfnl")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20jld"]
+size = Vector2(290, 175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgqmr"]
+size = Vector2(290, 175)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2otss"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[node name="CorruptedBull" type="CharacterBody2D" unique_id=279739556 groups=["boss", "enemies"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_uxoav")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1698372900]
+position = Vector2(4, 165)
+sprite_frames = SubResource("SpriteFrames_h2a3q")
+animation = &"Charge"
+frame = 4
+frame_progress = 0.40700114
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1890593410]
+position = Vector2(3, 15.5)
+shape = SubResource("RectangleShape2D_20jld")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=2121045808]
+script = ExtResource("15_d2xa0")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=312952878]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1587670240]
+position = Vector2(3, 15.5)
+shape = SubResource("RectangleShape2D_jgqmr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=503765432]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=670911818]
+custom_minimum_size = Vector2(0, 5)
+offset_left = -98.99999
+offset_top = -80.0
+offset_right = 845.9999
+offset_bottom = -53.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_2otss")
+show_percentage = false
+script = ExtResource("14_0qbhu")

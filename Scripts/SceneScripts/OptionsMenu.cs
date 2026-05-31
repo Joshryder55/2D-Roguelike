@@ -2,21 +2,33 @@ using Godot;
 
 public partial class OptionsMenu : Control
 {
-	private HSlider volumeSlider;
+	private HSlider musicSlider;
+	private HSlider sfxSlider;
+	private HSlider attackSlider;
 	private CheckBox fullscreenCheckBox;
 	private Button backButton;
 
+	private SoundManager soundManager;
+
 	public override void _Ready()
 	{
-		volumeSlider = GetNode<HSlider>("CenterContainer/VBoxContainer/VolumeSlider");
+		musicSlider        = GetNode<HSlider>("CenterContainer/VBoxContainer/MusicSlider");
+		sfxSlider          = GetNode<HSlider>("CenterContainer/VBoxContainer/SfxSlider");
+		attackSlider       = GetNode<HSlider>("CenterContainer/VBoxContainer/AttackSlider");
 		fullscreenCheckBox = GetNode<CheckBox>("CenterContainer/VBoxContainer/FullscreenCheckBox");
-		backButton = GetNode<Button>("CenterContainer/VBoxContainer/BackButton");
+		backButton         = GetNode<Button>("CenterContainer/VBoxContainer/BackButton");
 
-		volumeSlider.ValueChanged += OnVolumeChanged;
+		soundManager = GetNode<SoundManager>("/root/SoundManager");
+
+		musicSlider.Value  = soundManager.MusicVolume * 100f;
+		sfxSlider.Value    = soundManager.SfxVolume * 100f;
+		attackSlider.Value = soundManager.AttackVolume * 100f;
+		musicSlider.ValueChanged  += OnMusicVolumeChanged;
+		sfxSlider.ValueChanged    += OnSfxVolumeChanged;
+		attackSlider.ValueChanged += OnAttackVolumeChanged;
+
 		fullscreenCheckBox.Toggled += OnFullscreenToggled;
 		backButton.Pressed += OnBackPressed;
-
-		volumeSlider.Value = 50;
 
 		fullscreenCheckBox.ButtonPressed =
 			DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ||
@@ -25,41 +37,31 @@ public partial class OptionsMenu : Control
 		GetNode<MusicManager>("/root/MusicManager").PlayMenuMusic();
 	}
 
-	private void OnVolumeChanged(double value)
+	private void OnMusicVolumeChanged(double value)
 	{
-		float volumePercent = (float)value / 100f;
-		int masterBusIndex = AudioServer.GetBusIndex("Master");
+		soundManager.SetMusicVolume((float)value / 100f);
+	}
 
-		if (volumePercent <= 0)
-		{
-			AudioServer.SetBusMute(masterBusIndex, true);
-		}
-		else
-		{
-			AudioServer.SetBusMute(masterBusIndex, false);
-			AudioServer.SetBusVolumeDb(masterBusIndex, Mathf.LinearToDb(volumePercent));
-		}
+	private void OnSfxVolumeChanged(double value)
+	{
+		soundManager.SetSfxVolume((float)value / 100f);
+	}
 
-		GD.Print("Volume changed to: " + value);
+	private void OnAttackVolumeChanged(double value)
+	{
+		soundManager.SetAttackVolume((float)value / 100f);
 	}
 
 	private void OnFullscreenToggled(bool enabled)
 	{
-		GD.Print("Fullscreen toggled: " + enabled);
-
 		if (enabled)
-		{
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-		}
 		else
-		{
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-		}
 	}
 
 	private void OnBackPressed()
 	{
-		GD.Print("Back pressed");
 		GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
 	}
 }
