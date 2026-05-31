@@ -10,12 +10,9 @@ protected GameManager gameManager;
 NavigationAgent2D navAgent;
 Area2D damageArea;
 Timer damageTimer;
-<<<<<<< HEAD
 
 public virtual bool immuneToAilments { get; set; } = false;
 
-=======
->>>>>>> 8f79d53 (Character select implemented)
 public enum StatusEffect {None, Frozen, Burning, Poisoned}
 public StatusEffect currentStatus = StatusEffect.None;
 public virtual float speed { get; set; } = 50;

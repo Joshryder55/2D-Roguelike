@@ -77,22 +77,20 @@ size = Vector2(256, 44)
 [node name="Level2" type="Node2D" unique_id=1132902248]
 script = ExtResource("1_lt7tp")
 
-<<<<<<< HEAD
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=811683723]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=2071271091]
-=======
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1073831244]
 position = Vector2(186, 950)
 
-[node name="EnemyManager" type="Node" parent="." unique_id=1611450139]
+[node name="EnemyManager" type="Node" parent="." unique_id=1611450139 node_paths=PackedStringArray("Player")]
 script = ExtResource("2_s6bta")
+Player = NodePath("")
 EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
+BossScene = ExtResource("15_6skh4")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1605141756]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=811683723]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=2014779443]
->>>>>>> 8f79d53 (Character select implemented)
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=2071271091]
+
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,16 +164,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hud" parent="CanvasLayer" unique_id=1005367914 instance=ExtResource("8_ibolw")]
 metadata/_edit_use_anchors_ = true
-
-[node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_6cjmx")]
-y_sort_enabled = true
-position = Vector2(186, 950)
-
-[node name="EnemyManager" type="Node" parent="." unique_id=1611450139 node_paths=PackedStringArray("Player")]
-script = ExtResource("2_s6bta")
-Player = NodePath("../IceWizard")
-EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
-BossScene = ExtResource("15_6skh4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1610501412]
 z_index = -1

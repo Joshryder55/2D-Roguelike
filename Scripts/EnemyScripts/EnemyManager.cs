@@ -34,12 +34,7 @@ public partial class EnemyManager : Node {
 		spawnTimer.Timeout += SpawnEnemy;
 		AddChild(spawnTimer);
 		spawnTimer.Start();
-<<<<<<< HEAD
 		SpawnEnemy();
-=======
-
-		//SpawnEnemy();
->>>>>>> 8f79d53 (Character select implemented)
 	}
 
 	public override void _Process(double delta) {
