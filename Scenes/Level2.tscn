@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwocyqk3n1kjg"]
 
-[ext_resource type="PackedScene" uid="uid://7h5q2l83v4ay" path="res://Scenes/Characters/IceWizard.tscn" id="1_6cjmx"]
 [ext_resource type="Texture2D" uid="uid://ddosvwc4kbdly" path="res://Assets/Level2.png" id="1_llwst"]
+[ext_resource type="Script" uid="uid://cxqu00isctxdw" path="res://Scripts/CharacterScripts/LevelManager.cs" id="1_lt7tp"]
 [ext_resource type="Texture2D" uid="uid://cbk6ytnqdgdre" path="res://Assets/Vendor.png" id="2_ms0wi"]
 [ext_resource type="Script" uid="uid://cha1jx2pe8rr3" path="res://Scripts/EnemyScripts/EnemyManager.cs" id="2_s6bta"]
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="3_5awjf"]
@@ -71,10 +71,16 @@ size = Vector2(1746, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytfs1"]
 size = Vector2(1624, 45)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0way5"]
-size = Vector2(256, 44)
-
 [node name="Level2" type="Node2D" unique_id=1132902248]
+script = ExtResource("1_lt7tp")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1073831244]
+position = Vector2(186, 950)
+
+[node name="EnemyManager" type="Node" parent="." unique_id=1611450139]
+script = ExtResource("2_s6bta")
+EnemyScenes = Array[PackedScene]([ExtResource("3_lt7tp"), ExtResource("4_ibolw"), ExtResource("5_6skh4"), ExtResource("6_0way5")])
+
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=811683723]
 

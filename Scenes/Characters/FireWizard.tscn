@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://r5ix884j6403"]
+
+[ext_resource type="Script" uid="uid://bk5bpjjeqsm48" path="res://Scripts/PlayerScripts/PlayerMovement.cs" id="1_07iw2"]
+[ext_resource type="Script" uid="uid://7a06d88swv3d" path="res://Scripts/PlayerScripts/GameManager.cs" id="2_3a2rq"]
+[ext_resource type="Script" uid="uid://hxvkygiphpwr" path="res://Scripts/PlayerScripts/PlayerCombat.cs" id="2_htpnr"]
+[ext_resource type="Script" uid="uid://blhuvcud1uwgf" path="res://Scripts/CharacterScripts/FireWizardStats.cs" id="3_3a2rq"]
+[ext_resource type="PackedScene" uid="uid://bbsjmk7y8h1u1" path="res://Scenes/RangedAttacks/Firebolt.tscn" id="4_hry2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hry2a"]
+size = Vector2(51, 58.5)
+
+[node name="FireWizard" type="CharacterBody2D" unique_id=246270369 groups=["player"]]
+script = ExtResource("1_07iw2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=829937354]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.9011749, 0.3694833, 0.05138491, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1224736712]
+position = Vector2(-19.5, 20.75)
+shape = SubResource("RectangleShape2D_hry2a")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=21186429]
+script = ExtResource("2_3a2rq")
+
+[node name="Targeting" type="Node" parent="." unique_id=874193429]
+script = ExtResource("2_htpnr")
+ProjectileScene = ExtResource("4_hry2a")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1923415008]
+zoom = Vector2(0.75, 0.75)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1316530619]
+
+[node name="Stats" type="Node" parent="." unique_id=1128689177]
+script = ExtResource("3_3a2rq")
+
+[node name="Ability" type="Node" parent="." unique_id=1466272629]
