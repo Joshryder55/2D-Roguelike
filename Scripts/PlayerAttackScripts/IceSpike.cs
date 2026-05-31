@@ -20,7 +20,12 @@ public partial class IceSpike : Projectile
 	public override void _PhysicsProcess(double delta) {
 		GlobalPosition += Direction * speed * (float)delta;
 		
+<<<<<<< HEAD
 		if (player != null && GlobalPosition.DistanceTo(player.GlobalPosition) > maxDistance) {
+=======
+		
+		if (GlobalPosition.DistanceTo(startPosition) > maxDistance) {
+>>>>>>> 98b4515 (base fire wizard)
 			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
 			QueueFree();
 		}
