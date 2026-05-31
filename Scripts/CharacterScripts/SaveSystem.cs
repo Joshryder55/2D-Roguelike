@@ -37,8 +37,10 @@ public partial class SaveSystem : Node
 		{
 			{ "coins", gm.coins },
 
+			// Selected ultimate
+			{ "selectedUltimate", (int)data.selectedUltimate },
+
 			// Ice Wizard unlocks
-			{ "activeUltimate", (int)data.activeUltimate },
 			{ "hasMultiShot",   data.hasMultiShot },
 			{ "hasFreezeOnHit", data.hasFreezeOnHit },
 			{ "hasFrostNova",   data.hasFrostNova },
@@ -134,9 +136,11 @@ public partial class SaveSystem : Node
 
 		if (saveDict.ContainsKey("coins")) gm.coins = saveDict["coins"].AsInt32();
 
+		// Selected ultimate
+		if (saveDict.ContainsKey("selectedUltimate"))
+			data.selectedUltimate = (IceWizardStats.UltimateAbility)saveDict["selectedUltimate"].AsInt32();
+
 		// Ice Wizard unlocks
-		if (saveDict.ContainsKey("activeUltimate"))
-			data.activeUltimate = (IceWizardStats.UltimateAbility)saveDict["activeUltimate"].AsInt32();
 		if (saveDict.ContainsKey("hasMultiShot"))   data.hasMultiShot   = saveDict["hasMultiShot"].AsBool();
 		if (saveDict.ContainsKey("hasFreezeOnHit")) data.hasFreezeOnHit = saveDict["hasFreezeOnHit"].AsBool();
 		if (saveDict.ContainsKey("hasFrostNova"))   data.hasFrostNova   = saveDict["hasFrostNova"].AsBool();
@@ -216,34 +220,30 @@ public partial class SaveSystem : Node
 		GameManager    gm   = GetNode<GameManager>("/root/GameManager");
 		PlayerSaveData data = GetNode<PlayerSaveData>("/root/PlayerSaveData");
 
-		// GameManager
-		gm.coins        = 0;
-		gm.score        = 0;
-		gm.xp           = 0;
-		gm.level        = 1;
+		gm.coins         = 0;
+		gm.score         = 0;
+		gm.xp            = 0;
+		gm.level         = 1;
 		gm.xpToNextLevel = 100;
-		gm.gameTime     = 0f;
-		gm.isDead       = false;
+		gm.gameTime      = 0f;
+		gm.isDead        = false;
 
-		// Ice Wizard unlocks
-		data.activeUltimate = IceWizardStats.UltimateAbility.None;
-		data.hasMultiShot   = false;
-		data.hasFreezeOnHit = false;
-		data.hasFrostNova   = false;
-		data.hasIceSpike    = false;
-		data.hasBlizzard    = false;
-		data.hasFlashFreeze = false;
-		data.hasPermafrost  = false;
-		data.hasBrittle     = false;
-		data.hasIceShield   = false;
+		data.selectedUltimate = IceWizardStats.UltimateAbility.None;
+		data.hasMultiShot     = false;
+		data.hasFreezeOnHit   = false;
+		data.hasFrostNova     = false;
+		data.hasIceSpike      = false;
+		data.hasBlizzard      = false;
+		data.hasFlashFreeze   = false;
+		data.hasPermafrost    = false;
+		data.hasBrittle       = false;
+		data.hasIceShield     = false;
 
-		// Shared stat bonuses
 		data.moveSpeedBonus   = 0;
 		data.healthBonus      = 0;
 		data.attackSpeedBonus = 0;
 		data.damageBonus      = 0;
 
-		// Ice Wizard upgrade levels
 		data.frostNovaDamageLevel         = 0;
 		data.frostNovaRadiusLevel         = 0;
 		data.frostNovaFreezeDurationLevel = 0;
@@ -266,10 +266,8 @@ public partial class SaveSystem : Node
 		data.iceShieldRetaliateUnlocked   = false;
 		data.permafrostRadiusLevel        = 0;
 		data.permafrostChillLevel         = 0;
-
-		// Level completion
-		data.hasCompletedLevel1 = false;
-		data.hasCompletedLevel2 = false;
+		data.hasCompletedLevel1           = false;
+		data.hasCompletedLevel2           = false;
 
 		DeleteSave();
 		hasLoaded = false;
