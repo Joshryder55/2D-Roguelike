@@ -887,13 +887,14 @@ public partial class UnlocksMenu : Control
 
 	private void OnBackPressed()
 	{
-		if (openedFromGame) {
-			OnClose?.Invoke();
-			QueueFree();
-		} else {
-			GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
-		}
+	GetNode<SaveSystem>("/root/SaveSystem").Save();
+	if (openedFromGame) {
+		OnClose?.Invoke();
+		QueueFree();
+	} else {
+		GetTree().ChangeSceneToFile("res://Scenes/Menus/MainMenu.tscn");
 	}
+}
 
 	// ─── Respec ────────────────────────────────────────────────────────
 	private void OnRespecPressed()
@@ -962,6 +963,7 @@ public partial class UnlocksMenu : Control
 		respecYesButton.Visible    = false;
 		respecNoButton.Visible     = false;
 
+		GetNode<SaveSystem>("/root/SaveSystem").Save();
 		descriptionLabel.Text = "Skills reset. " + refund + " coins refunded.";
 	}
 
