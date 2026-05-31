@@ -4,8 +4,9 @@ public partial class CharacterSelect : Control
 {
 	private const int FireWizardUnlockCost = 500;
 
-	GameManager gameManager;
-	
+	private GameManager gameManager;
+	private PlayerSaveData saveData;
+
 	private OptionButton characterOptionButton;
 	private OptionButton levelOptionButton;
 	private Button confirmButton;
@@ -18,19 +19,10 @@ public partial class CharacterSelect : Control
 
 	private readonly string iceWizardPreviewPath = "res://Assets/IceWizard.png";
 
-	private GameManager gameManager;
-	private PlayerSaveData saveData;
-
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
 		saveData    = GetNode<PlayerSaveData>("/root/PlayerSaveData");
-
-
-		characterOptionButton = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/CharacterOptionButton");
-		levelOptionButton = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/LevelOptionButton");
-		confirmButton = GetNode<Button>("CenterContainer/HBoxContainer/VBoxContainer/ConfirmButton");
-		backButton = GetNode<Button>("CenterContainer/HBoxContainer/VBoxContainer/BackButton");
 
 		characterOptionButton  = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/CharacterOptionButton");
 		levelOptionButton      = GetNode<OptionButton>("CenterContainer/HBoxContainer/VBoxContainer/LevelOptionButton");
@@ -91,11 +83,9 @@ public partial class CharacterSelect : Control
 		//     levelOptionButton.AddItem("Level 2");
 		// }
 
-
 		// For now add Level 2 & 3 always for testing
 		levelOptionButton.AddItem("Level 2");
 		levelOptionButton.AddItem("Level 3");
-		
 	}
 
 	private void OnCharacterSelected(long index)
@@ -158,8 +148,8 @@ public partial class CharacterSelect : Control
 			confirmButton.Visible = true;
 		}
 		
-		if(selectedLevel == "Level 3"){
-			
+		if (selectedLevel == "Level 3")
+		{
 			levelPreviewTexture.Texture = null;
 		}
 	}
