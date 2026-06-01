@@ -1,0 +1,73 @@
+using Godot;
+using System;
+
+public partial class IceSpike : Projectile
+{
+	
+	IceWizardStats iceStats;
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		base._Ready();
+		iceStats = characterStats as IceWizardStats;
+		if (iceStats != null) {
+			damage = iceStats.iceSpikeDamage;
+			speed = 200f; // slower than ice bolt
+		}
+	}
+	
+	public override void _PhysicsProcess(double delta) {
+		GlobalPosition += Direction * speed * (float)delta;
+		
+		if (player != null && GlobalPosition.DistanceTo(player.GlobalPosition) > maxDistance) {
+			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
+			QueueFree();
+		}
+	}
+
+		protected override void OnBodyEntered(Node2D body) {
+			if (body is CharacterBody2D) {
+				EnemyHealth enemyHealth = body.GetNodeOrNull<EnemyHealth>("EnemyHealth");
+
+				Enemy enemy = body as Enemy;
+				if (enemy != null) {
+					enemy.killedByUltimate = true; // set BEFORE TakeDamage
+				}
+
+				if (enemyHealth != null) {
+					enemyHealth.TakeDamage(damage);
+				}
+
+				if (enemy != null && !enemy.immuneToAilments && !enemy.IsQueuedForDeletion()) {
+					float originalSpeed = enemy.speed;
+					enemy.speed = 0;
+					enemy.currentStatus = Enemy.StatusEffect.Frozen;
+					enemy.sprite.Play("Frozen");
+
+					SoundManager sound = GetNode<SoundManager>("/root/SoundManager");
+					SceneTreeTimer freezeSoundDelay = GetTree().CreateTimer(0.08f);
+					freezeSoundDelay.Timeout += () => {
+						if (IsInstanceValid(enemy) && !enemy.IsQueuedForDeletion())
+							sound.PlaySfx("EnemyFreeze");
+					};
+
+					Timer freezeTimer = new Timer();
+					freezeTimer.WaitTime = iceStats.iceSpikeFreezeDuration;
+					freezeTimer.OneShot = true;
+					freezeTimer.Timeout += () => {
+						enemy.speed = originalSpeed;
+						enemy.sprite.Play("Walking");
+						enemy.currentStatus = Enemy.StatusEffect.None;
+						enemy.killedByUltimate = false;
+						freezeTimer.QueueFree();
+					};
+					enemy.AddChild(freezeTimer);
+					freezeTimer.Start();
+				}
+			}
+		}
+
+
+
+}

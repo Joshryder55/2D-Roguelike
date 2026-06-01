@@ -1,0 +1,363 @@
+[gd_scene format=3 uid="uid://dgifv03spo4f"]
+
+[ext_resource type="Script" uid="uid://b76laqtpk7tjp" path="res://Scripts/SceneScripts/UnlocksMenu.cs" id="1_jtvuu"]
+[ext_resource type="Script" uid="uid://be6gpxucluiwk" path="res://Scripts/SceneScripts/SkillTreeLines.cs" id="2_65xq8"]
+[ext_resource type="Texture2D" uid="uid://cl1s1ifi88rqu" path="res://Assets/menubackground.jpg" id="3_bgimg"]
+
+[node name="UnlocksMenu" type="Control" unique_id=1124840176]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtvuu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_bgimg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TreeArea" type="Control" parent="." unique_id=1219092567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConnectionLines" type="Control" parent="TreeArea" unique_id=1368461705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_65xq8")
+
+[node name="CoreButton" type="Button" parent="TreeArea" unique_id=177254401]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 273.0
+offset_right = 652.0
+offset_bottom = 304.0
+text = "Ice Wizard"
+
+[node name="Ultimate" type="Node" parent="TreeArea" unique_id=1067476360]
+
+[node name="BlizzardButton" type="Button" parent="TreeArea/Ultimate" unique_id=109538948]
+offset_left = 257.0
+offset_top = 223.0
+offset_right = 326.0
+offset_bottom = 254.0
+text = "Blizzard"
+
+[node name="FlashFreezeButton" type="Button" parent="TreeArea/Ultimate" unique_id=2125283668]
+offset_left = 912.0
+offset_top = 222.0
+offset_right = 1016.0
+offset_bottom = 253.0
+text = "Flash Freeze"
+
+[node name="FrostNovaButton" type="Button" parent="TreeArea/Ultimate" unique_id=283902790]
+offset_left = 404.0
+offset_top = 183.0
+offset_right = 496.0
+offset_bottom = 214.0
+text = "Frost Nova"
+
+[node name="IceSpikeButton" type="Button" parent="TreeArea/Ultimate" unique_id=572289428]
+offset_left = 712.0
+offset_top = 178.0
+offset_right = 788.0
+offset_bottom = 209.0
+text = "Ice Spike"
+
+[node name="IceSpikeSize" type="Button" parent="TreeArea/Ultimate" unique_id=1353641470]
+offset_left = 656.0
+offset_top = 120.0
+offset_right = 695.0
+offset_bottom = 151.0
+text = "Size"
+
+[node name="IceSpikeDamage" type="Button" parent="TreeArea/Ultimate" unique_id=685065055]
+offset_left = 789.0
+offset_top = 118.0
+offset_right = 861.0
+offset_bottom = 149.0
+text = "Damage"
+
+[node name="IceSpikeFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=517979263]
+offset_left = 686.0
+offset_top = 61.0
+offset_right = 818.0
+offset_bottom = 92.0
+text = "Freeze Duration"
+
+[node name="FrostNovaSize" type="Button" parent="TreeArea/Ultimate" unique_id=484823460]
+offset_left = 324.0
+offset_top = 127.0
+offset_right = 363.0
+offset_bottom = 158.0
+text = "Size"
+
+[node name="FrostNovaDamage" type="Button" parent="TreeArea/Ultimate" unique_id=1519203486]
+offset_left = 485.0
+offset_top = 128.0
+offset_right = 557.0
+offset_bottom = 159.0
+text = "Damage"
+
+[node name="FrostNovaFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=735382125]
+offset_left = 373.0
+offset_top = 64.0
+offset_right = 505.0
+offset_bottom = 95.0
+text = "Freeze Duration"
+
+[node name="BlizzardDuration" type="Button" parent="TreeArea/Ultimate" unique_id=684477455]
+offset_left = 115.0
+offset_top = 257.0
+offset_right = 257.0
+offset_bottom = 288.0
+text = "Blizzard Duration"
+
+[node name="BlizzardSize" type="Button" parent="TreeArea/Ultimate" unique_id=510851768]
+offset_left = 101.0
+offset_top = 171.0
+offset_right = 205.0
+offset_bottom = 202.0
+text = "Blizzard Size"
+
+[node name="BlizzardChill" type="Button" parent="TreeArea/Ultimate" unique_id=1925631357]
+offset_left = 223.0
+offset_top = 154.0
+offset_right = 330.0
+offset_bottom = 185.0
+text = "Blizzard Chill"
+
+[node name="FlashFreezeDuration" type="Button" parent="TreeArea/Ultimate" unique_id=724156791]
+offset_left = 794.0
+offset_top = 161.0
+offset_right = 971.0
+offset_bottom = 192.0
+text = "Flash Freeze Duration"
+
+[node name="FlashFreezeShatter" type="Button" parent="TreeArea/Ultimate" unique_id=67480944]
+offset_left = 981.0
+offset_top = 173.0
+offset_right = 1146.0
+offset_bottom = 204.0
+text = "Flash Freeze Shatter"
+
+[node name="FlashFreezeGlacial" type="Button" parent="TreeArea/Ultimate" unique_id=466997192]
+offset_left = 968.0
+offset_top = 94.0
+offset_right = 1127.0
+offset_bottom = 125.0
+text = "Flash Freeze Glacial"
+
+[node name="Passive" type="Node" parent="TreeArea" unique_id=2002988305]
+
+[node name="BrittleButton" type="Button" parent="TreeArea/Passive" unique_id=1306270075]
+offset_left = 863.0
+offset_top = 336.0
+offset_right = 930.0
+offset_bottom = 367.0
+text = "Brittle"
+
+[node name="IceShieldButton" type="Button" parent="TreeArea/Passive" unique_id=1177994657]
+offset_left = 740.0
+offset_top = 396.0
+offset_right = 822.0
+offset_bottom = 427.0
+text = "Ice Shield"
+
+[node name="PermafrostButton" type="Button" parent="TreeArea/Passive" unique_id=1741272663]
+offset_left = 279.0
+offset_top = 371.0
+offset_right = 375.0
+offset_bottom = 402.0
+text = "Permafrost"
+
+[node name="MultishotButton" type="Button" parent="TreeArea/Passive" unique_id=1520644756]
+offset_left = 604.0
+offset_top = 419.0
+offset_right = 695.0
+offset_bottom = 450.0
+text = "Multishots"
+
+[node name="ChancetoFreezeButton" type="Button" parent="TreeArea/Passive" unique_id=1019712223]
+offset_left = 403.0
+offset_top = 420.0
+offset_right = 562.0
+offset_bottom = 451.0
+text = "% Chance to Freeze"
+
+[node name="MultishotChance" type="Button" parent="TreeArea/Passive" unique_id=1236102255]
+offset_left = 587.0
+offset_top = 569.0
+offset_right = 652.0
+offset_bottom = 600.0
+text = "Chance"
+
+[node name="MultishotCount" type="Button" parent="TreeArea/Passive" unique_id=1485281677]
+offset_left = 659.0
+offset_top = 497.0
+offset_right = 714.0
+offset_bottom = 528.0
+text = "Count"
+
+[node name="ChancetoFreezeChance" type="Button" parent="TreeArea/Passive" unique_id=1302012708]
+offset_left = 403.0
+offset_top = 563.0
+offset_right = 468.0
+offset_bottom = 594.0
+text = "Chance"
+
+[node name="ChancetoFreezeDuration" type="Button" parent="TreeArea/Passive" unique_id=1265358699]
+offset_left = 474.0
+offset_top = 488.0
+offset_right = 551.0
+offset_bottom = 519.0
+text = "Duration"
+
+[node name="PermafrostRadius" type="Button" parent="TreeArea/Passive" unique_id=2135707734]
+offset_left = 286.0
+offset_top = 439.0
+offset_right = 346.0
+offset_bottom = 470.0
+text = "Radius"
+
+[node name="PermafrostChill" type="Button" parent="TreeArea/Passive" unique_id=822852287]
+offset_left = 202.0
+offset_top = 451.0
+offset_right = 244.0
+offset_bottom = 482.0
+text = "Chill"
+
+[node name="BrittleBonusDamage" type="Button" parent="TreeArea/Passive" unique_id=2092712517]
+offset_left = 973.0
+offset_top = 345.0
+offset_right = 1045.0
+offset_bottom = 376.0
+text = "Damage"
+
+[node name="BrittleShatter" type="Button" parent="TreeArea/Passive" unique_id=2054545518]
+offset_left = 910.0
+offset_top = 383.0
+offset_right = 976.0
+offset_bottom = 414.0
+text = "Shatter"
+
+[node name="IceShieldBlockChance" type="Button" parent="TreeArea/Passive" unique_id=1425482189]
+offset_left = 815.0
+offset_top = 442.0
+offset_right = 880.0
+offset_bottom = 473.0
+text = "Chance"
+
+[node name="IceShieldRetaliate" type="Button" parent="TreeArea/Passive" unique_id=1010116462]
+offset_left = 739.0
+offset_top = 448.0
+offset_right = 816.0
+offset_bottom = 479.0
+text = "Retaliate"
+
+[node name="CoreStats" type="Node" parent="TreeArea" unique_id=1090030383]
+
+[node name="MoveSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=1920635041]
+offset_left = 22.0
+offset_top = 286.0
+offset_right = 124.0
+offset_bottom = 317.0
+text = "Move Speed"
+
+[node name="AttackSpeedButton" type="Button" parent="TreeArea/CoreStats" unique_id=491327926]
+offset_left = 23.0
+offset_top = 342.0
+offset_right = 132.0
+offset_bottom = 373.0
+text = "Attack Speed"
+
+[node name="HealthButton" type="Button" parent="TreeArea/CoreStats" unique_id=991483064]
+offset_left = 23.0
+offset_top = 170.0
+offset_right = 83.0
+offset_bottom = 201.0
+text = "Health"
+
+[node name="DamageButton" type="Button" parent="TreeArea/CoreStats" unique_id=1071859552]
+offset_left = 23.0
+offset_top = 228.0
+offset_right = 95.0
+offset_bottom = 259.0
+text = "Damage"
+
+[node name="BackButton" type="Button" parent="." unique_id=228286773]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 584.0
+offset_right = 72.0
+offset_bottom = 615.0
+text = "Back"
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1645565016]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 39.0
+offset_right = 520.0
+offset_bottom = 66.0
+text = "Unlocks"
+
+[node name="DescriptionLabel" type="Label" parent="." unique_id=174715012]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 499.0
+offset_right = 1077.0
+offset_bottom = 522.0
+text = "Select a skill to view details."
+
+[node name="CoinsLabel" type="Label" parent="." unique_id=1630202571]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 224.0
+offset_bottom = 31.0
+
+[node name="RespecButton" type="Button" parent="." unique_id=389929333]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 31.0
+text = "RESET SKILLS"
+
+[node name="RespecConfirmLabel" type="Label" parent="." unique_id=227346449]
+visible = false
+layout_mode = 0
+offset_top = 31.0
+offset_right = 140.0
+offset_bottom = 71.0
+text = "Are You Sure?"
+
+[node name="RespecYesButton" type="Button" parent="." unique_id=1963287892]
+visible = false
+layout_mode = 0
+offset_top = 75.0
+offset_right = 46.0
+offset_bottom = 106.0
+text = "Yes"
+
+[node name="RespecNoButton" type="Button" parent="." unique_id=1472883731]
+visible = false
+layout_mode = 0
+offset_left = 65.0
+offset_top = 75.0
+offset_right = 110.0
+offset_bottom = 106.0
+text = "No"

@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://drmuhfq6jyyu0"]
+
+[ext_resource type="Script" uid="uid://b6qo2swp4aid0" path="res://Scripts/EnemyTypeScripts/CorruptedKnight/CorruptedKnight.cs" id="1_o2pqq"]
+[ext_resource type="Texture2D" uid="uid://cndjp3gsb3hbc" path="res://Assets/KnightBossStill.png" id="1_ryi6j"]
+[ext_resource type="Texture2D" uid="uid://h0rl4gwj31bk" path="res://Assets/KnightBossCharge1.png" id="2_oxx3g"]
+[ext_resource type="Texture2D" uid="uid://y7ylt8w6nbj0" path="res://Assets/KnightBossCharge2.png" id="3_iywr6"]
+[ext_resource type="Texture2D" uid="uid://by3k8k25uokib" path="res://Assets/KnightBossCharge4.png" id="4_h5cyy"]
+[ext_resource type="Texture2D" uid="uid://craquj12d38ro" path="res://Assets/KnightBossCharge3.png" id="5_ird8b"]
+[ext_resource type="Texture2D" uid="uid://78bbnvt3tb3j" path="res://Assets/KnightBossSwing1.png" id="6_iywr6"]
+[ext_resource type="Texture2D" uid="uid://0swa0mijihmh" path="res://Assets/KnightBossWalk1.png" id="6_tn0f2"]
+[ext_resource type="Texture2D" uid="uid://cb0dg4mx2cuwu" path="res://Assets/KnightBossSwing2.png" id="7_h5cyy"]
+[ext_resource type="Texture2D" uid="uid://cjj4w6mfphq7j" path="res://Assets/KnightBossWalk2.png" id="7_va5r5"]
+[ext_resource type="Texture2D" uid="uid://dbvdp6o0awtvl" path="res://Assets/KnightBossWalk3.png" id="8_aoevd"]
+[ext_resource type="Texture2D" uid="uid://0yctn50an1kk" path="res://Assets/KnightBossWalk4.png" id="9_bshat"]
+[ext_resource type="Texture2D" uid="uid://7n63au4iglbl" path="res://Assets/KnightBossSwing4.png" id="9_y2jik"]
+[ext_resource type="Texture2D" uid="uid://nueg4p67irvw" path="res://Assets/KnightBossSwing6.png" id="10_dmkjm"]
+[ext_resource type="Texture2D" uid="uid://76i43r0l20n5" path="res://Assets/KnightBossSwing7.png" id="11_tmexy"]
+[ext_resource type="Texture2D" uid="uid://8fqwocboyomv" path="res://Assets/KnightBossSwing9.png" id="12_w2r6t"]
+[ext_resource type="Texture2D" uid="uid://mmpppld07f47" path="res://Assets/KnightBossSwing11.png" id="13_ymnoe"]
+[ext_resource type="Texture2D" uid="uid://ck27r05yvmxb3" path="res://Assets/KnightBossSwing12.png" id="14_x8udm"]
+[ext_resource type="Texture2D" uid="uid://bby67linlbqgn" path="res://Assets/KnightBossSwing13.png" id="15_qq1cb"]
+[ext_resource type="Texture2D" uid="uid://7dxvvj3mqr5h" path="res://Assets/KnightBossSwing14.png" id="16_kcwuy"]
+[ext_resource type="Script" uid="uid://ciddbi47nj2sp" path="res://Scripts/EnemyTypeScripts/CorruptedKnight/CorruptedKnightHealth.cs" id="21_idyga"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="22_40udk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h6p3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ryi6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oxx3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iywr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h5cyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ird8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ird8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ird8b")
+}],
+"loop": false,
+"name": &"Charge",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ryi6j")
+}],
+"loop": true,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h5cyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iywr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h5cyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_y2jik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dmkjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tmexy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_w2r6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ymnoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_x8udm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qq1cb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_kcwuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iywr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oxx3g")
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ryi6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tn0f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_va5r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tn0f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ryi6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aoevd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bshat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aoevd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ryi6j")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgr5s"]
+size = Vector2(82, 234)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkrsv"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1uwh0"]
+size = Vector2(81, 188)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psuum"]
+radius = 49.0
+height = 242.0
+
+[node name="CorruptedKnight" type="CharacterBody2D" unique_id=2064017641 groups=["boss", "enemies"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_o2pqq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=652966603]
+position = Vector2(3.000001, 47)
+scale = Vector2(0.49414063, 0.49414063)
+sprite_frames = SubResource("SpriteFrames_h6p3r")
+animation = &"Charge"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2036163304]
+position = Vector2(-5, 48)
+shape = SubResource("RectangleShape2D_qgr5s")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=538521978]
+script = ExtResource("21_idyga")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=69803280]
+custom_minimum_size = Vector2(0, 5)
+offset_left = -90.0
+offset_top = -88.000015
+offset_right = 854.9999
+offset_bottom = -61.000015
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_pkrsv")
+show_percentage = false
+script = ExtResource("22_40udk")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1772265912]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=594074004]
+position = Vector2(-4.5, 71)
+shape = SubResource("RectangleShape2D_1uwh0")
+
+[node name="SweepHitbox" type="Area2D" parent="." unique_id=496000807]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SweepHitbox" unique_id=1088544337]
+position = Vector2(86, 43)
+shape = SubResource("CapsuleShape2D_psuum")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1431920271]

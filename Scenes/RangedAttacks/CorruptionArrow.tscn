@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8ldaq5stuib7"]
+
+[ext_resource type="Script" uid="uid://2lg2b34b251g" path="res://Scripts/EnemyTypeScripts/MadKing/CorruptionArrow.cs" id="1_kchsx"]
+[ext_resource type="Texture2D" uid="uid://dkw12v4og8sui" path="res://Assets/KingShot.png" id="2_ooeeo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx4ac"]
+size = Vector2(70, 37)
+
+[node name="CorruptionArrow" type="Area2D" unique_id=77932734]
+collision_layer = 4
+script = ExtResource("1_kchsx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2019935195]
+position = Vector2(1, -8.5)
+shape = SubResource("RectangleShape2D_dx4ac")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=84331810]
+position = Vector2(1, 7)
+scale = Vector2(0.14257813, 0.14257813)
+texture = ExtResource("2_ooeeo")

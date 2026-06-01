@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://cgbuxstw7koox"]
+
+[ext_resource type="Script" uid="uid://e3f6abayoyyd" path="res://Scripts/EnemyTypeScripts/Zombie/BasicZombie.cs" id="1_kvowr"]
+[ext_resource type="Script" uid="uid://c3riu4iq82g52" path="res://Scripts/EnemyTypeScripts/Zombie/BasicZombieHealth.cs" id="2_55e75"]
+[ext_resource type="Texture2D" uid="uid://vvnpl0hqnech" path="res://Assets/ZombieFrozen.png" id="3_55e75"]
+[ext_resource type="Texture2D" uid="uid://2w81u2i22t67" path="res://Assets/ZombieStill.png" id="3_tbv33"]
+[ext_resource type="Texture2D" uid="uid://7ov7eacygj6d" path="res://Assets/ZombieWalk1.png" id="4_kvowr"]
+[ext_resource type="Texture2D" uid="uid://dey8k7jdp7q3g" path="res://Assets/ZombieWalk2.png" id="5_55e75"]
+[ext_resource type="Script" uid="uid://0e77g84u41jx" path="res://Scripts/EnemyScripts/EnemyHealthbar.cs" id="6_kvowr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftsrl"]
+size = Vector2(40, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whhnv"]
+size = Vector2(40, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4tt6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_55e75")
+}],
+"loop": true,
+"name": &"Frozen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tbv33")
+}],
+"loop": false,
+"name": &"Still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tbv33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kvowr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tbv33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55e75")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 3.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvowr"]
+bg_color = Color(0.7019608, 0, 0, 1)
+
+[node name="BasicZombie" type="CharacterBody2D" unique_id=2141647589 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_kvowr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=167337621]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150819702]
+position = Vector2(20, 27)
+shape = SubResource("RectangleShape2D_ftsrl")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1627058261]
+position = Vector2(21, 19)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1227407909]
+position = Vector2(-1, 9)
+shape = SubResource("RectangleShape2D_whhnv")
+
+[node name="EnemyHealth" type="Node" parent="." unique_id=1310903642]
+script = ExtResource("2_55e75")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840070391]
+position = Vector2(20, 28.999992)
+scale = Vector2(0.48046878, 0.48999345)
+sprite_frames = SubResource("SpriteFrames_h4tt6")
+animation = &"Frozen"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1440884350]
+custom_minimum_size = Vector2(0, 5)
+offset_left = -7.9999995
+offset_top = -39.000004
+offset_right = 276.99997
+offset_bottom = -12.000004
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_kvowr")
+show_percentage = false
+script = ExtResource("6_kvowr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=876943205]
+target_desired_distance = 20.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 15.0
