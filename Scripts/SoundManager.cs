@@ -16,6 +16,7 @@ public partial class SoundManager : Node
 		public float Length;  // seconds to play before stopping (0 = to end)
 		public string Bus;    // null/empty -> "SFX"
 		public float Pitch;   // 0 -> 1.0
+		public float VolumeDb; // volume offset in dB (0 = unchanged)
 	}
 
 	private static readonly Dictionary<string, SfxDef> sfxDefs = new()
@@ -25,9 +26,15 @@ public partial class SoundManager : Node
 		{ "GameOver",    new SfxDef { Path = "res://Assets/Audio/gameover.mp3" } },
 		{ "LevelUp",     new SfxDef { Path = "res://Assets/Audio/LevelUp.mp3" } },
 		{ "XPCollect",   new SfxDef { Path = "res://Assets/Audio/XPCollect.mp3" } },
-		{ "IceBolt",     new SfxDef { Path = "res://Assets/Audio/IceBolt.ogg", Bus = "Attacks", Pitch = 1.45f } },
+		{ "IceBolt",     new SfxDef { Path = "res://Assets/Audio/IceBolt.ogg", Bus = "Attacks", Pitch = 1.45f, VolumeDb = -4f } },
 		{ "EnemyFreeze", new SfxDef { Path = "res://Assets/Audio/EnemyFreeze.ogg", Bus = "Attacks" } },
 		{ "IceSpike",    new SfxDef { Path = "res://Assets/Audio/IceSpike.ogg", Bus = "Attacks" } },
+		{ "FrostNova",   new SfxDef { Path = "res://Assets/Audio/FrostNova.mp3", Bus = "Attacks", VolumeDb = 4f } },
+		{ "Blizzard",    new SfxDef { Path = "res://Assets/Audio/Blizzard.mp3", Bus = "Attacks" } },
+		{ "FlashFreeze", new SfxDef { Path = "res://Assets/Audio/FlashFreeze.mp3", Bus = "Attacks", VolumeDb = 4f } },
+		{ "BossAttackLvl1", new SfxDef { Path = "res://Assets/Audio/BossAttackLvl1.mp3" } },
+		{ "BossAttackLvl2", new SfxDef { Path = "res://Assets/Audio/BossAttackLvl2.mp3" } },
+		{ "BossAttackLvl3", new SfxDef { Path = "res://Assets/Audio/BossAttackLvl3.mp3" } },
 	};
 
 	private readonly Dictionary<string, AudioStream> streams = new();
@@ -84,6 +91,7 @@ public partial class SoundManager : Node
 		sfxPlayer.Stream = streams[name];
 		sfxPlayer.Bus = string.IsNullOrEmpty(def.Bus) ? "SFX" : def.Bus;
 		sfxPlayer.PitchScale = def.Pitch > 0f ? def.Pitch : 1.0f;
+		sfxPlayer.VolumeDb = def.VolumeDb;
 		sfxPlayer.ProcessMode = playWhilePaused ? ProcessModeEnum.Always : ProcessModeEnum.Pausable;
 		AddChild(sfxPlayer);
 
@@ -104,6 +112,30 @@ public partial class SoundManager : Node
 			sfxPlayer.Finished += sfxPlayer.QueueFree;
 			sfxPlayer.Play(def.Start);
 		}
+	}
+
+	public AudioStreamPlayer PlaySfxLooping(string name)
+	{
+		if (!sfxDefs.TryGetValue(name, out SfxDef def))
+		{
+			GD.PrintErr($"SoundManager: unknown sfx '{name}'");
+			return null;
+		}
+
+		AudioStream stream = streams[name];
+		if (stream is AudioStreamMP3 mp3) mp3.Loop = true;
+		else if (stream is AudioStreamOggVorbis ogg) ogg.Loop = true;
+
+		var sfxPlayer = new AudioStreamPlayer();
+		sfxPlayer.Stream = stream;
+		sfxPlayer.Bus = string.IsNullOrEmpty(def.Bus) ? "SFX" : def.Bus;
+		sfxPlayer.PitchScale = def.Pitch > 0f ? def.Pitch : 1.0f;
+		sfxPlayer.VolumeDb = def.VolumeDb;
+		sfxPlayer.ProcessMode = ProcessModeEnum.Pausable;
+
+		AddChild(sfxPlayer);
+		sfxPlayer.Play(def.Start);
+		return sfxPlayer;
 	}
 
 	public void SetMusicVolume(float linear)

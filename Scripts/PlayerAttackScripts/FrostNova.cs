@@ -8,11 +8,13 @@ public partial class FrostNova : Area2D
 	public IceWizardStats iceStats;
 	public float growSpeed = 200.0f;
 	AnimatedSprite2D sprite;
-	
-	
+	AudioStreamPlayer novaSound;
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		novaSound = GetNode<SoundManager>("/root/SoundManager").PlaySfxLooping("FrostNova");
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("default");
 		CollisionShape2D collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 		circle = new CircleShape2D();
@@ -36,7 +38,12 @@ public partial class FrostNova : Area2D
 		float scale = circle.Radius / 300; // 10 is your starting radius
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Scale = new Vector2(scale, scale);
 	}
-	
+
+	public override void _ExitTree()
+	{
+		if (IsInstanceValid(novaSound)) novaSound.QueueFree();
+	}
+
 		private void OnBodyEntered(Node2D body) {
 		if (iceStats == null) return;
 		

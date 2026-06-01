@@ -81,6 +81,7 @@ public partial class CorruptedBull : Enemy {
 			currentState = BullState.Charging;
 			chargeTimer = chargeDuration;
 			contactDamage = chargeDamage;
+			GetNode<SoundManager>("/root/SoundManager").PlaySfx("BossAttackLvl1");
 		}
 	}
 
