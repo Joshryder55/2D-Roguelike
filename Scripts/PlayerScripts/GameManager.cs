@@ -10,6 +10,7 @@ public partial class GameManager : Node
 	public int xp = 0;
 	public int level = 1;
 	public int xpToNextLevel = 100;
+	public int levelUpsApplied = 0;
 	public float gameTime = 0f;
 	
 	public string currentLevel = "res://Scenes/Level1.tscn";
@@ -22,11 +23,13 @@ public partial class GameManager : Node
 	{
 		return Mathf.Max(1.0f, 2.5f - gameTime / 200f);
 	}
+	// 4 phase enemy scaling (time-based at 3, 6, and 11 minutes).
+	// Each rate is a per-minute multiplier added on top of 1.0.
 	static float enemyScalingRamp(float gameTimeMinutes,
-								   float earlyRate,
-								   float smallRate,
-								   float bigRate,
-								   float largestRate)
+								   float earlyRate,    // 0–3 min
+								   float smallRate,    // 3–6 min
+								   float bigRate,      // 6–11 min
+								   float largestRate)  // 11+ min
 	{
 		float multiplier = 1.0f;
 		multiplier += Mathf.Min(gameTimeMinutes,                         3f) * earlyRate;
@@ -35,6 +38,8 @@ public partial class GameManager : Node
 		multiplier +=           Mathf.Max(gameTimeMinutes - 11f, 0f)         * largestRate;
 		return multiplier;
 	}
+	// All enemy scaling multipliers cap at (map level + 1.0): L1 = 2.0×, L2 = 3.0×, L3 = 4.0×, etc.
+	// HP: gentle warm-up → progressively steeper ramp.
 	public float GetEnemyHealthMultiplier()
 	{
 		float levelCap = level + 1.0f;
@@ -44,6 +49,7 @@ public partial class GameManager : Node
 			bigRate:     0.20f,
 			largestRate: 0.35f));
 	}
+	// Speed: no change first 3 min, then very gradual increases.
 	public float GetEnemySpeedMultiplier()
 	{
 		float levelCap = level + 1.0f;
@@ -53,6 +59,7 @@ public partial class GameManager : Node
 			bigRate:     0.06f,
 			largestRate: 0.10f));
 	}
+	// Damage: same as speed.
 	public float GetEnemyDamageMultiplier()
 	{
 		float levelCap = level + 1.0f;
@@ -74,6 +81,7 @@ public partial class GameManager : Node
 	void LevelUp()
 	{
 		level++;
+		levelUpsApplied++; // track how many level ups have been applied for carry over
 		xp -= xpToNextLevel;
 		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
 		GetNode<SoundManager>("/root/SoundManager").PlaySfx("LevelUp", true);
@@ -86,15 +94,14 @@ public partial class GameManager : Node
 		var menu = new LevelUpMenu();
 		GetTree().CurrentScene.AddChild(menu);
 	}
-
-	// Called when transitioning naturally between levels — keeps XP/level
+	// Called when transitioning naturally between levels — keeps XP/level/stats
 	public void Reset()
 	{
 		isDead           = false;
 		carryingProgress = true;
 		score            = 0;
 		gameTime         = 0f;
-		// xp, level, xpToNextLevel intentionally NOT reset — carry over
+		// xp, level, xpToNextLevel, levelUpsApplied intentionally NOT reset — carry over
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		if (player != null)
 		{
@@ -102,7 +109,6 @@ public partial class GameManager : Node
 			stats.health = stats.maxHealth;
 		}
 	}
-
 	// Called when starting fresh from the level select menu — resets everything
 	public void ResetForNewRun()
 	{
@@ -112,6 +118,7 @@ public partial class GameManager : Node
 		xp               = 0;
 		level            = 1;
 		xpToNextLevel    = 100;
+		levelUpsApplied  = 0;
 		gameTime         = 0f;
 	}
 }
