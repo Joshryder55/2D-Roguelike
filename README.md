@@ -3,8 +3,6 @@
 A top-down bullet-heaven roguelike set in the corrupted lands of Arenthal. Fight through three levels of corruption — the farmlands, the courtyard, and the throne room — to defeat the Ancient Evil that has taken hold of the castle and save the kingdom.
 
 ## Download
-- [Windows Download](link_to_windows_build)
-- [Mac Download](link_to_mac_build)
 
 ## How to Launch
 
