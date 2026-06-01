@@ -26,7 +26,7 @@ public override async void _Ready() {
 	base._Ready();
 	
 	GetNode<ProgressBar>("ProgressBar").Visible = true;
-	GetNode<ProgressBar>("ProgressBar").MaxValue = 1000;
+	GetNode<ProgressBar>("ProgressBar").MaxValue = 6000;
 
 	await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 	Player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;

@@ -224,7 +224,7 @@ public partial class UnlocksMenu : Control
 
 		// DEBUG - give 1000 coins - remove/disable before release ***
 		var debugButton = new Button();
-		debugButton.Text = "+1000 coin DEBUG";
+		debugButton.Text = "Skill Issue??";
 		debugButton.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.BottomRight);
 		debugButton.OffsetLeft  = -160;
 		debugButton.OffsetTop   = -40;

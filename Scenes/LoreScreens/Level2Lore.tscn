@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dtau7g1xs8jn7"]
+
+[ext_resource type="Script" uid="uid://cq8soty5186st" path="res://Scripts/LoreScreen.cs" id="1_qd2ux"]
+
+[node name="Level2Lore" type="Control" unique_id=1936937232]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qd2ux")
+NextScene = "res://Scenes/Level2.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=922273868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoreLabel" type="Label" parent="." unique_id=1400206686]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 88.0
+offset_right = 1052.0
+offset_bottom = 536.0
+text = "Level 2:
+Pushing through the corrupted and destroyed farmlands, our hero reaches the castle courtyard. The smell of death and something vile gets stronger as he gets closer to the interior of the castle. 
+
+The courtyard completely empty, not a soul at the tavern or merchant tents. The king's chambers lie beyond the courtyard gates He cautiously makes his way towards the entrance of the interior. 
+
+As he looks behind him he locks eyes with a zombified bartender Evelyn he frequented with at the tavern. She screamed loudly as an alert for the other undead minions. Every way he looked he saw foe, and began to realize he was surrounded. 
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkipButton" type="Button" parent="." unique_id=27365178]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SKIP"
