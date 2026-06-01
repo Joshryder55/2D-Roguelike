@@ -58,6 +58,7 @@ public partial class EnemyManager : Node {
 		if (bossSpawned && !bossDefeated) {
 			if (GetTree().GetNodesInGroup("boss").Count == 0) {
 				bossDefeated = true;
+				GetAnnouncer()?.AnnounceBossSlain(GetLevelNumber());
 				ResumNormalSpawning();
 			}
 		}
@@ -66,6 +67,8 @@ public partial class EnemyManager : Node {
 	private void SpawnBoss() {
 		if (BossScene == null) return;
 		bossSpawned = true;
+
+		GetAnnouncer()?.AnnounceBossIncoming();
 
 		spawnInterval = 5f;
 		spawnTimer.WaitTime = spawnInterval;
@@ -96,6 +99,19 @@ public partial class EnemyManager : Node {
 			2 => new Vector2(cameraPos.X + random.Next(-500, 500), cameraPos.Y + offset),
 			_ => new Vector2(cameraPos.X - offset, cameraPos.Y + random.Next(-500, 500)),
 		};
+	}
+
+	private BossAnnouncement GetAnnouncer() {
+		return GetTree().GetFirstNodeInGroup("bossAnnouncement") as BossAnnouncement;
+	}
+
+	private int GetLevelNumber() {
+		string sceneName = GetTree().CurrentScene.Name;
+		string digits = "";
+		foreach (char c in sceneName) {
+			if (char.IsDigit(c)) digits += c;
+		}
+		return int.TryParse(digits, out int n) ? n : 1;
 	}
 
 	private void SpawnEnemy() {
