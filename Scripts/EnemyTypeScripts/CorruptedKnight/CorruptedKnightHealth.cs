@@ -21,6 +21,4 @@ public partial class CorruptedKnightHealth : EnemyHealth {
 		base.Die(canShatter);
 	}
 
-	base.Die(canShatter);
-}
 }
