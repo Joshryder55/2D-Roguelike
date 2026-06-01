@@ -10,7 +10,7 @@ public partial class CorruptedBullHealth : EnemyHealth {
 	public override void Die(bool canShatter = true) {
 		PlayerSaveData saveData = GetNode<PlayerSaveData>("/root/PlayerSaveData");
 		saveData.hasCompletedLevel1 = true;
-
+		GetNode<SaveSystem>("/root/SaveSystem").Save();
 		Node level = GetTree().CurrentScene;
 		Area2D gate = level.GetNodeOrNull<Area2D>("Level1ExitGate");
 		if (gate != null) {

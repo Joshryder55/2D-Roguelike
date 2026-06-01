@@ -3,12 +3,14 @@ public partial class GameManager : Node
 {
 	public bool isDead = false;
 	public bool ultimateIsActive = false;
+	public bool carryingProgress = false;
 	public int coins = 0;
 	public int score = 0;
 	// XP and leveling
 	public int xp = 0;
 	public int level = 1;
 	public int xpToNextLevel = 100;
+	public int levelUpsApplied = 0;
 	public float gameTime = 0f;
 	
 	public string currentLevel = "res://Scenes/Level1.tscn";
@@ -79,6 +81,7 @@ public partial class GameManager : Node
 	void LevelUp()
 	{
 		level++;
+		levelUpsApplied++; // track how many level ups have been applied for carry over
 		xp -= xpToNextLevel;
 		xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
 		GetNode<SoundManager>("/root/SoundManager").PlaySfx("LevelUp", true);
@@ -91,20 +94,31 @@ public partial class GameManager : Node
 		var menu = new LevelUpMenu();
 		GetTree().CurrentScene.AddChild(menu);
 	}
+	// Called when transitioning naturally between levels — keeps XP/level/stats
 	public void Reset()
 	{
-		isDead = false;
-		// coins intentionally NOT reset — they persist across runs
-		score = 0;
-		xp = 0;
-		level = 1;
-		xpToNextLevel = 100;
-		gameTime = 0f;
+		isDead           = false;
+		carryingProgress = true;
+		score            = 0;
+		gameTime         = 0f;
+		// xp, level, xpToNextLevel, levelUpsApplied intentionally NOT reset — carry over
 		CharacterBody2D player = GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
 		if (player != null)
 		{
 			CharacterStats stats = player.GetNode<CharacterStats>("Stats");
 			stats.health = stats.maxHealth;
 		}
+	}
+	// Called when starting fresh from the level select menu — resets everything
+	public void ResetForNewRun()
+	{
+		isDead           = false;
+		carryingProgress = false;
+		score            = 0;
+		xp               = 0;
+		level            = 1;
+		xpToNextLevel    = 100;
+		levelUpsApplied  = 0;
+		gameTime         = 0f;
 	}
 }

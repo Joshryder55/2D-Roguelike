@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://c1yqiyhslxeam" path="res://Assets/CourtyardHouse3.png" id="21_s6bta"]
 [ext_resource type="Texture2D" uid="uid://csm05id1ku75w" path="res://Assets/Level2Outline.png" id="23_lt7tp"]
 [ext_resource type="Script" uid="uid://cf8id12rk2y1l" path="res://Scripts/Level2ExitGate.cs" id="26_0way5"]
+[ext_resource type="PackedScene" path="res://Scenes/BossAnnouncement.tscn" id="24_bann"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6skh4"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -153,6 +154,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hud" parent="CanvasLayer" unique_id=1005367914 instance=ExtResource("8_ibolw")]
 metadata/_edit_use_anchors_ = true
+
+[node name="BossAnnouncement" parent="CanvasLayer" instance=ExtResource("24_bann")]
 
 [node name="IceWizard" parent="." unique_id=1738045256 instance=ExtResource("1_6cjmx")]
 y_sort_enabled = true

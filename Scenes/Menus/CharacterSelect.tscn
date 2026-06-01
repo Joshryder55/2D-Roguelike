@@ -58,12 +58,3 @@ text = "Character Preview"
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 stretch_mode = 3
-
-[node name="LevelPreviewLabel" type="Label" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=421076753]
-layout_mode = 2
-text = "Level Preview"
-
-[node name="LevelPreviewTexture" type="TextureRect" parent="CenterContainer/HBoxContainer/PreviewVBox" unique_id=824593989]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-stretch_mode = 3
