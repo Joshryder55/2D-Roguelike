@@ -134,9 +134,9 @@ script = ExtResource("10_k2jhg")
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=158615894]
 custom_minimum_size = Vector2(0, 5)
 offset_left = -90.0
-offset_top = -88.000015
+offset_top = -168.0
 offset_right = 854.9999
-offset_bottom = -61.000015
+offset_bottom = -141.0
 scale = Vector2(0.2, 0.2)
 theme_override_styles/fill = SubResource("StyleBoxFlat_bpndq")
 show_percentage = false

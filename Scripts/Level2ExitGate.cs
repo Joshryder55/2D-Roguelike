@@ -14,6 +14,6 @@ public partial class Level2ExitGate : Area2D {
 	}
 
 	private void ChangeScene() {
-		GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/LoreScreens/Level3Lore.tscn");
 	}
 }

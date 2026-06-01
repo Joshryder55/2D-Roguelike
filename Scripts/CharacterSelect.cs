@@ -112,15 +112,15 @@ public partial class CharacterSelect : Control
 		{
 			case "Level 1":
 				gameManager.currentLevel = "res://Scenes/Level1.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level1.tscn");
+				GetTree().ChangeSceneToFile("res://Scenes/LoreScreens/Level1Lore.tscn");
 				break;
 			case "Level 2":
 				gameManager.currentLevel = "res://Scenes/Level2.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level2.tscn");
+				GetTree().ChangeSceneToFile("res://Scenes/LoreScreens/Level2Lore.tscn");
 				break;
 			case "Level 3":
 				gameManager.currentLevel = "res://Scenes/Level3.tscn";
-				GetTree().ChangeSceneToFile("res://Scenes/Level3.tscn");
+				GetTree().ChangeSceneToFile("res://Scenes/LoreScreens/Level3Lore.tscn");
 				break;
 		}
 		

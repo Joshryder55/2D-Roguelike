@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dfk0rbfwsix2o"]
+
+[ext_resource type="Script" uid="uid://cq8soty5186st" path="res://Scripts/LoreScreen.cs" id="1_ngawh"]
+
+[node name="EndLore" type="Control" unique_id=1936937232]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ngawh")
+NextScene = "res://Scenes/Menus/MainMenu.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=922273868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoreLabel" type="Label" parent="." unique_id=1400206686]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 88.0
+offset_right = 1052.0
+offset_bottom = 536.0
+text = "The Ancient evil has been defeated. The corruption begins to recede, slowly retreating from the stone walls, floor, and the air itself.
+
+The king slumps on his throne, the corruption that had a hold of him is gone. There is despair and regret in his eyes as he painfully takes shallow breaths. He looks at our hero and is able to mutter the words \"Thank you\" before he succumbs to the pain.
+
+The castle becomes completely silent for the first time in years. Our hero walks out of the castle back into the light, the lands of Arenthal are safe and the ancient evil has been dealt with. For now."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkipButton" type="Button" parent="." unique_id=27365178]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SKIP"

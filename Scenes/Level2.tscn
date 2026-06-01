@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://mg451rf3y6ui" path="res://Assets/CourtyardHouse2.png" id="21_6nssv"]
 [ext_resource type="Texture2D" uid="uid://c1yqiyhslxeam" path="res://Assets/CourtyardHouse3.png" id="21_s6bta"]
 [ext_resource type="Texture2D" uid="uid://csm05id1ku75w" path="res://Assets/Level2Outline.png" id="23_lt7tp"]
+[ext_resource type="Script" uid="uid://cf8id12rk2y1l" path="res://Scripts/Level2ExitGate.cs" id="26_0way5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6skh4"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -395,6 +396,7 @@ texture = ExtResource("23_lt7tp")
 [node name="Level2ExitGate" type="Area2D" parent="." unique_id=529168797]
 visible = false
 position = Vector2(175, -584)
+script = ExtResource("26_0way5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level2ExitGate" unique_id=1820957981]
 position = Vector2(16, -1)

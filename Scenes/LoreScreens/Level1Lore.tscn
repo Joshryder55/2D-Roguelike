@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://0c8qnbsq0ie0"]
+
+[ext_resource type="Script" uid="uid://cq8soty5186st" path="res://Scripts/LoreScreen.cs" id="1_qyir3"]
+
+[node name="Level1Lore" type="Control" unique_id=1936937232]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qyir3")
+NextScene = "res://Scenes/Level1.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=922273868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoreLabel" type="Label" parent="." unique_id=1400206686]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 88.0
+offset_right = 1052.0
+offset_bottom = 536.0
+text = "Returning from a long and arduous journey across the unforgiving lands of Arenthal, our hero approaches the castle with urgent news. The smell of smoke lingers heavily in the air — something terrible has happened in his absence.
+
+The gate stands unguarded. Not a soul responds to his calls. Then, as if something heard him, the gate opens on its own.
+
+Weeks ago he was sent to investigate rumors about a sealed tomb that was previously discovered deep in the mountains and brought back to the castle. What he found was deeply disturbing. It was not a god as initially believed — it was something far older. An ancient evil. He must warn the king.
+
+As he steps through the gate it closes behind him. Our hero realizes he is too late. The ancient evil has already taken hold. He must fight his way to the king's chambers and put an end to this darkness."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkipButton" type="Button" parent="." unique_id=27365178]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SKIP"
