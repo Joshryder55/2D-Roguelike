@@ -15,7 +15,7 @@ public partial class CorruptedKnightHealth : EnemyHealth {
 		Area2D gate = level.GetNodeOrNull<Area2D>("Level2ExitGate");
 		if (gate != null) {
 			gate.Visible = true;
-			gate.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+			gate.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
 		}
 
 		base.Die(canShatter);
