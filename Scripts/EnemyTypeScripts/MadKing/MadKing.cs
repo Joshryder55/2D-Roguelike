@@ -99,6 +99,8 @@ public override async void _Ready() {
 		arrow.GlobalPosition = GlobalPosition;
 		arrow.direction = (Player.GlobalPosition - GlobalPosition).Normalized();
 		GetTree().CurrentScene.CallDeferred("add_child", arrow);
+
+		GetNode<SoundManager>("/root/SoundManager").PlaySfx("BossAttackLvl3");
 	}
 
 	private void SpawnMinions() {

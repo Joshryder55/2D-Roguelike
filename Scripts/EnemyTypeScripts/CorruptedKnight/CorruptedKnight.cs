@@ -85,6 +85,7 @@ public partial class CorruptedKnight : Enemy {
 			sweepHitbox.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 			sprite.Play("Swing");
 			sprite.AnimationFinished += OnSwingFinished;
+			GetNode<SoundManager>("/root/SoundManager").PlaySfx("BossAttackLvl2");
 		}
 	}
 

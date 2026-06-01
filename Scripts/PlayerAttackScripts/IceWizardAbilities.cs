@@ -98,8 +98,10 @@ public partial class IceWizardAbilities : Node
 		GetTree().CurrentScene.AddChild(blizzard);
 	}
 
-	public void FireFlashFreeze()
+	public async void FireFlashFreeze()
 	{
+		AudioStreamPlayer flashFreezeSound = GetNode<SoundManager>("/root/SoundManager").PlaySfxLooping("FlashFreeze");
+
 		foreach (Node node in GetTree().GetNodesInGroup("enemies"))
 		{
 			if (node is not CharacterBody2D body) continue;
@@ -149,6 +151,9 @@ public partial class IceWizardAbilities : Node
 
 		DoFlashFreezeEffect();
 		gameManager.ultimateIsActive = false;
+
+		await ToSignal(GetTree().CreateTimer(iceStats.flashFreezeDuration), SceneTreeTimer.SignalName.Timeout);
+		if (IsInstanceValid(flashFreezeSound)) flashFreezeSound.QueueFree();
 	}
 
 	// ── Passives ─────────────────────────────────────────────────────

@@ -9,9 +9,12 @@ public partial class Blizzard : Area2D
 	private float _slowFactor;
 	private float _elapsed = 0f;
 	private float _tickElapsed = 0f;
+	private AudioStreamPlayer _blizzardSound;
 
 	public override void _Ready()
 	{
+		_blizzardSound = GetNode<SoundManager>("/root/SoundManager").PlaySfxLooping("Blizzard");
+
 		// Read tuning values from iceStats so upgrades apply
 		_duration   = iceStats?.blizzardDuration   ?? 6.0f;
 		_slowFactor = iceStats?.blizzardSlowFactor ?? 0.4f;
@@ -48,6 +51,11 @@ public partial class Blizzard : Area2D
 			GetNode<GameManager>("/root/GameManager").ultimateIsActive = false;
 			QueueFree();
 		}
+	}
+
+	public override void _ExitTree()
+	{
+		if (IsInstanceValid(_blizzardSound)) _blizzardSound.QueueFree();
 	}
 
 	private void DamageEnemiesInside()
