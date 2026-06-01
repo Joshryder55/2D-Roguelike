@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://h452xvel0jir" path="res://Scripts/BulletBlocker.cs" id="15_ug0sv"]
 [ext_resource type="PackedScene" uid="uid://bg8ps2iulp3fu" path="res://Scenes/Menus/PauseMenu.tscn" id="17_pause"]
 [ext_resource type="Script" uid="uid://b17g3cxw22p0q" path="res://Scripts/Level1ExitGate.cs" id="23_03od6"]
+[ext_resource type="PackedScene" path="res://Scenes/BossAnnouncement.tscn" id="24_bann"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpbar"]
 bg_color = Color(0.18, 0.8, 0.18, 1)
@@ -232,6 +233,8 @@ script = ExtResource("5_xpbar")
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1647382910 instance=ExtResource("17_pause")]
 
 [node name="Hud" parent="CanvasLayer" unique_id=1005367914 instance=ExtResource("14_ulvkb")]
+
+[node name="BossAnnouncement" parent="CanvasLayer" instance=ExtResource("24_bann")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265576140]
 z_index = -1
