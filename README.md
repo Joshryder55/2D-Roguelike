@@ -4,6 +4,8 @@ A top-down bullet-heaven roguelike set in the corrupted lands of Arenthal. Fight
 
 ## Download
 
+https://github.com/Joshryder55/2D-Roguelike/releases/tag/v1.0
+
 ## How to Launch
 
 **Windows:** 
