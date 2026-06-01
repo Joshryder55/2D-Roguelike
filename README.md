@@ -1,6 +1,6 @@
 # Corrupted Omens
 
-A top-down bullet-heaven roguelike set in the corrupted lands of Arenthal. Fight through three levels of corruption — the farmlands, the courtyard, and the throne room — to defeat the Ancient Evil that has taken hold of the castle and save the kingdom.
+A top-down bullet-heaven roguelike set in the corrupted lands of Arenthal. Fight through three levels of corruption — the farmlands, the courtyard, and the throne room — to defeat the Ancient Evil that has taken hold of the castle and save the kingdom. 98% of the assets for the game were hand drawn.
 
 ## Download
 
