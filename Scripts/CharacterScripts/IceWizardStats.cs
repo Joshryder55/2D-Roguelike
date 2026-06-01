@@ -123,6 +123,20 @@ public partial class IceWizardStats : CharacterStats
 		// Permafrost upgrades
 		permafrostRadius     += saveData.permafrostRadiusLevel * 25f;
 		permafrostSlowFactor  = Mathf.Max(0.4f, permafrostSlowFactor - saveData.permafrostChillLevel * 0.05f);
+
+		// Reapply level up stats if carrying progress from a previous level
+		GameManager gm = GetNode<GameManager>("/root/GameManager");
+		if (gm.carryingProgress && gm.levelUpsApplied > 0)
+		{
+			for (int i = 0; i < gm.levelUpsApplied; i++)
+			{
+				maxHealth    = Mathf.RoundToInt(maxHealth * healthMultiplier);
+				playerSpeed *= speedMultiplier;
+				fireRate    *= fireRateMultiplier;
+				range       *= rangeMultiplier;
+			}
+			health = maxHealth;
+		}
 	}
 
 	public override int GetUltimateChargeRequired()
